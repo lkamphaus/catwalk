@@ -1,23 +1,22 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App.jsx';
 
-const App = () => {
+// const App = () => {
 
-// const [text, setText] = useState('')
+// // const [text, setText] = useState('')
 
-//test
+// //test
 
-// setText('hello World')
+// // setText('hello World')
 
-//does dis work?
+// //does dis work?
 
-return (
-    <div>Hello World</div>
-)
+// return (
+//     <div>Hello World</div>
+// )
 
-}
+// }
 
-ReactDOM.render(<App />, document.getElementById('app'))
-
-export default App
+ReactDOM.render(<App />, document.getElementById('app'));
 
