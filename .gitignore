@@ -102,6 +102,9 @@ bundle.js
 # TernJS port file
 .tern-port
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e4c9b741bff6b5b315699f2fbf4621c451099ff4
 # TOKEN
 config.js
