@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Config from "../../.././config.js";
+import styles from "../../../client/dist/ProductDetail.module.css";
 
 const ProductDetail = () => {
   const [prod, setProd] = useState(null);
   const { product_id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3246/products/${product_id}`, {
+    console.log('got here')
+    fetch(`http://localhost:3246/api/products/${product_id}`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -18,7 +19,9 @@ const ProductDetail = () => {
 
   return (
     <div>
-      <div>{prod}</div>
+      <div className="prod" style={{ color: "yellow" }}>
+      <h1>YES</h1>
+      </div>
     </div>
   );
 };
