@@ -7,7 +7,7 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path="/product/:id">
+        <Route path="/products/:id">
           <ProductDetail />
         </Route>
       </Switch>
