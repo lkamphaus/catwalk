@@ -7,20 +7,20 @@ const ProductDetail = () => {
   const { product_id } = useParams();
 
   useEffect(() => {
-    console.log('got here')
-    fetch(`http://localhost:3246/api/products/${product_id}`, {
+    fetch(`http://localhost:3246/api/products/${product_id}?format=json`, {
       headers: {
         "Content-Type": "application/json",
       },
     })
-      .then(setProd)
-      .catch((err) => console.log("err", err));
-  }, product_id);
+      .then(response => response.json())
+      .then(data => setProd(JSON.stringify(data)))
+      .catch(err => console.log("err", err))
+  }, []);
 
   return (
     <div>
       <div className="prod" style={{ color: "yellow" }}>
-      <h1>YES</h1>
+      <h1>{prod}</h1>
       </div>
     </div>
   );
