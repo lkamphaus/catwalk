@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import styles from "../../../client/dist/ProductDetail.module.css";
+import styles from "./overview/Main.module.css";
 
 const ProductDetail = () => {
   const [prod, setProd] = useState(null);
@@ -19,8 +19,8 @@ const ProductDetail = () => {
 
   return (
     <div>
-      <div className="prod" style={{ color: "yellow" }}>
-      <h1>{prod}</h1>
+      <div className={styles.prod}>
+        <h1>{prod}</h1>
       </div>
     </div>
   );
