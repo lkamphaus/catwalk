@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import styles from "./overview/Main.module.css";
+// import MainOverview from "./overview/MainOverview.jsx";
+import Reviews from "./reviews/Reviews.jsx";
 
 const ProductDetail = () => {
   const [prod, setProd] = useState(null);
@@ -13,14 +14,19 @@ const ProductDetail = () => {
       },
     })
       .then(response => response.json())
-      .then(data => setProd(JSON.stringify(data)))
+      .then(data => setProd(data))
       .catch(err => console.log("err", err))
   }, []);
 
   return (
     <div>
-      <div className={styles.prod}>
-        <h1>{prod}</h1>
+      <div>
+        <div>
+
+        </div>
+        <div>
+          <Reviews id={product_id} />
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,27 @@
+.gridContainer {
+  display: grid;
+  margin-left: 300px;
+  margin-right: 300px;
+  grid-template-columns: 0.5fr 0.2fr 0.5fr 0.5fr;
+  grid-template-rows: repeat(1fr 1fr 1fr);
+  gap: 0px 0px;
+  grid-template-areas:
+    "Product-Breakdown Product-Breakdown Reviews-List Reviews-List"
+    "Product-Breakdown Product-Breakdown Reviews-List Reviews-List"
+    ". . . .";
+}
+
+.reviewsList {
+  grid-area: Reviews-List;
+}
+
+.productBreakdown {
+  grid-area: Product-Breakdown;
+  padding-top: 35px;
+}
+
+.reviewTile{
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 10px;
+  padding-top: 35px;
+}

@@ -2,10 +2,10 @@ const axios = require('axios');
 const config = require('../.././config.js');
 
 module.exports = {
-  getProduct: function(id) {
+  getReviews: function(id, page, count, sort) {
     let options = {
       method: 'GET',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${id}`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews?product_id=${id}&count=${count}&page=${page}&sort=${sort}`,
       headers: {
         'User-Agent': 'request',
         'Authorization': `${config.TOKEN}`
