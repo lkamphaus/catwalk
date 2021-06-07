@@ -13,7 +13,7 @@ const ProductDetail = () => {
       },
     })
       .then(response => response.json())
-      .then(data => setProd(JSON.stringify(data)))
+      .then(data => setProd(data))
       .catch(err => console.log("err", err))
   }, []);
 
@@ -22,9 +22,9 @@ const ProductDetail = () => {
   return (
     <div>
       <div className="prod" style={{ color: "yellow" }}>
-      <h1>{prod}</h1>
+      <h1></h1>
       <div>
-        <MainOverview/>
+        <MainOverview prod={prod}/>
       </div>
       </div>
     </div>
