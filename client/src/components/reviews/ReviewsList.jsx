@@ -47,10 +47,10 @@ class ReviewsList extends React.Component {
       <ReviewTile key={review.review_id} review={review} />
     );
 
-    var total = this.props.total > 0 ?
-      <span>{`${this.props.total} reviews, sorted by relevance`}</span> : <div></div>
+    var total = this.state.reviews.length > 0 ?
+      <span>{`${this.state.reviews.length} reviews, sorted by relevance`}</span> : <div></div>
 
-    var moreReviews = this.state.display.length < this.props.total ?
+    var moreReviews = this.state.display.length < this.state.reviews.length ?
       <button className={styles.reviewButtons} onClick={this.getMore}>MORE REVIEWS</button> : <div></div>
 
     return (

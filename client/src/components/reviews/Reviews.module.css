@@ -4,7 +4,7 @@
   margin-left: 250px;
   margin-right: 250px;
   color: #808080;
-  font-size: 16px;
+  font-size: 20px;
   grid-template-columns: 0.5fr 0.2fr 1.5fr 0.5fr;
   grid-template-rows: repeat(1fr 1fr 1fr);
   gap: 0px 0px;
@@ -31,7 +31,7 @@
   border-bottom: 1px solid black;
   padding-bottom: 20px;
   padding-top: 10px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .reviewButtons{
@@ -62,20 +62,15 @@
 
 .smallImg{
   display: inline;
-  margin-top: 5px;
-  margin-right: 5px;
-  height: 50px;
-  width: 50px;
+  margin-top: 10px;
+  margin-right: 10px;
+  height: 70px;
+  width: 70px;
 }
 
-.largeImg{
-  display: inline;
-}
-
-.modal{
-  display: inline;
-  box-shadow: 0 8px 6px -6px black;
-  position: static;
-  left: 20%;
-  top: 10%;
+.showMore{
+  margin: 10px;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
 }

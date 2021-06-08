@@ -32,15 +32,16 @@ class Reviews extends React.Component {
 
   render() {
     return (
-    <div className={styles.gridContainer}>
-      <div className={styles.reviewsList}>
-        <ReviewsList id={this.props.id} total={this.state.total}/>
+      <div className={styles.gridContainer}>
+        <div className={styles.reviewsList}>
+          <ReviewsList id={this.props.id} total={this.state.total} />
+        </div>
+        <div className={styles.productBreakdown}>
+          <ProductBreakdown overview={this.state.overview} />
+        </div>
       </div>
-      <div className={styles.productBreakdown}>
-        <ProductBreakdown overview={this.state.overview} />
-      </div>
-    </div>
-    )}
+    )
+  }
 }
 
 export default Reviews;
