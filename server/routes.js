@@ -3,7 +3,9 @@ var router = require('express').Router();
 
 router.get('/products/:product_id', controller.products.get);
 
-router.get('/reviews/:product_id/:page/:count/:sort', controller.reviews.get)
+router.get('/reviews/:product_id/:page/:count/:sort', controller.reviews.get);
+
+router.get('/reviews/meta/:product_id', controller.reviews.getMeta)
 
 
 module.exports = router;

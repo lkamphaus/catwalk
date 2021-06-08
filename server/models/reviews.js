@@ -12,5 +12,17 @@ module.exports = {
       }
     };
     return axios(options);
+  },
+
+  getOverview: function(id) {
+    let options = {
+      method: 'GET',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/meta?product_id=${id}`,
+      headers: {
+        'User-Agent': 'request',
+        'Authorization': `${config.TOKEN}`
+      }
+    };
+    return axios(options);
   }
 }
