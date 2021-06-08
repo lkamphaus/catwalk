@@ -9,7 +9,7 @@ import styles from ".././style.css";
 const ProductDetail = () => {
   const [prod, setProd] = useState(null);
   const { product_id } = useParams();
-  console.log('id pd', product_id);
+  // console.log('id pd', product_id);
 
   useEffect(() => {
     fetch(`http://localhost:3246/api/products/${product_id}?format=json`, {

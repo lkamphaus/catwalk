@@ -30,23 +30,38 @@ const Styles = ({ product, images, handleSales }) => {
 
   // put each child inside of a circle type image.
 
+  // console.log(images);
   return (
     <div>
       <div className={style.image}>
-        <img
-          style={{ height: "500px", width: "500px" }}
-          src={displayed.map((item) => item.url)}
-        ></img>
-        <img
-          style={{ height: "150px", width: "150px" }}
-          src={displayed.map((item) => item.thumbnail_url)}
-        ></img>
+        {displayed.length <= 0 ? (
+          <img
+            style={{ height: "500px", width: "500px" }}
+            src={images.map((item) => item.map((img) => img.url))}
+          ></img>
+        ) : (
+          <img
+            style={{ height: "500px", width: "500px" }}
+            src={displayed.map((item) => item.url)}
+          ></img>
+        )}
+        {displayed.length <= 0 ? (
+          <img
+            style={{ height: "150px", width: "150px" }}
+            src={images.map((item) => item.map((img) => img.thumbnail_url))}
+          ></img>
+        ) : (
+          <img
+            style={{ height: "150px", width: "150px" }}
+            src={displayed.map((item) => item.thumbnail_url)}
+          ></img>
+        )}
       </div>
       <h1 className={style.style}>Styles: {selected}</h1>
-      <div className={style.selected}>
+      <div >
         {product &&
           product.map((item) => (
-            <div
+            <div className={style.selected}
               onClick={(e) => {
                 handleSelected(e);
               }}
