@@ -1,10 +1,8 @@
-
 .qaSection {
   color: #808080;
   display: flex;
-  font-weight: 700;
   align-items: center;
-  padding: 40px 300px !important;
+  padding: 40px 250px !important;
 }
 
 .qaSection > * {
@@ -19,35 +17,102 @@
 }
 
 .searchBoxSection {
-  border: solid 1px #808080;
-  padding: 20px;
-  text-align: start;
-  font-weight: 400;
-  margin-bottom: 35px;
+  position: relative;
 }
 
-.questionTitle {
-  font-weight: 700;
-  order: 1;
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 0px 0px 35px 0px;
+  box-sizing: border-box;
+}
+
+.questionBody {
+  display: flex;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+.questionLetter {
+  font-weight: 500;
+  margin-right: 5px;
+  font-size: 23px;
+}
+
+.questionText {
+  font-weight: 500;
   flex-grow: 2;
+  font-size: 23px;
 }
 
-.question {
-  margin-bottom: 20px;
+.questionHelpful {
+  font-weight: 500;
+  margin-left: 20px;
 }
 
 .questionHelpfulness {
   font-weight: 400;
   color: #D96C06;
   font-weight: 14px;
-  float: right;
-
+  text-decoration: underline;
+  margin-left: 20px;
 }
 
-.answerBody {
+.questionAddAnswer {
+  font-weight: 400;
+  color: #D96C06;
+  font-weight: 14px;
+  text-decoration: underline;
+  margin-left: 20px;
+}
+
+.answerSection {
   font-weight: 400;
   font-size: 20px;
 }
+
+.answerBody {
+  display:flex;
+}
+
+.answerMeta {
+  display:flex;
+  margin: 25px 10px 25px 20px;
+}
+
+.answerLetter {
+  font-weight: 500;
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+.answerDate {
+  margin-left: 20px;
+}
+
+.answerHelpful {
+  margin-left: 20px;
+  font-weight: 500;
+}
+
+.answerHelpfulness {
+  margin-left: 20px;
+  color:#D96C06;
+  text-decoration: underline;
+}
+
+.answerReport {
+  margin-left: 20px;
+  text-decoration: underline;
+  font-weight: 400;
+  color: #D96C06;
+}
+
+.loadMoreAnswers {
+  margin: 20px;
+  font-weight: 500;
+}
+
 
 button {
   background-color: #26A7BA;
