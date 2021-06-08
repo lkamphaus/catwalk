@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Description from './Description.jsx'
+import style from './MainOverview.module.css'
 
 const MainOverview = ({prod}) => {
   const [product, setProd] = useState([]);
@@ -32,7 +33,7 @@ const MainOverview = ({prod}) => {
     <div>
       <div className="prod" style={{ color: "black" }}>
         
-        <div>
+        <div className={style.gridcontainer}>
           <Description product={product} prod={prod} images={images}/>
         </div>
       </div>

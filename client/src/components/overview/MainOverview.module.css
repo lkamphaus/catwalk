@@ -1,3 +1,5 @@
+
+
 .category {
   font-size: 38px;
   display: flex;
@@ -21,25 +23,41 @@
   justify-content: space-around;
 }
 
-.changeSale {
+.defaultPrice {
   font-size: 20px;
   display: flex;
   justify-content: space-around;
-  text-decoration: line-through;
-  text-decoration-color: red;
+}
+
+.changeSale {
+  
+    font-size: 20px;
+    display: flex;
+    justify-content: space-around;
+    text-decoration: line-through;
+    text-decoration-color: red;
 }
 
 .style {
   font-size: 38px;
   display: flex;
   justify-content: space-around;
+  
 }
 
 .selected {
+  text-align: center;
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  width: 100%;
+  flex-direction: row;
   cursor: pointer;
+  background-color:#fff;
+  border:1px solid red;    
+  height:75px;
+  border-radius:50%;
+  -moz-border-radius:50%;
+  -webkit-border-radius:50%;
+  width:100px;
 }

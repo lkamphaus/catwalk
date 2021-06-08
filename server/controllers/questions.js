@@ -4,7 +4,7 @@ module.exports = {
   get: function(req, res) {
     models.questions.getQuestions(req.query.product_id)
     .then((response) => {
-      console.log(response);
+      // console.log(response);
      res.status(200).end(JSON.stringify(response.data));
     })
     .catch(err => {
