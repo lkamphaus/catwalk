@@ -19,10 +19,8 @@ const Styles = ({ product, images, handleSales }) => {
     product.map((item) => {
       if (item.name === e.target.innerHTML) {
         setIds((ids) => [item.style_id]);
-        console.log(ids);
         if (!ids.includes(item.style_id)) {
-            setDisplayed((displayed) => item.photos);
-
+          setDisplayed((displayed) => item.photos);
         }
 
         handleSales(item);
