@@ -22,7 +22,6 @@ class ReviewsList extends React.Component {
   }
 
   getReviews() {
-    console.log(this.props.total);
     fetch(`http://localhost:3246/api/reviews/${this.props.id}/${1}/${this.props.total}/${this.state.sort}?format=json`, {
       headers: {
         "Content-Type": "application/json",
@@ -48,15 +47,16 @@ class ReviewsList extends React.Component {
       <ReviewTile key={review.review_id} review={review} />
     );
 
-    var total = this.props.total > 0 ? <span>{`${this.props.total} reviews, sorted by relevance`}</span> : <div></div>
+    var total = this.state.reviews.length > 0 ?
+      <span>{`${this.state.reviews.length} reviews, sorted by relevance`}</span> : <div></div>
 
-    var moreReviews = this.state.display.length < this.props.total ?
+    var moreReviews = this.state.display.length < this.state.reviews.length ?
       <button className={styles.reviewButtons} onClick={this.getMore}>MORE REVIEWS</button> : <div></div>
 
     return (
       <div>
         {total}
-        <div>{reviews}</div>
+        {reviews}
         {moreReviews}
         <button className={styles.reviewButtons}>ADD A REVIEW  +</button>
       </div>
