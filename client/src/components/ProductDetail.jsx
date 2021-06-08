@@ -23,19 +23,15 @@ const ProductDetail = () => {
   return (
     <div>
       <div>
-        <div>
-
-        </div>
-        <div className="prod" style={{ color: "yellow" }}>
-          <h1></h1>
-          <div>
-            <MainOverview prod={prod} />
-          </div>
-          <div>
-            <Reviews id={product_id} />
-          </div>
-        </div>
+        <MainOverview prod={prod} />
       </div>
+      <div>
+
+      </div>
+      <div>
+        <Reviews id={product_id} />
+      </div>
+    </div>
   );
 };
 

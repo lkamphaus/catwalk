@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from "./Reviews.module.css";
+import Thumbnail from "./Thumbnail.jsx"
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -13,6 +14,10 @@ class ReviewTile extends React.Component {
     var day = formatted[2][0] === '0' ? formatted[2].slice(1) : formatted[2];
     date = `${month} ${day}, ${formatted[3]}`;
 
+    var thumbnails = this.props.review.photos.map((photo) =>
+      <Thumbnail key={photo.id} source={photo.url}/>
+    )
+
     return (
       <div className={styles.reviewTile}>
         <div className={styles.userDate}>
@@ -24,6 +29,9 @@ class ReviewTile extends React.Component {
         <br />
         <div>
           {this.props.review.body}
+        </div>
+        <div>
+          {thumbnails}
         </div>
       </div>
     )

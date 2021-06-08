@@ -1,9 +1,11 @@
 .gridContainer {
   display: grid;
-  margin-left: 300px;
-  margin-right: 300px;
+  margin-top: 100px;
+  margin-left: 250px;
+  margin-right: 250px;
   color: #808080;
-  grid-template-columns: 0.5fr 0.2fr 0.5fr 0.5fr;
+  font-size: 16px;
+  grid-template-columns: 0.5fr 0.2fr 1.5fr 0.5fr;
   grid-template-rows: repeat(1fr 1fr 1fr);
   gap: 0px 0px;
   grid-template-areas:
@@ -14,17 +16,21 @@
 
 .reviewsList {
   grid-area: Reviews-List;
+  max-height: 55vh;
+  min-height: 55vh;
+  overflow: auto;
 }
 
 .productBreakdown {
   grid-area: Product-Breakdown;
   padding-top: 35px;
+  text-align: left;
 }
 
 .reviewTile{
   border-bottom: 1px solid black;
   padding-bottom: 20px;
-  padding-top: 20px;
+  padding-top: 10px;
   margin-bottom: 30px;
 }
 
@@ -47,5 +53,29 @@
   font-size: 12px;
   text-align: right;
   opacity: 80%;
-  margin-bottom: 15px
+  margin-bottom: 15px;
+}
+
+.thumbnails{
+  display: inline;
+}
+
+.smallImg{
+  display: inline;
+  margin-top: 5px;
+  margin-right: 5px;
+  height: 50px;
+  width: 50px;
+}
+
+.largeImg{
+  display: inline;
+}
+
+.modal{
+  display: inline;
+  box-shadow: 0 8px 6px -6px black;
+  position: static;
+  left: 20%;
+  top: 10%;
 }
