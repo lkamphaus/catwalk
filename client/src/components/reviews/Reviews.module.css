@@ -1,0 +1,51 @@
+.gridContainer {
+  display: grid;
+  margin-left: 300px;
+  margin-right: 300px;
+  color: #808080;
+  grid-template-columns: 0.5fr 0.2fr 0.5fr 0.5fr;
+  grid-template-rows: repeat(1fr 1fr 1fr);
+  gap: 0px 0px;
+  grid-template-areas:
+    "Product-Breakdown Product-Breakdown Reviews-List Reviews-List"
+    "Product-Breakdown Product-Breakdown Reviews-List Reviews-List"
+    ". . . .";
+}
+
+.reviewsList {
+  grid-area: Reviews-List;
+}
+
+.productBreakdown {
+  grid-area: Product-Breakdown;
+  padding-top: 35px;
+}
+
+.reviewTile{
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+
+.reviewButtons{
+  display: in-line;
+  margin-right: 20px;
+  padding: 20px;
+  color: white;
+  font-size: 15px;
+  line-height: 20px;
+  background-color: #26A7BA;
+}
+
+.reviewSummary{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.userDate{
+  font-size: 12px;
+  text-align: right;
+  opacity: 80%;
+  margin-bottom: 15px
+}
