@@ -24,7 +24,7 @@ class Reviews extends React.Component {
     })
       .then(response => response.json())
       .then(data => this.setState({
-        total: Number(data.recommended.false) + Number(data.recommended.true),
+        total: (Number(data.recommended.false) || 0) + (Number(data.recommended.true) || 0),
         overview: data
       }))
       .catch(err => console.log("err", err))
