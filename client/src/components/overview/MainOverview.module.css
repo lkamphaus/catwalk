@@ -1,0 +1,45 @@
+.category {
+  font-size: 38px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.name {
+  font-size: 43px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.price {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+.sale {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.changeSale {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-around;
+  text-decoration: line-through;
+  text-decoration-color: red;
+}
+
+.style {
+  font-size: 38px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.selected {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  cursor: pointer;
+}
