@@ -181,7 +181,7 @@ class AddReview extends React.Component {
     ) : null;
 
     return (
-      <div>
+      <div style={{display: "inline"}}>
         <button className={styles.reviewButtons} onClick={this.handleAdd}>
           ADD A REVIEW +
         </button>

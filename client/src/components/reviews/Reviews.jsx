@@ -40,7 +40,7 @@ class Reviews extends React.Component {
   render() {
     return (
       <div className={styles.gridContainer}>
-        <div className={styles.reviewsList}>
+        <div>
           <ReviewsList
             id={this.props.id}
             name={this.props.name}

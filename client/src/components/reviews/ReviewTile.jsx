@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Reviews.module.css";
 import Thumbnail from "./Thumbnail.jsx";
+import Stars from "./Stars.jsx";
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -45,11 +46,11 @@ class ReviewTile extends React.Component {
 
     return (
       <div className={styles.reviewTile}>
+        <Stars rating = {this.props.review.rating}/>
         <div className={styles.userDate}>
           {`${this.props.review.reviewer_name}, ${date}`}
         </div>
         <div className={styles.reviewSummary}>{this.props.review.summary}</div>
-        <br />
         <div>
           {reviewText}
           <a

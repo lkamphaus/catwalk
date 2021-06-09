@@ -14,6 +14,7 @@ class ReviewsList extends React.Component {
 
     this.getReviews = this.getReviews.bind(this);
     this.getMore = this.getMore.bind(this);
+    this.handleSort = this.handleSort.bind(this)
   }
 
   componentDidUpdate(prevProps) {
@@ -37,7 +38,10 @@ class ReviewsList extends React.Component {
       .then((data) =>
         this.setState({
           reviews: data,
-          display: data.slice(0, 2),
+          display: data.slice(
+            0,
+            this.state.display.length === 0 ? 2 : this.state.display.length
+          ),
         })
       )
       .catch((err) => console.log("err", err));
@@ -52,14 +56,37 @@ class ReviewsList extends React.Component {
     });
   }
 
+  handleSort(e) {
+    var sort = e.target.value;
+
+    this.setState({
+      sort: sort
+    }, () => this.getReviews())
+  }
+
   render() {
     var reviews = this.state.display.map((review) => (
       <ReviewTile key={review.review_id} review={review} />
     ));
 
+    var dropDown = (
+      <select
+        className={styles.dropDown}
+        value={`${this.state.sort}`}
+        onChange={(e) => this.handleSort(e)}
+      >
+        <option value="relevant">relevant</option>
+        <option value="helpful">helpful</option>
+        <option value="newest">newest</option>
+      </select>
+    );
+
     var total =
       this.state.reviews.length > 0 ? (
-        <span>{`${this.state.reviews.length} reviews, sorted by relevance`}</span>
+        <span>
+          {`${this.state.reviews.length} reviews, sorted by `}
+          {dropDown}
+        </span>
       ) : (
         <div></div>
       );
@@ -76,7 +103,7 @@ class ReviewsList extends React.Component {
     return (
       <div>
         {total}
-        {reviews}
+        <div className={styles.reviewsList}>{reviews}</div>
         {moreReviews}
         <AddReview name={this.props.name} />
       </div>
