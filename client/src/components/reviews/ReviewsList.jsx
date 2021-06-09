@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Reviews.module.css";
-import ReviewTile from "./ReviewTile.jsx"
+import ReviewTile from "./ReviewTile.jsx";
+import AddReview from "./AddReview.jsx"
 
 class ReviewsList extends React.Component {
   constructor(props) {
@@ -8,11 +9,11 @@ class ReviewsList extends React.Component {
     this.state = {
       reviews: [],
       display: [],
-      sort: 'relevant',
+      sort: 'relevant'
     }
 
     this.getReviews = this.getReviews.bind(this);
-    this.getMore = this.getMore.bind(this)
+    this.getMore = this.getMore.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -22,7 +23,8 @@ class ReviewsList extends React.Component {
   }
 
   getReviews() {
-    // console.log(this.props.total);
+
+//     console.log(this.props.total)
     fetch(`http://localhost:3246/api/reviews/${this.props.id}/${1}/${this.props.total}/${this.state.sort}?format=json`, {
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +61,7 @@ class ReviewsList extends React.Component {
         {total}
         {reviews}
         {moreReviews}
-        <button className={styles.reviewButtons}>ADD A REVIEW  +</button>
+        <AddReview />
       </div>
     )
   }

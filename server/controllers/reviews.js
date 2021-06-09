@@ -21,5 +21,5 @@ module.exports = {
       console.log('err', err);
       res.status(400).end();
     })
-  }
+  },
 }

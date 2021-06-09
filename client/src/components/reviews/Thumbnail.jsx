@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "react-modal";
+import Modal from "./Modal.jsx";
 import styles from "./Reviews.module.css";
 
 class Thumbnail extends React.Component {
@@ -12,10 +12,6 @@ class Thumbnail extends React.Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  componentDidMount() {
-    Modal.setAppElement('body')
-  }
-
   handleClick() {
     this.setState({
       clicked: !this.state.clicked
@@ -23,15 +19,18 @@ class Thumbnail extends React.Component {
   }
 
   render() {
+    var modal = this.state.clicked ? (
+      <Modal>
+        <div className={styles.modal}>
+          <img src={`${this.props.source}`} onClick={this.handleClick} />
+        </div>
+      </Modal>
+    ) : null;
+
     return (
       <div className={styles.thumbnails}>
         <img className={styles.smallImg} src={`${this.props.source}`} onClick={this.handleClick} />
-        <Modal
-          isOpen={this.state.clicked}
-          onRequestClose={this.handleClick}
-          contentLabel="Large image">
-          <img src={`${this.props.source}`} onClick={this.handleClick} />
-        </Modal>
+        {modal}
       </div>
     )
   }
