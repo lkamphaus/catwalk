@@ -1,51 +1,64 @@
-
-
-.category {
-  font-size: 38px;
-  display: flex;
+.gridcontainer {
+  display: grid;
+  min-height: 70vh;
+  grid-template-rows: 50vh auto;
+  grid-template-columns: auto 500px;
+  gap: 20px;
   justify-content: space-around;
+  grid-template-areas:
+    "gallery sidebar"
+    "description description";
 }
 
-.name {
-  font-size: 43px;
-  display: flex;
-  justify-content: space-around;
+.description {
+  grid-area: description;
 }
 
-.price {
-  font-size: 20px;
-  display: flex;
-  justify-content: space-around;
+.gallery {
+  grid-area: gallery;
 }
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.image {
+  grid-area: gallery;
+  float: right;
+  
+}
+
 .sale {
   font-size: 20px;
-  display: flex;
-  justify-content: space-around;
+ 
 }
 
 .defaultPrice {
   font-size: 20px;
-  display: flex;
-  justify-content: space-around;
+
 }
 
 .changeSale {
-  
-    font-size: 20px;
-    display: flex;
-    justify-content: space-around;
-    text-decoration: line-through;
-    text-decoration-color: red;
+  font-size: 20px;
+  text-decoration: line-through;
+  text-decoration-color: red;
 }
 
 .style {
   font-size: 38px;
+ 
+}
+
+.styleDiv {
+  width: 450px;
   display: flex;
-  justify-content: space-around;
-  
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .selected {
+  margin-right: 10px;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -53,11 +66,44 @@
   flex-wrap: wrap;
   flex-direction: row;
   cursor: pointer;
-  background-color:#fff;
-  border:1px solid red;    
-  height:75px;
-  border-radius:50%;
-  -moz-border-radius:50%;
-  -webkit-border-radius:50%;
-  width:100px;
+  /* background-color: #fff; */
+  border: 1px solid rgb(255, 255, 255);
+  height: 100px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  width: 100px;
+  background-color: #b8b6b6;
+
+  box-shadow: 0 0 0 3px #000000;
+}
+
+.slogan {
+  font-weight: 400;
+  font-size: 38px;
+}
+
+.info {
+  font-size: 20px;
+}
+
+.features {
+  font-size: 15px;
+}
+
+
+.name {
+  font-weight: 700;
+  font-size: 40px;
+}
+
+
+.buttons {
+  display: in-line;
+  margin-right: 20px;
+  padding: 20px;
+  color: white;
+  font-size: 15px;
+  line-height: 20px;
+  background-color: #26A7BA;
 }
