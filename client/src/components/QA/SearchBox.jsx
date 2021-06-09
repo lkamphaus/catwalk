@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from "react";
 import style from "./QuestionList.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { HiSearch } from 'react-icons/hi';
 
 const SearchBox = (props) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleSearchChange = () => {
+  const handleSearch = (event) => {
+    let term = event.target.value;
+    setSearchTerm(term);
+
+    if (term.length >= 3) {
+      props.searchQuestionList(term)
+    }
 
   }
-
 
   return (
     <div>
       <div className={style.searchBoxSection}>
-        <FontAwesomeIcon icon={faSearch} />
-        <input placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS...">
+        <input
+          type="text"
+          placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
+          onChange={handleSearch}>
         </input>
+        <div className={style.searchIcon}> <HiSearch /></div>
       </div>
     </div>
   );

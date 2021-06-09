@@ -19,18 +19,16 @@
   },
   "homepage": "https://github.com/JacobMelnick/starfire-project-catwalk#readme",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.35",
-    "@fortawesome/free-solid-svg-icons": "^5.15.3",
-    "@fortawesome/react-fontawesome": "^0.1.14",
     "axios": "^0.21.1",
     "cssloader": "^1.1.1",
     "express": "^4.17.1",
+    "luxon": "^1.27.0",
     "nodemon": "^2.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.2.0",
     "react-modal": "^3.14.2",
-    "react-router-dom": "^5.2.0",
-    "styled-components": "^5.3.0"
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
