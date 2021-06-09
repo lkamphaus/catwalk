@@ -27,40 +27,40 @@
   text-align: left;
 }
 
-.reviewTile{
+.reviewTile {
   border-bottom: 1px solid black;
   padding-bottom: 20px;
   padding-top: 10px;
   margin-bottom: 20px;
 }
 
-.reviewButtons{
+.reviewButtons {
   display: in-line;
   margin-right: 20px;
   padding: 20px;
   color: white;
   font-size: 15px;
   line-height: 20px;
-  background-color: #26A7BA;
+  background-color: #26a7ba;
 }
 
-.reviewSummary{
+.reviewSummary {
   font-size: 20px;
   font-weight: bold;
 }
 
-.userDate{
+.userDate {
   font-size: 12px;
   text-align: right;
   opacity: 80%;
   margin-bottom: 15px;
 }
 
-.thumbnails{
+.thumbnails {
   display: inline;
 }
 
-.smallImg{
+.smallImg {
   display: inline;
   margin-top: 10px;
   margin-right: 10px;
@@ -68,19 +68,19 @@
   width: 70px;
 }
 
-.showMore{
+.showMore {
   margin: 10px;
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
 }
 
-.writeReview{
-  background-color: red
+.writeReview {
+  background-color: red;
 }
 
 .modal {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   height: 100%;
   width: 100%;
@@ -122,5 +122,10 @@
 }
 
 .fields {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+h2,
+h3 {
+  margin-left: 20px;
 }

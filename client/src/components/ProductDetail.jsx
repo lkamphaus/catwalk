@@ -33,7 +33,7 @@ const ProductDetail = () => {
           <QuestionList id={product_id} />
         </div>
         <div>
-          <Reviews id={product_id} />
+          <Reviews id={product_id} name={prod === null ? null : prod.name} />
         </div>
       </div>
     </div>

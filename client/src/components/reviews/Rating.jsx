@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Reviews.module.css";
 
-class ProductBreakdown extends React.Component {
+class Rating extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -11,4 +11,4 @@ class ProductBreakdown extends React.Component {
   }
 }
 
-export default ProductBreakdown;
+export default Rating;

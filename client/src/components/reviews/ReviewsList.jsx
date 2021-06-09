@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Reviews.module.css";
 import ReviewTile from "./ReviewTile.jsx";
-import AddReview from "./AddReview.jsx"
+import AddReview from "./AddReview.jsx";
 
 class ReviewsList extends React.Component {
   constructor(props) {
@@ -9,8 +9,8 @@ class ReviewsList extends React.Component {
     this.state = {
       reviews: [],
       display: [],
-      sort: 'relevant'
-    }
+      sort: "relevant",
+    };
 
     this.getReviews = this.getReviews.bind(this);
     this.getMore = this.getMore.bind(this);
@@ -18,50 +18,69 @@ class ReviewsList extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.total !== prevProps.total) {
-      this.getReviews()
+      this.getReviews();
     }
   }
 
   getReviews() {
-    fetch(`http://localhost:3246/api/reviews/${this.props.id}/${1}/${this.props.total}/${this.state.sort}?format=json`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(response => response.json())
-      .then(data => this.setState({
-        reviews: data,
-        display: data.slice(0, 2)
-      }))
-      .catch(err => console.log("err", err))
+    fetch(
+      `http://localhost:3246/api/reviews/${this.props.id}/${1}/${
+        this.props.total
+      }/${this.state.sort}?format=json`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) =>
+        this.setState({
+          reviews: data,
+          display: data.slice(0, 2),
+        })
+      )
+      .catch((err) => console.log("err", err));
   }
 
   getMore() {
     var current = this.state.display.length;
     this.setState({
-      display: this.state.display.concat(this.state.reviews.slice(current, current + 2))
-    })
+      display: this.state.display.concat(
+        this.state.reviews.slice(current, current + 2)
+      ),
+    });
   }
 
   render() {
-    var reviews = this.state.display.map((review) =>
+    var reviews = this.state.display.map((review) => (
       <ReviewTile key={review.review_id} review={review} />
-    );
+    ));
 
-    var total = this.state.reviews.length > 0 ?
-      <span>{`${this.state.reviews.length} reviews, sorted by relevance`}</span> : <div></div>
+    var total =
+      this.state.reviews.length > 0 ? (
+        <span>{`${this.state.reviews.length} reviews, sorted by relevance`}</span>
+      ) : (
+        <div></div>
+      );
 
-    var moreReviews = this.state.display.length < this.state.reviews.length ?
-      <button className={styles.reviewButtons} onClick={this.getMore}>MORE REVIEWS</button> : <div></div>
+    var moreReviews =
+      this.state.display.length < this.state.reviews.length ? (
+        <button className={styles.reviewButtons} onClick={this.getMore}>
+          MORE REVIEWS
+        </button>
+      ) : (
+        <div></div>
+      );
 
     return (
       <div>
         {total}
         {reviews}
         {moreReviews}
-        <AddReview />
+        <AddReview name={this.props.name} />
       </div>
-    )
+    );
   }
 }
 
