@@ -25,7 +25,7 @@
   display: flex;
 }
 
-input[type=text] {
+.searchBar {
   width: 90%;
   padding: 12px 10px;
   margin: 8px 10px;

@@ -19,6 +19,7 @@ const SearchBox = (props) => {
     <div>
       <div className={style.searchBoxSection}>
         <input
+          className={style.searchBar}
           type="text"
           placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
           onChange={handleSearch}>
