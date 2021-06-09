@@ -1,8 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import style from "../MainOverview.module.css";
+import Checkout from "./Checkout.jsx";
 
-const SelectedStyle = ({ handleSelected, product }) => {
+const SelectedStyle = ({
+  product,
+  handleSelect,
+  handleDisplays,
+  handleId,
+  handleSales,
+}) => {
   const [selected, setSelected] = useState("");
+  const [displayed, setDisplayed] = useState([]);
+  const [ids, setIds] = useState([]);
+
+  if (!selected) {
+    let array = product.map((item) => item.name);
+
+    if (product) {
+      setSelected(array[0]);
+    }
+  }
+
+  const handleSelected = (e) => {
+    product.map((item) => {
+      if (item.name === e.target.innerHTML) {
+        handleId(item.style_id);
+        setIds((ids) => [item.style_id]);
+        if (!ids.includes(item.style_id)) {
+          handleDisplays(item.photos);
+          setDisplayed((displayed) => item.photos);
+        }
+
+        handleSales(item);
+      }
+    });
+    setSelected(e.target.innerHTML);
+    handleSelect(e);
+  };
 
   return (
     <div>
@@ -20,6 +54,9 @@ const SelectedStyle = ({ handleSelected, product }) => {
               {item.name}
             </div>
           ))}
+      </div>
+      <div>
+        <Checkout />
       </div>
     </div>
   );

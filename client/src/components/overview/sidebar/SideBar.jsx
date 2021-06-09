@@ -1,21 +1,25 @@
 import React, { useState } from "react";
 import style from "../MainOverview.module.css";
 
+const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
 
-const SideBar = ({ prices, name, category }) => {
-  const [price, setPrice] = useState("");
-  const [salePrice, setSalePrice] = useState("");
+  if(price) {
+    price = '$' + price
+  }
 
-  //  <div className={style.category}>
-  // <h4>{prod && prod.category}</h4>
-  // </div>
+  if(salePrice) {
+    salePrice = '$' + salePrice
+  }
+
+
 
   return (
     <div>
-      <div style={{fontSize: '20px'}}>{category}</div>
+      <div style={{ fontSize: "20px" }}>{category}</div>
       <div className={style.name}>{name}</div>
+
       <div className={style.defaultPrice}>
-        ${prices && !price && prices.default_price}
+        {prices && !price && `$${prod.default_price}`}
       </div>
       <div className={salePrice ? style.changeSale : style.price}>
         {prices && price}
