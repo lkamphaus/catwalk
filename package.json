@@ -20,8 +20,10 @@
   "homepage": "https://github.com/JacobMelnick/starfire-project-catwalk#readme",
   "dependencies": {
     "axios": "^0.21.1",
+    "cloudinary": "^1.26.0",
     "cssloader": "^1.1.1",
     "express": "^4.17.1",
+    "express-form-data": "^2.0.17",
     "luxon": "^1.27.0",
     "nodemon": "^2.0.7",
     "react": "^17.0.2",
