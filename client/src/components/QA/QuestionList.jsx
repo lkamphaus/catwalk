@@ -6,6 +6,7 @@ import style from "./QuestionList.module.css";
 const QuestionList = (props) => {
   const [questions, setQuestion] = useState(null);
   const [preview, setPreview] = useState(true);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     fetch(`/api/qa/questions?product_id=${props.id}`, {
@@ -23,6 +24,13 @@ const QuestionList = (props) => {
       return [];
     }
 
+    if (search !== '') {
+      let filteredList = questions.results.filter(question => {
+        return question.question_body.toLowerCase().includes(search.toLowerCase())
+      })
+      return filteredList;
+    }
+
     if (preview) {
       return questions.results.slice(0, 4);
     }
@@ -36,6 +44,10 @@ const QuestionList = (props) => {
     setPreview(!preview);
   }
 
+  const searchQuestionList = (searchTerm) => {
+    setSearch(searchTerm);
+  }
+
   const addMoreQuestions = preview ? 'MORE ANSWERED QUESTIONS' : 'HIDE ANSWERED QUESTIONS';
 
   return (
@@ -44,39 +56,41 @@ const QuestionList = (props) => {
         <div className={style.qaTitle}>
           <div>QUESTIONS & ANSWERS</div>
         </div>
+        {questions &&
         <div>
-          <SearchBox/>
-        </div>
-          {questions &&
           <div>
-              {questionsList.map(question =>
-                <div>
-                  <div className={style.questionBody}>
-                    <div className={style.questionLetter}>
-                      Q:
-                    </div>
-                    <div className={style.questionText}>
-                      {question.question_body}
-                    </div>
-                    <div className={style.questionHelpful}>
-                      Helpful?
-                      </div>
-                    <div className={style.questionHelpfulness}>
-                        Yes ({question.question_helpfulness})
-                    </div>
-                    <div className={style.questionAddAnswer}>
-                      Add Answer
-                    </div>
-                  </div>
-                  <div>
-                    <AnswerList
-                      answers={Object.entries(question.answers)}
-                    />
-                  </div>
-                </div>
-              )}
+            <SearchBox questions={questions.results} searchQuestionList={searchQuestionList}/>
           </div>
-          }
+            <div>
+                {questionsList.map(question =>
+                  <div>
+                    <div className={style.questionBody}>
+                      <div className={style.questionLetter}>
+                        Q:
+                      </div>
+                      <div className={style.questionText}>
+                        {question.question_body}
+                      </div>
+                      <div className={style.questionHelpful}>
+                        Helpful?
+                        </div>
+                      <div className={style.questionHelpfulness}>
+                          Yes ({question.question_helpfulness})
+                      </div>
+                      <div className={style.questionAddAnswer}>
+                        Add Answer
+                      </div>
+                    </div>
+                    <div>
+                      <AnswerList
+                        answers={Object.entries(question.answers)}
+                      />
+                    </div>
+                  </div>
+                )}
+            </div>
+          </div>
+           }
           <div>
             <button onClick={handleMoreQuestionsClick}>
               {addMoreQuestions}

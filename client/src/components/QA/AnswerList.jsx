@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./QuestionList.module.css";
+import { DateTime } from 'luxon';
 
 const AnswerList = (props) => {
   const [preview, setPreview] = useState(true);
@@ -12,8 +13,6 @@ const AnswerList = (props) => {
   props.answers;
 
   const moreAnswers = preview ?  'Load more answers' : 'Hide answers';
-
-  console.log('answers', props.answers);
 
   return (
     <div>
@@ -35,7 +34,7 @@ const AnswerList = (props) => {
               by {answer[1].answerer_name}
             </div>
             <div className={style.answerDate}>
-              {answer[1].date}
+              {DateTime.fromISO(answer[1].date).toFormat('DDD')}
             </div>
             <div className={style.answerHelpful}>
               Helpful?
@@ -58,5 +57,4 @@ const AnswerList = (props) => {
   );
 
  };
-
  export default AnswerList;
