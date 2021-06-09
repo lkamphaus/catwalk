@@ -22,7 +22,7 @@ class ReviewsList extends React.Component {
   }
 
   getReviews() {
-    console.log(this.props.total);
+    // console.log(this.props.total);
     fetch(`http://localhost:3246/api/reviews/${this.props.id}/${1}/${this.props.total}/${this.state.sort}?format=json`, {
       headers: {
         "Content-Type": "application/json",

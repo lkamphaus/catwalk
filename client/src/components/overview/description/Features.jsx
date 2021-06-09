@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './MainOverview.module.css'
+import style from '../MainOverview.module.css'
 
 const Features = ({prod}) => {
 
@@ -12,7 +12,7 @@ return (
             prod.features.map((item) => (
                 item.feature + " "
             ))}
-        </div>
+        </div> 
     </div>
 )
 
