@@ -66,6 +66,7 @@ const MainOverview = ({ prod }) => {
         setImages((images) =>
           data.results.map((item) => item.photos.map((img) => img))
         );
+        setThumb(images[0])
       })
       .catch((err) => console.log("err", err));
     setThumbnail(images.map((item) => item.map((img) => img.thumbnail_url)));
