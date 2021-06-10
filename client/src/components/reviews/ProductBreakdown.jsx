@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Reviews.module.css";
+import Stars from "./Stars.jsx";
 
 class ProductBreakdown extends React.Component {
   constructor(props) {
@@ -7,7 +8,31 @@ class ProductBreakdown extends React.Component {
   }
 
   render() {
-    return <div>RATINGS & REVIEWS</div>;
+    var recommended =
+      this.props.total === null
+        ? null
+        : this.props.meta === null
+        ? null
+        : Number(this.props.meta.recommended.true) / Number(this.props.total) * 100;
+
+    return (
+      <div>
+        <div>RATINGS & REVIEWS</div>
+        <span
+          style={{
+            "font-size": "60px",
+            padding: "10px",
+            "font-weight": "bold",
+          }}
+        >
+          {this.props.rounded}
+        </span>
+        <Stars rating={this.props.rating} />
+        <div>{`${Math.floor(
+          recommended
+        )}% of reviews recommend this product`}</div>
+      </div>
+    );
   }
 }
 
