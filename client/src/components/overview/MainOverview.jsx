@@ -20,33 +20,32 @@ const MainOverview = ({ prod }) => {
   const [thumbValue, setValue] = useState(false);
   const [price, setPrice] = useState("");
   const [salePrice, setSalePrice] = useState("");
-  
 
   const handleSales = (item) => {
     setPrice(item.original_price);
     setSalePrice(item.sale_price);
-
   };
 
   const handleThumbChange = (e) => {
-    if(e) {
-      setValue(false)
+    if (e) {
+      setValue(false);
     }
-  }
+  };
 
   const handleThumb = (e) => {
     setThumb(e.target.src);
     setValue(true);
   };
 
-
   const handleSelect = (e) => {
     setSelected(e.target.innerHTML);
   };
 
   const handleDisplays = (item) => {
-    setdisplays(item);
+    item.map((item) => setdisplays(item.url));
+    // setdisplays(item);
   };
+
   const handleId = (item) => {
     setIds(item);
   };
@@ -66,7 +65,7 @@ const MainOverview = ({ prod }) => {
         setImages((images) =>
           data.results.map((item) => item.photos.map((img) => img))
         );
-        setThumb(images[0])
+        setThumb(images[0]);
       })
       .catch((err) => console.log("err", err));
     setThumbnail(images.map((item) => item.map((img) => img.thumbnail_url)));
@@ -75,10 +74,17 @@ const MainOverview = ({ prod }) => {
   return (
     <div className={style.gridcontainer}>
       <div className={style.gallery}>
-      <div className={style.arrows}>
-      </div>
+        <div className={style.arrows}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+          </svg>
+        </div>
         <div>
-          
           {prod && (
             <Gallery
               product={product}
@@ -94,7 +100,15 @@ const MainOverview = ({ prod }) => {
           )}
         </div>
         <div className={style.arrows}>
-      </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+          </svg>
+        </div>
       </div>
       <div className={style.sidebar}>
         <div>
@@ -112,24 +126,21 @@ const MainOverview = ({ prod }) => {
         <div>
           {prod && (
             <SelectedStyle
-            handleThumbChange={handleThumbChange}
+              handleThumbChange={handleThumbChange}
               product={product}
               handleSelect={handleSelect}
               handleDisplays={handleDisplays}
               handleId={handleId}
               handleSales={handleSales}
-              
             />
           )}
         </div>
       </div>
       <div>
-      <div className={style.line}>
-      </div>
-      <div className={style.description}>
-        <Description product={product} prod={prod} images={images} />
-
-      </div>
+        <div className={style.line}></div>
+        <div className={style.description}>
+          <Description product={product} prod={prod} />
+        </div>
       </div>
       <div className={style.description2}>
         <Features prod={prod} />

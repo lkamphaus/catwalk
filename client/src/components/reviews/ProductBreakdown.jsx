@@ -20,9 +20,9 @@ class ProductBreakdown extends React.Component {
         <div>RATINGS & REVIEWS</div>
         <span
           style={{
-            "font-size": "60px",
+            fontSize: "60px",
             padding: "10px",
-            "font-weight": "bold",
+            fontWeight: "bold",
           }}
         >
           {this.props.rounded}

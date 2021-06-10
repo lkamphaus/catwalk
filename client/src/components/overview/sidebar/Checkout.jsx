@@ -7,12 +7,11 @@ const Checkout = () => {
       <br></br>
       <div>
         <button className={style.buttons}>Select Size</button>
-        <button className={style.cart}>1</button>
+        <button className={style.buttoner}>1</button>
       </div>
       <br></br>
       <div>
-        <button className={style.buttons}>Add to Bag</button>
-        <button className={style.cart}>*</button>
+        <button className={style.cart}>Add to Bag</button>
       </div>
     </div>
   );

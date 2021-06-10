@@ -38,10 +38,7 @@ class ReviewsList extends React.Component {
       .then((data) =>
         this.setState({
           reviews: data,
-          display: data.slice(
-            0,
-            this.state.display.length === 0 ? 2 : this.state.display.length
-          ),
+          display: data.slice(0, 2)
         })
       )
       .catch((err) => console.log("err", err));

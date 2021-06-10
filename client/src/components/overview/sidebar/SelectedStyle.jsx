@@ -31,6 +31,8 @@ const SelectedStyle = ({
     handleSelect(e);
   };
 
+  
+
   return (
     <div>
       <h1 className={style.style}>Styles: {!selected ? array[0] : selected}</h1>
@@ -45,7 +47,9 @@ const SelectedStyle = ({
               onClick={(e) => {
                 handleSelected(e, item);
               }}
-            >
+            >{selected === item.name && 
+            <div className={style.checkMark}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg></div>
+            }
               {item.name}
             </div>
           ))}
