@@ -22,7 +22,7 @@ module.exports = {
         'User-Agent': 'request',
         'Authorization': `${config.TOKEN}`
       },
-      body: {
+      data: {
         helpfulness
       }
     };
@@ -30,7 +30,6 @@ module.exports = {
   },
 
   postAnswer: function({questionId, name, body, email}) {
-    console.log('name', name, 'body', body, 'email', email);
     let options = {
       method: 'POST',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`,
@@ -38,13 +37,18 @@ module.exports = {
         'User-Agent': 'request',
         'Authorization': `${config.TOKEN}`
       },
-      body: {
+      data: {
         name,
-        body,
         email,
+        body,
         photos: []
       }
     };
     return axios(options);
   }
 }
+
+
+
+
+

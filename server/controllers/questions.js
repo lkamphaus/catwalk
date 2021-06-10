@@ -20,7 +20,7 @@ module.exports = {
     })
     .then((response) => {
       console.log(response);
-     res.status(204).end(JSON.stringify(response));
+     res.status(204).end();
     })
     .catch(err => {
       console.log('err', err);
@@ -29,16 +29,15 @@ module.exports = {
   },
 
   postAnswer: function(req, res) {
-    console.log('req', req.body.data)
     models.questions.postAnswer({
         questionId: req.params.question_id,
         name: req.body.name,
-        body: req.body.body,
         email: req.body.email,
+        body: req.body.body,
       })
     .then((response) => {
       console.log(response);
-     res.status(201).end(JSON.stringify(response));
+     res.status(201).end();
     })
     .catch(err => {
       console.log('err', err);

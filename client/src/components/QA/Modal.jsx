@@ -22,9 +22,10 @@ const AnswerModal = ({ handleCloseAnswerClick, showModal, setShowModal, question
 
   const handleFormSubmit = async () => {
     let answerForm = {
-      body,
       name,
-      email
+      email,
+      body,
+      photos: []
     }
 
     try {
