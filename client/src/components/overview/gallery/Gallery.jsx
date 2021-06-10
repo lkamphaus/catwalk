@@ -2,44 +2,77 @@ import React, { useEffect, useState } from "react";
 import style from "../MainOverview.module.css";
 import Thumbnails from "./Thumbnails.jsx";
 
-const Gallery = ({ product, images, handleSales, selected, ids, displays }) => {
+const Gallery = ({
+  images,
+  displays,
+  handleThumb,
+  currentThumb,
+  thumbValue,
+}) => {
   // console.log(product);
   const [thumbnail, setThumbnail] = useState("");
+  // const [thumbValue, setValue] = useState(false);
+  const [expandedOpen, setExpandedOpen] = useState(false);
 
   useEffect(() => {
     setThumbnail(images.map((item) => item.map((img) => img.thumbnail_url)));
   }, []);
 
+
   return (
     <div>
-      <div className={style.image}>
-        {displays.length <= 0 ? (
+      
+      <div>
+        {currentThumb && thumbValue === true ? (
+          <img 
+          onClick={() => setExpandedOpen(true)} className={style.image} src={currentThumb}></img>
+        ) : displays.length <= 0 ? (
           <img
-            style={{ height: "650px", width: "650px" }}
+          onClick={() => setExpandedOpen(true)} 
+            className={style.image}
             src={images.map((item) => item.map((img) => img.url))}
           ></img>
         ) : (
           <img
-            style={{ height: "650px", width: "650px" }}
+          onClick={() => setExpandedOpen(true)} 
+            className={style.image}
             src={displays.map((item) => item.url)}
           ></img>
         )}
-        {displays.length <= 0 ? (
-          <div>
-            {images.map((item) =>
+        <div className={style.thumbs}>
+          {images &&
+            images.map((item) =>
               item.map((img) => (
-                <Thumbnails thumbUrl={img.thumbnail_url} key={item} />
+                <Thumbnails
+                  handleThumb={handleThumb}
+                  thumbUrl={img.thumbnail_url}
+                  key={item}
+                />
               ))
             )}
-          </div>
-        ) : (
-          <div>
-            {thumbnail.map((item) => (
-              <Thumbnails thumbnail={item} key={item} />
-            ))}
-          </div>
-        )}
+        </div>
       </div>
+      {expandedOpen && (
+        <div onClick={() => setExpandedOpen(false)} style={{
+          position: 'fixed',
+          height: 'calc(100vh - 200px)',
+          width: 'calc(100vw - 200px',
+          background: 'white',
+          padding: 50,
+          top: '50px',
+          left: '50px',
+        }}>
+          <div style={{
+            height: '100%',
+            width: '100%',
+            background: `url('${currentThumb}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center center',
+          }}>
+            
+          </div>
+        </div>
+      )}
     </div>
   );
 };

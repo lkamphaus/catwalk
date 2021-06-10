@@ -8,48 +8,42 @@ const SelectedStyle = ({
   handleDisplays,
   handleId,
   handleSales,
+  handleThumbChange,
 }) => {
   const [selected, setSelected] = useState("");
   const [displayed, setDisplayed] = useState([]);
   const [ids, setIds] = useState([]);
 
-  useEffect(() => {
-    if (!selected) {
-      let array = product.map((item) => item.name);
-      if (product) {
-        setSelected(array[0]);
-      }
+  let array = product.map((item) => item.name);
+
+  const handleSelected = (e, item) => {
+    
+    handleId(item.style_id);
+    setIds((ids) => [item.style_id]);
+    if (!ids.includes(item.style_id)) {
+      handleDisplays(item.photos);
+      setDisplayed((displayed) => item.photos);
     }
-  }, []);
 
-  const handleSelected = (e) => {
-    product.map((item) => {
-      if (item.name === e.target.innerHTML) {
-        handleId(item.style_id);
-        setIds((ids) => [item.style_id]);
-        if (!ids.includes(item.style_id)) {
-          handleDisplays(item.photos);
-          setDisplayed((displayed) => item.photos);
-        }
-
-        handleSales(item);
-      }
-    });
-    setSelected(e.target.innerHTML);
+    handleSales(item);
+    handleThumbChange(e);
+    setSelected(item.name);
     handleSelect(e);
   };
 
   return (
     <div>
-      <h1 className={style.style}>Styles: {selected}</h1>
+      <h1 className={style.style}>Styles: {!selected ? array[0] : selected}</h1>
+
       <div className={style.styleDiv}>
         {product &&
           product.map((item) => (
             <div
               className={style.selected}
+              style={{ backgroundColor: selected !== item.name ? "#b8b6b6" : "#D96C06" }}
               key={item.style_id}
               onClick={(e) => {
-                handleSelected(e);
+                handleSelected(e, item);
               }}
             >
               {item.name}

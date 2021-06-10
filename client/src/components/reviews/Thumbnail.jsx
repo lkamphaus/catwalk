@@ -6,16 +6,16 @@ class Thumbnail extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      clicked: false
-    }
+      clicked: false,
+    };
 
-    this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
     this.setState({
-      clicked: !this.state.clicked
-    })
+      clicked: !this.state.clicked,
+    });
   }
 
   render() {
@@ -29,10 +29,14 @@ class Thumbnail extends React.Component {
 
     return (
       <div className={styles.thumbnails}>
-        <img className={styles.smallImg} src={`${this.props.source}`} onClick={this.handleClick} />
+        <img
+          className={styles.smallImg}
+          src={`${this.props.source}`}
+          onClick={this.handleClick}
+        />
         {modal}
       </div>
-    )
+    );
   }
 }
 

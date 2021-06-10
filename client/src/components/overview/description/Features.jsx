@@ -6,11 +6,11 @@ const Features = ({prod}) => {
 
 // create checkmarks before each feature
 return (
-    <div>
+    <div >
         <div className={style.features}>
             {prod &&
             prod.features.map((item) => (
-                item.feature + " "
+               <div>----{item.feature}</div>
             ))}
         </div> 
     </div>

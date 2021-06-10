@@ -3,15 +3,14 @@ import Features from "./Features.jsx";
 import style from "../MainOverview.module.css";
 
 
-const Description = ({ product, prod, images }) => {
+const Description = ({prod}) => {
 
   return (
-    <div className={style.description}>
-      <div className={style.slogan}>{prod && prod.slogan}</div>
-      <div className={style.info}>{prod && prod.description}</div>
-      <div>
-        <Features prod={prod} />
-      </div>
+    <div >
+      <div className={style.slogan}  >{prod && prod.slogan}</div>
+      <br></br>
+      <div className={style.info} >{prod && prod.description}</div>
+      
     </div>
   );
 };

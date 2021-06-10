@@ -2,20 +2,18 @@ import React, { useState } from "react";
 import style from "../MainOverview.module.css";
 
 const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
-
-  if(price) {
-    price = '$' + price
+  if (price) {
+    price = "$" + price;
   }
 
-  if(salePrice) {
-    salePrice = '$' + salePrice
+  if (salePrice) {
+    salePrice = "$" + salePrice;
   }
-
-
 
   return (
     <div>
-      <div style={{ fontSize: "20px" }}>{category}</div>
+      <div className={style.reviews}>Real all reviews</div>
+      <div>{category}</div>
       <div className={style.name}>{name}</div>
 
       <div className={style.defaultPrice}>
@@ -25,6 +23,7 @@ const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
         {prices && price}
       </div>
       <div className={style.price}>{prices && salePrice}</div>
+      
     </div>
   );
 };
