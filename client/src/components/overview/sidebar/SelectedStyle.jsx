@@ -13,6 +13,7 @@ const SelectedStyle = ({
   const [selected, setSelected] = useState("");
   const [displayed, setDisplayed] = useState([]);
   const [ids, setIds] = useState([]);
+  const [isActive, setIsActive] = useState(false)
 
   let array = product.map((item) => item.name);
 
@@ -34,6 +35,10 @@ const SelectedStyle = ({
     handleSelect(e);
   };
 
+  const handleActive = (e) => {
+      setIsActive(!isActive)
+  }
+
   return (
     <div>
       <h1 className={style.style}>Styles: {!selected ? array[0] : selected}</h1>
@@ -42,9 +47,11 @@ const SelectedStyle = ({
         {product &&
           product.map((item) => (
             <div
-              className={style.selected}
+             
+              className={!isActive ? style.selected : style.selectedClass}
               key={item.style_id}
               onClick={(e) => {
+                handleActive(e)
                 handleSelected(e);
               }}
             >

@@ -12,7 +12,8 @@ const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
 
   return (
     <div>
-      <div style={{ fontSize: "20px" }}>{category}</div>
+      <div className={style.reviews}>Real all reviews</div>
+      <div>{category}</div>
       <div className={style.name}>{name}</div>
 
       <div className={style.defaultPrice}>
@@ -22,6 +23,7 @@ const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
         {prices && price}
       </div>
       <div className={style.price}>{prices && salePrice}</div>
+      
     </div>
   );
 };

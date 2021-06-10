@@ -123,7 +123,12 @@ const MainOverview = ({ prod }) => {
         </div>
       </div>
       <div>
+      <div className={style.line}>
+      </div>
+      <div className={style.description}>
         <Description product={product} prod={prod} images={images} />
+
+      </div>
       </div>
       <div className={style.description2}>
         <Features prod={prod} />
