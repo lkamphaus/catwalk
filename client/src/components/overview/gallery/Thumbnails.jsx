@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
+import style from "../MainOverview.module.css";
 
-const Thumbnails = ({ thumbUrl, thumbnail }) => {
+const Thumbnails = ({ thumbUrl, thumbnail, handleThumb, product, selected }) => {
+
   return (
-    // <div div style={{ height: "50px", width: "50px" }}>
-    //   {!thumbnail ? <img src={thumbUrl}></img> : <img src={thumbnail}></img>}
-    // </div>
-  <div></div>
+    <div
+      onClick={(e) => {
+        handleThumb(e);
+      }}
+    >
+      {!thumbnail ? (
+        <img id={style.thumbImage} src={thumbUrl}></img>
+      ) : (
+        <img id={style.thumbImage} src={thumbnail}></img>
+      )}
+    </div>
   );
 };
 

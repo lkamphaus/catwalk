@@ -2,41 +2,63 @@ import React, { useEffect, useState } from "react";
 import style from "../MainOverview.module.css";
 import Thumbnails from "./Thumbnails.jsx";
 
-const Gallery = ({ product, images, handleSales, selected, ids, displays }) => {
+const Gallery = ({ images, displays }) => {
   // console.log(product);
   const [thumbnail, setThumbnail] = useState("");
+  const [currentThumb, setcurrentThumb] = useState("");
+
+  
 
   useEffect(() => {
     setThumbnail(images.map((item) => item.map((img) => img.thumbnail_url)));
   }, []);
 
+  const handleThumb = (e) => {
+    setcurrentThumb(e.target.src);
+
+  };
+ 
+
   return (
     <div>
-      <div className={style.image}>
+      <div >
         {displays.length <= 0 ? (
           <img
-            style={{ height: "650px", width: "650px" }}
+            className={style.image}
             src={images.map((item) => item.map((img) => img.url))}
           ></img>
         ) : (
-          <img
-            style={{ height: "650px", width: "650px" }}
-            src={displays.map((item) => item.url)}
-          ></img>
+          currentThumb ? <img className={style.image} src={currentThumb}></img>
+            :
+            <img
+              className={style.image}
+              src={displays.map((item) => item.url)}
+            ></img>
+          
         )}
-        {displays.length <= 0 ? (
-          <div>
-            {images.map((item) =>
+        {images ? (
+          <div className={style.thumbs}>
+            { images && 
+            images.map((item) =>
               item.map((img) => (
-                <Thumbnails thumbUrl={img.thumbnail_url} key={item} />
+                <Thumbnails
+                  handleThumb={handleThumb}
+                  thumbUrl={img.thumbnail_url}
+                  key={item}
+                />
               ))
             )}
           </div>
         ) : (
-          <div>
-            {thumbnail.map((item) => (
-              <Thumbnails thumbnail={item} key={item} />
-            ))}
+          <div className={style.thumbs}>
+            { thumbnail &&
+              thumbnail.map((item) => (
+                <Thumbnails
+                  thumbnail={item}
+                  key={item}
+                  handleThumb={handleThumb}
+                />
+              ))}
           </div>
         )}
       </div>

@@ -5,15 +5,18 @@ import style from "./MainOverview.module.css";
 import SideBar from "./sidebar/SideBar.jsx";
 import Gallery from "./gallery/Gallery.jsx";
 import SelectedStyle from "./sidebar/SelectedStyle.jsx";
+import Features from "./description/Features.jsx";
+import Thumbnails from "./gallery/Thumbnails.jsx";
 
 const MainOverview = ({ prod }) => {
   const [product, setProd] = useState([]);
   const { product_id } = useParams();
   const [images, setImages] = useState([]);
-
+  const [currentThumb, setThumb] = useState("");
   const [selected, setSelected] = useState("");
   const [displays, setdisplays] = useState("");
   const [ids, setIds] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
 
   const [price, setPrice] = useState("");
   const [salePrice, setSalePrice] = useState("");
@@ -21,11 +24,13 @@ const MainOverview = ({ prod }) => {
   const handleSales = (item) => {
     setPrice(item.original_price);
     setSalePrice(item.sale_price);
+
   };
 
   const handleSelect = (e) => {
     setSelected(e.target.innerHTML);
   };
+
   const handleDisplays = (item) => {
     setdisplays(item);
   };
@@ -50,6 +55,7 @@ const MainOverview = ({ prod }) => {
         );
       })
       .catch((err) => console.log("err", err));
+    setThumbnail(images.map((item) => item.map((img) => img.thumbnail_url)));
   }, []);
 
   return (
@@ -64,6 +70,7 @@ const MainOverview = ({ prod }) => {
               displays={displays}
               handleSales={handleSales}
               id={ids}
+              currentThumb={currentThumb}
             />
           )}
         </div>
@@ -84,16 +91,23 @@ const MainOverview = ({ prod }) => {
         <div>
           {prod && (
             <SelectedStyle
+              
               product={product}
               handleSelect={handleSelect}
               handleDisplays={handleDisplays}
               handleId={handleId}
               handleSales={handleSales}
+              
             />
           )}
         </div>
       </div>
-      <Description product={product} prod={prod} images={images} />
+      <div>
+        <Description product={product} prod={prod} images={images} />
+      </div>
+      <div className={style.description2}>
+        <Features prod={prod} />
+      </div>
     </div>
   );
 };
