@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import style from "../MainOverview.module.css";
 
 const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
-
-  if(price) {
-    price = '$' + price
+  if (price) {
+    price = "$" + price;
   }
 
-  if(salePrice) {
-    salePrice = '$' + salePrice
+  if (salePrice) {
+    salePrice = "$" + salePrice;
   }
-
-
 
   return (
     <div>
