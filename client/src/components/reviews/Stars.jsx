@@ -3,6 +3,7 @@ import styles from "./Reviews.module.css";
 import Star from "./Star.jsx";
 
 function Stars(props) {
+  console.log('test');
   var rating = props.rating || 0;
   var stars = [];
   while (stars.length < 5) {
