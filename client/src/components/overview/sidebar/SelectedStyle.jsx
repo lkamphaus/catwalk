@@ -13,13 +13,14 @@ const SelectedStyle = ({
   const [displayed, setDisplayed] = useState([]);
   const [ids, setIds] = useState([]);
 
-  if (!selected) {
-    let array = product.map((item) => item.name);
-
-    if (product) {
-      setSelected(array[0]);
+  useEffect(() => {
+    if (!selected) {
+      let array = product.map((item) => item.name);
+      if (product) {
+        setSelected(array[0]);
+      }
     }
-  }
+  }, []);
 
   const handleSelected = (e) => {
     product.map((item) => {

@@ -7,9 +7,10 @@ const SearchBox = (props) => {
 
   const handleSearch = (event) => {
     let term = event.target.value;
+
     setSearchTerm(term);
 
-    if (term.length >= 3) {
+    if (term.length) {
       props.searchQuestionList(term)
     }
 
@@ -18,8 +19,7 @@ const SearchBox = (props) => {
   return (
     <div>
       <div className={style.searchBoxSection}>
-        <input
-          className={style.searchBar}
+        <input className={style.searchBar}
           type="text"
           placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..."
           onChange={handleSearch}>
