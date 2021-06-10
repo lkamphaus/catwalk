@@ -1,6 +1,7 @@
 import React from "react";
 import ReviewsList from "./ReviewsList.jsx";
 import ProductBreakdown from "./ProductBreakdown.jsx";
+import RatingBar from "./RatingBar.jsx";
 import styles from "./Reviews.module.css";
 
 class Reviews extends React.Component {
@@ -33,7 +34,29 @@ class Reviews extends React.Component {
         : (Number(this.props.meta.recommended.false) || 0) +
           (Number(this.props.meta.recommended.true) || 0);
 
-    var roundedAverage = this.state.average === null ? null : Number(this.state.average.toFixed(1))
+    var ratingBars =
+      this.props.meta === null
+        ? null
+        : ["5", "4", "3", "2", "1"].map((rating) => (
+            <div style={{ margin: "20px 0px" }}>
+              <span
+                style={{ marginRight: "10px", textDecoration: "underline" }}
+              >
+                {rating} stars:
+              </span>
+              <RatingBar
+                stars={rating}
+                percentage={Math.floor(
+                  (this.props.meta.ratings[rating] / total) * 100
+                )}
+              />
+            </div>
+          ));
+
+    var roundedAverage =
+      this.state.average === null
+        ? null
+        : Number(this.state.average.toFixed(1));
 
     return (
       <div className={styles.gridContainer}>
@@ -52,6 +75,7 @@ class Reviews extends React.Component {
             rounded={roundedAverage}
             rating={this.state.average}
           />
+          <div className={styles.ratingFilter}>{ratingBars}</div>
         </div>
       </div>
     );
