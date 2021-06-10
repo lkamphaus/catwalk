@@ -17,15 +17,28 @@ const MainOverview = ({ prod }) => {
   const [displays, setdisplays] = useState("");
   const [ids, setIds] = useState("");
   const [thumbnail, setThumbnail] = useState("");
-
+  const [thumbValue, setValue] = useState(false);
   const [price, setPrice] = useState("");
   const [salePrice, setSalePrice] = useState("");
+  
 
   const handleSales = (item) => {
     setPrice(item.original_price);
     setSalePrice(item.sale_price);
 
   };
+
+  const handleThumbChange = (e) => {
+    if(e) {
+      setValue(false)
+    }
+  }
+
+  const handleThumb = (e) => {
+    setThumb(e.target.src);
+    setValue(true);
+  };
+
 
   const handleSelect = (e) => {
     setSelected(e.target.innerHTML);
@@ -61,7 +74,10 @@ const MainOverview = ({ prod }) => {
   return (
     <div className={style.gridcontainer}>
       <div className={style.gallery}>
+      <div className={style.arrows}>
+      </div>
         <div>
+          
           {prod && (
             <Gallery
               product={product}
@@ -71,9 +87,13 @@ const MainOverview = ({ prod }) => {
               handleSales={handleSales}
               id={ids}
               currentThumb={currentThumb}
+              handleThumb={handleThumb}
+              thumbValue={thumbValue}
             />
           )}
         </div>
+        <div className={style.arrows}>
+      </div>
       </div>
       <div className={style.sidebar}>
         <div>
@@ -91,7 +111,7 @@ const MainOverview = ({ prod }) => {
         <div>
           {prod && (
             <SelectedStyle
-              
+            handleThumbChange={handleThumbChange}
               product={product}
               handleSelect={handleSelect}
               handleDisplays={handleDisplays}

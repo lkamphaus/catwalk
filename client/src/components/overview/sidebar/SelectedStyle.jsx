@@ -8,6 +8,7 @@ const SelectedStyle = ({
   handleDisplays,
   handleId,
   handleSales,
+  handleThumbChange
 }) => {
   const [selected, setSelected] = useState("");
   const [displayed, setDisplayed] = useState([]);
@@ -28,6 +29,7 @@ const SelectedStyle = ({
         handleSales(item);
       }
     });
+    handleThumbChange(e)
     setSelected(e.target.innerHTML);
     handleSelect(e);
   };
