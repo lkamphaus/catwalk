@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import AnswerTile from "./AnswerTile.jsx";
 import style from "./QuestionList.module.css";
-import { DateTime } from 'luxon';
 
 const AnswerList = (props) => {
   const [preview, setPreview] = useState(true);
@@ -12,46 +12,21 @@ const AnswerList = (props) => {
   const answerList = preview && props.answers ? props.answers.slice(0, 2) :
   props.answers;
 
-  const moreAnswers = preview ?  'Load more answers' : 'Hide answers';
+  const moreAnswers = preview ?  'See more answers' : 'Collapse answers';
 
   return (
     <div>
     {props.answers &&
-    <div className={style.answerSection}>
-      {answerList.map(answer => {
-      return (
-        <div>
-          <div className={style.answerBody}>
-            <div className={style.answerLetter}>
-              A:
-            </div>
-            <div className={style.answerText}>
-              {answer[1].body}
-            </div>
-          </div>
-          <div className={style.answerMeta}>
-            <div>
-              by {answer[1].answerer_name}
-            </div>
-            <div className={style.answerDate}>
-              {DateTime.fromISO(answer[1].date).toFormat('DDD')}
-            </div>
-            <div className={style.answerHelpful}>
-              Helpful?
-            </div>
-            <div className={style.answerHelpfulness}>
-              Yes ({answer[1].helpfulness})
-            </div>
-            <div className={style.answerReport}>
-              Report
-            </div>
-          </div>
-        </div>)
-      })}
-    </div>
+      <div className={style.answerSection}>
+          {answerList.map(answer =>
+            <AnswerTile answer={answer[1]} key={answer[1].id}/>
+          )}
+      </div>
     }
-    <div onClick={handleMoreAnswersClick} className={style.loadMoreAnswers}>
-      {moreAnswers}
+    <div
+      className={style.loadMoreAnswers}
+      onClick={handleMoreAnswersClick}>
+        {moreAnswers}
     </div>
     </div>
   );

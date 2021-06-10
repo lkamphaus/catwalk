@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import AnswerList from "./AnswerList.jsx";
+import regeneratorRuntime from "regenerator-runtime";
 import SearchBox from "./SearchBox.jsx";
+import QuestionTile from "./QuestionTile.jsx";
 import style from "./QuestionList.module.css";
 
 const QuestionList = (props) => {
@@ -8,15 +9,18 @@ const QuestionList = (props) => {
   const [preview, setPreview] = useState(true);
   const [search, setSearch] = useState('');
 
-  useEffect(() => {
-    fetch(`/api/qa/questions?product_id=${props.id}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then(response => response.json())
-      .then(data => setQuestion(data))
-      .catch(err => console.log("err", err))
+  useEffect(async () => {
+    try {
+      const response = await fetch(`/api/qa/questions?product_id=${props.id}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      const data = await response.json();
+      setQuestion(data);
+    } catch(err) {
+      console.log("err", err)
+    }
   }, []);
 
   const getQuestionList = () => {
@@ -24,7 +28,7 @@ const QuestionList = (props) => {
       return [];
     }
 
-    if (search !== '') {
+    if (search.length >= 3) {
       let filteredList = questions.results.filter(question => {
         return question.question_body.toLowerCase().includes(search.toLowerCase())
       })
@@ -48,7 +52,7 @@ const QuestionList = (props) => {
     setSearch(searchTerm);
   }
 
-  const addMoreQuestions = preview ? 'MORE ANSWERED QUESTIONS' : 'HIDE ANSWERED QUESTIONS';
+  const addMoreQuestions = preview ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE ANSWERED QUESTIONS';
 
   return (
     <div className={style.qaSection}>
@@ -59,50 +63,30 @@ const QuestionList = (props) => {
         {questions &&
         <div>
           <div>
-            <SearchBox questions={questions.results} searchQuestionList={searchQuestionList}/>
+            <SearchBox
+            searchQuestionList={searchQuestionList}/>
           </div>
-            <div>
-                {questionsList.map(question =>
-                  <div>
-                    <div className={style.questionBody}>
-                      <div className={style.questionLetter}>
-                        Q:
-                      </div>
-                      <div className={style.questionText}>
-                        {question.question_body}
-                      </div>
-                      <div className={style.questionHelpful}>
-                        Helpful?
-                        </div>
-                      <div className={style.questionHelpfulness}>
-                          Yes ({question.question_helpfulness})
-                      </div>
-                      <div className={style.questionAddAnswer}>
-                        Add Answer
-                      </div>
-                    </div>
-                    <div>
-                      <AnswerList
-                        answers={Object.entries(question.answers)}
-                      />
-                    </div>
-                  </div>
-                )}
-            </div>
-          </div>
-           }
           <div>
-            <button onClick={handleMoreQuestionsClick}>
-              {addMoreQuestions}
-            </button>
-            <button>
-              ADD QUESTIONS +
-            </button>
+              {questionsList.map(question =>
+                <QuestionTile
+                question={question}
+                key={question.question_id}/>
+              )}
           </div>
+        </div>
+        }
+        <div>
+          <button
+            onClick={handleMoreQuestionsClick}>
+              {addMoreQuestions}
+          </button>
+          <button>
+            ADD QUESTIONS +
+          </button>
+        </div>
       </div>
     </div>
   )
-
 };
 
 export default QuestionList;
