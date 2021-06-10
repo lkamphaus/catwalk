@@ -2,43 +2,54 @@ import React, { useEffect, useState } from "react";
 import style from "../MainOverview.module.css";
 import Thumbnails from "./Thumbnails.jsx";
 
-const Gallery = ({ product, images, handleSales, selected, ids, displays }) => {
+const Gallery = ({
+  images,
+  displays,
+  handleThumb,
+  currentThumb,
+  thumbValue,
+}) => {
   // console.log(product);
   const [thumbnail, setThumbnail] = useState("");
+  // const [thumbValue, setValue] = useState(false);
 
   useEffect(() => {
     setThumbnail(images.map((item) => item.map((img) => img.thumbnail_url)));
   }, []);
 
+  // const handleThumb = (e) => {
+  //   setcurrentThumb(e.target.src);
+  //   setValue(true);
+  // };
+
   return (
     <div>
-      <div className={style.image}>
-        {displays.length <= 0 ? (
+      <div>
+        {currentThumb && thumbValue === true ? (
+          <img className={style.image} src={currentThumb}></img>
+        ) : displays.length <= 0 ? (
           <img
-            style={{ height: "650px", width: "650px" }}
+            className={style.image}
             src={images.map((item) => item.map((img) => img.url))}
           ></img>
         ) : (
           <img
-            style={{ height: "650px", width: "650px" }}
+            className={style.image}
             src={displays.map((item) => item.url)}
           ></img>
         )}
-        {displays.length <= 0 ? (
-          <div>
-            {images.map((item) =>
+        <div className={style.thumbs}>
+          {images &&
+            images.map((item) =>
               item.map((img) => (
-                <Thumbnails thumbUrl={img.thumbnail_url} key={item} />
+                <Thumbnails
+                  handleThumb={handleThumb}
+                  thumbUrl={img.thumbnail_url}
+                  key={item}
+                />
               ))
             )}
-          </div>
-        ) : (
-          <div>
-            {thumbnail.map((item) => (
-              <Thumbnails thumbnail={item} key={item} />
-            ))}
-          </div>
-        )}
+        </div>
       </div>
     </div>
   );

@@ -8,19 +8,13 @@ const SelectedStyle = ({
   handleDisplays,
   handleId,
   handleSales,
+  handleThumbChange
 }) => {
   const [selected, setSelected] = useState("");
   const [displayed, setDisplayed] = useState([]);
   const [ids, setIds] = useState([]);
 
-  useEffect(() => {
-    if (!selected) {
-      let array = product.map((item) => item.name);
-      if (product) {
-        setSelected(array[0]);
-      }
-    }
-  }, []);
+  let array = product.map((item) => item.name);
 
   const handleSelected = (e) => {
     product.map((item) => {
@@ -35,13 +29,15 @@ const SelectedStyle = ({
         handleSales(item);
       }
     });
+    handleThumbChange(e)
     setSelected(e.target.innerHTML);
     handleSelect(e);
   };
 
   return (
     <div>
-      <h1 className={style.style}>Styles: {selected}</h1>
+      <h1 className={style.style}>Styles: {!selected ? array[0] : selected}</h1>
+      
       <div className={style.styleDiv}>
         {product &&
           product.map((item) => (
