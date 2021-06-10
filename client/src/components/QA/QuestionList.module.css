@@ -84,6 +84,10 @@
   cursor: pointer;
 }
 
+.questionListButtons {
+  display: flex;
+}
+
 .answerSection {
   font-weight: 400;
   font-size: 20px;
@@ -148,6 +152,8 @@ button {
   padding: 20px;
   margin-right: 20px;
   line-height: 20px;
+  border-radius: 10px;
+  border: solid 2px  #26A7BA;
 }
 
 button:hover {

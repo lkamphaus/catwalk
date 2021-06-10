@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import regeneratorRuntime from "regenerator-runtime";
+
 import SearchBox from "./SearchBox.jsx";
 import QuestionTile from "./QuestionTile.jsx";
+import AddQuestion from "./AddQuestion.jsx";
+
 import style from "./QuestionList.module.css";
 
 const QuestionList = (props) => {
@@ -75,17 +78,16 @@ const QuestionList = (props) => {
           </div>
         </div>
         }
-        <div>
+        <div className={style.questionListButtons}>
           <button
             onClick={handleMoreQuestionsClick}>
               {addMoreQuestions}
           </button>
-          <button>
-            ADD QUESTIONS +
-          </button>
+          <AddQuestion />
         </div>
       </div>
     </div>
+    console.log('hello');
   )
 };
 
