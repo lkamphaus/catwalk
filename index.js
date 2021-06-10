@@ -4,7 +4,7 @@ const cloudinary = require('cloudinary');
 const formData = require('express-form-data');
 const router = require('./server/routes.js');
 const port = 3246;
-const path = require('path')
+const path = require('path');
 
 let app = express();
 
