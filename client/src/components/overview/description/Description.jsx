@@ -7,11 +7,10 @@ const Description = ({prod}) => {
 
   return (
     <div >
-      <div className={style.description} className={style.slogan}  >{prod && prod.slogan}</div>
-      <div className={style.description} className={style.info} >{prod && prod.description}</div>
-      {/* <div className={style.description2}>
-        <Features prod={prod} />
-      </div> */}
+      <div className={style.slogan}  >{prod && prod.slogan}</div>
+      <br></br>
+      <div className={style.info} >{prod && prod.description}</div>
+      
     </div>
   );
 };

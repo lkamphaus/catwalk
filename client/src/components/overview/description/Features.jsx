@@ -10,7 +10,7 @@ return (
         <div className={style.features}>
             {prod &&
             prod.features.map((item) => (
-                item.feature + " "
+               <div>----{item.feature}</div>
             ))}
         </div> 
     </div>

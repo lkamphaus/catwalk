@@ -66,6 +66,7 @@ const MainOverview = ({ prod }) => {
         setImages((images) =>
           data.results.map((item) => item.photos.map((img) => img))
         );
+        setThumb(images[0])
       })
       .catch((err) => console.log("err", err));
     setThumbnail(images.map((item) => item.map((img) => img.thumbnail_url)));
@@ -123,7 +124,12 @@ const MainOverview = ({ prod }) => {
         </div>
       </div>
       <div>
+      <div className={style.line}>
+      </div>
+      <div className={style.description}>
         <Description product={product} prod={prod} images={images} />
+
+      </div>
       </div>
       <div className={style.description2}>
         <Features prod={prod} />
