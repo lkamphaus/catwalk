@@ -69,9 +69,10 @@ const QuestionList = (props) => {
             <SearchBox
             searchQuestionList={searchQuestionList}/>
           </div>
-          <div>
+          <div className={style.qaList}>
               {questionsList.map(question =>
                 <QuestionTile
+                productName={props.productName}
                 question={question}
                 key={question.question_id}/>
               )}
@@ -83,7 +84,7 @@ const QuestionList = (props) => {
             onClick={handleMoreQuestionsClick}>
               {addMoreQuestions}
           </button>
-          <AddQuestion />
+          <AddQuestion productId={props.id}/>
         </div>
       </div>
     </div>

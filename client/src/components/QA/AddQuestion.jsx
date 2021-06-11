@@ -24,7 +24,7 @@ const AddQuestion = (props) => {
       </button>
       {showModal &&
         <Modal closeOnClick={closeOnClick}>
-          <QuestionForm />
+          <QuestionForm productId={props.productId}/>
         </Modal>
       }
     </div>

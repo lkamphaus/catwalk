@@ -37,7 +37,10 @@ const ProductDetail = () => {
           <MainOverview prod={prod} />
         </div>
         <div>
-          <QuestionList id={product_id} />
+          <QuestionList
+            id={product_id}
+            productName={prod === null ? null : prod.name}
+          />
         </div>
         <div>
           <Reviews
