@@ -10,6 +10,7 @@ class Reviews extends React.Component {
     this.state = {
       overview: null,
       average: null,
+      filters: [],
     };
   }
 
@@ -27,6 +28,18 @@ class Reviews extends React.Component {
     }
   }
 
+  handleFilter(rating) {
+    if (this.state.filters.indexOf(rating) === -1) {
+      this.setState({
+        filters: [...this.state.filters, rating],
+      });
+    } else {
+      this.setState({
+        filters: this.state.filters.filter((filter) => filter !== rating),
+      });
+    }
+  }
+
   render() {
     var total =
       this.props.meta === null
@@ -34,11 +47,18 @@ class Reviews extends React.Component {
         : (Number(this.props.meta.recommended.false) || 0) +
           (Number(this.props.meta.recommended.true) || 0);
 
+    var filters = this.state.filters.map((filter) => (
+      <div style={{ fontSize: "14px" }}>{`${filter}-star reviews`}</div>
+    ));
+
     var ratingBars =
       this.props.meta === null
         ? null
         : ["5", "4", "3", "2", "1"].map((rating) => (
-            <div style={{ margin: "20px 0px" }}>
+            <div
+              className={styles.ratingBar}
+              onClick={() => this.handleFilter(rating)}
+            >
               <span
                 style={{ marginRight: "10px", textDecoration: "underline" }}
               >
@@ -46,9 +66,13 @@ class Reviews extends React.Component {
               </span>
               <RatingBar
                 stars={rating}
-                percentage={Math.floor(
-                  (this.props.meta.ratings[rating] / total) * 100
-                )}
+                percentage={
+                  this.props.meta.ratings[rating]
+                    ? Math.floor(
+                        (this.props.meta.ratings[rating] / total) * 100
+                      )
+                    : 0
+                }
               />
             </div>
           ));
@@ -65,6 +89,7 @@ class Reviews extends React.Component {
             id={this.props.id}
             name={this.props.name}
             total={total}
+            filters={this.state.filters}
           />
         </div>
         <div className={styles.productBreakdown}>
@@ -75,7 +100,14 @@ class Reviews extends React.Component {
             rounded={roundedAverage}
             rating={this.state.average}
           />
-          <div className={styles.ratingFilter}>{ratingBars}</div>
+          <div className={styles.ratingFilter}>
+            <br />
+            <span>
+              Filters currently applied:
+              {filters}
+            </span>
+            {ratingBars}
+          </div>
         </div>
       </div>
     );

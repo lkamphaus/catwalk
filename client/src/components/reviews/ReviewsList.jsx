@@ -14,12 +14,32 @@ class ReviewsList extends React.Component {
 
     this.getReviews = this.getReviews.bind(this);
     this.getMore = this.getMore.bind(this);
-    this.handleSort = this.handleSort.bind(this)
+    this.handleSort = this.handleSort.bind(this);
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.total !== prevProps.total) {
       this.getReviews();
+    }
+
+    if (
+      JSON.stringify(this.props.filters) !== JSON.stringify(prevProps.filters)
+    ) {
+      var display = this.filter(this.state.reviews, this.props.filters);
+
+      this.setState({
+        display: display.slice(0, Math.max(this.state.display.length, 2)),
+      });
+    }
+  }
+
+  filter(reviews, filters) {
+    if (filters.length === 0) {
+      return reviews;
+    } else {
+      return reviews.filter(
+        (review) => filters.indexOf(String(review.rating)) > -1
+      );
     }
   }
 
@@ -38,7 +58,7 @@ class ReviewsList extends React.Component {
       .then((data) =>
         this.setState({
           reviews: data,
-          display: data.slice(0, 2)
+          display: this.filter(data, this.props.filters).slice(0, 2),
         })
       )
       .catch((err) => console.log("err", err));
@@ -46,19 +66,21 @@ class ReviewsList extends React.Component {
 
   getMore() {
     var current = this.state.display.length;
+    var reviews = this.filter(this.state.reviews, this.props.filters);
     this.setState({
-      display: this.state.display.concat(
-        this.state.reviews.slice(current, current + 2)
-      ),
+      display: this.state.display.concat(reviews.slice(current, current + 2)),
     });
   }
 
   handleSort(e) {
     var sort = e.target.value;
 
-    this.setState({
-      sort: sort
-    }, () => this.getReviews())
+    this.setState(
+      {
+        sort: sort,
+      },
+      () => this.getReviews()
+    );
   }
 
   render() {

@@ -29,7 +29,7 @@
 }
 
 .reviewTile {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #808080;
   padding-bottom: 20px;
   padding-top: 10px;
   margin-bottom: 20px;
@@ -172,4 +172,14 @@ h3 {
   background: #d96c06;
   height: 100%;
   border-radius: inherit;
+}
+
+.ratingBar {
+  margin: 20px 0px;
+  transition: transform 0.3s;
+  cursor: pointer
+}
+
+.ratingBar:hover {
+  transform: scale(1.1);
 }
