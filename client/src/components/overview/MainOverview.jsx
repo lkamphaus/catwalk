@@ -16,10 +16,10 @@ const MainOverview = ({ prod }) => {
   const [selected, setSelected] = useState("");
   const [displays, setdisplays] = useState("");
   const [ids, setIds] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
   const [thumbValue, setValue] = useState(false);
   const [price, setPrice] = useState("");
   const [salePrice, setSalePrice] = useState("");
+  const [firstImg, setFirstImg] = useState('')
 
   const handleSales = (item) => {
     setPrice(item.original_price);
@@ -40,6 +40,7 @@ const MainOverview = ({ prod }) => {
   const handleSelect = (e) => {
     setSelected(e.target.innerHTML);
   };
+  
 
   const handleDisplays = (item) => {
     item.map((item) => setdisplays(item.url));
@@ -65,11 +66,12 @@ const MainOverview = ({ prod }) => {
         setImages((images) =>
           data.results.map((item) => item.photos.map((img) => img))
         );
-        setThumb(images[0]);
+       setFirstImg(data.results.map((item) => item.photos.map((img) => img.url)))
       })
       .catch((err) => console.log("err", err));
-    setThumbnail(images.map((item) => item.map((img) => img.thumbnail_url)));
+    
   }, []);
+  
 
   return (
     <div className={style.gridcontainer}>
@@ -87,15 +89,12 @@ const MainOverview = ({ prod }) => {
         <div>
           {prod && (
             <Gallery
-              product={product}
               images={images}
-              selected={selected}
               displays={displays}
-              handleSales={handleSales}
-              id={ids}
               currentThumb={currentThumb}
               handleThumb={handleThumb}
               thumbValue={thumbValue}
+              firstImg={firstImg}
             />
           )}
         </div>

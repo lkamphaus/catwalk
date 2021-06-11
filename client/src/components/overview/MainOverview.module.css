@@ -88,6 +88,7 @@
   width: 70px; 
   height: 70px; 
   transition: .3s;
+  
 }
 
 #thumbImage:hover {
@@ -213,7 +214,7 @@
   font-size: 15px;
   line-height: 20px;
   background-color: #26A7BA;
-  width: 330px;
+  width: 310px;
 }
 
 .checkMark{
@@ -254,4 +255,25 @@ border-radius: 50%;
 }
 #twitter:hover {
   fill: #D96C06;
+}
+
+.expanded:hover{
+  border: 0;
+	 -moz-box-shadow:2px 2px 7px 2px rgba(130,130,130,1),-1px -1px 7px 2px rgba(130,130,130,1);
+	-webkit-box-shadow: 2px 2px 7px 2px rgba(130,130,130,.7),-1px -1px 7px 2px rgba(130,130,130,1);
+	box-shadow: 2px 2px 7px 2px rgba(130,130,130,.7),-2px -2px 7px 2px rgba(130,130,130,1);
+  -webkit-transform: scale(1.2);
+  transform: scale(5);
+}
+
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

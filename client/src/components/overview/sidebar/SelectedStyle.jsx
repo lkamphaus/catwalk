@@ -13,18 +13,19 @@ const SelectedStyle = ({
   const [selected, setSelected] = useState("");
   const [displayed, setDisplayed] = useState([]);
   const [ids, setIds] = useState([]);
+  const [currentStyles, setCurrentStyles] = useState('')
 
   let array = product.map((item) => item.name);
 
   const handleSelected = (e, item) => {
-    
     handleId(item.style_id);
     setIds((ids) => [item.style_id]);
     if (!ids.includes(item.style_id)) {
       handleDisplays(item.photos);
       setDisplayed((displayed) => item.photos);
     }
-
+    
+    setCurrentStyles(Object.values(item.skus))
     handleSales(item);
     handleThumbChange(e);
     setSelected(item.name);
@@ -55,7 +56,7 @@ const SelectedStyle = ({
           ))}
       </div>
       <div>
-        <Checkout />
+        <Checkout product={product} currentStyles={currentStyles}/>
       </div>
     </div>
   );

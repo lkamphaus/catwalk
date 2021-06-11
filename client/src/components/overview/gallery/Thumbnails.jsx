@@ -3,7 +3,7 @@ import style from "../MainOverview.module.css";
 
 const Thumbnails = ({ thumbUrl, handleThumb }) => {
   return (
-    <div
+    <div 
       onClick={(e) => {
         handleThumb(e);
       }}
