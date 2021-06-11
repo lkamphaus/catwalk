@@ -24,5 +24,17 @@ module.exports = {
       }
     };
     return axios(options);
+  },
+
+  markHelpful: function(id) {
+    let options = {
+      method: 'PUT',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews/${id}/helpful`,
+      headers: {
+        'User-Agent': 'request',
+        'Authorization': `${config.TOKEN}`
+      }
+    };
+    return axios(options);
   }
 }

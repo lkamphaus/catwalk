@@ -11,7 +11,9 @@ router.put('/qa/questions/:question_id/helpful', controller.questions.put);
 
 router.get('/reviews/:product_id/:page/:count/:sort', controller.reviews.get);
 
-router.get('/reviews/meta/:product_id', controller.reviews.getMeta)
+router.get('/reviews/meta/:product_id', controller.reviews.getMeta);
+
+router.put('/reviews/:review_id/helpful', controller.reviews.markHelpful);
 
 router.get('/products/:product_id/styles', controller.products.getImgs);
 

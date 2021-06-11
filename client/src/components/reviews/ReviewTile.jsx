@@ -8,6 +8,8 @@ class ReviewTile extends React.Component {
     super(props);
     this.state = {
       showRest: false,
+      markedHelpful: false,
+      helpful: this.props.review.helpfulness,
     };
 
     this.showMore = this.showMore.bind(this);
@@ -19,7 +21,32 @@ class ReviewTile extends React.Component {
     });
   }
 
+  markHelpful() {
+    if (!this.state.markedHelpful) {
+      this.setState(
+        {
+          helpful: this.state.helpful + 1,
+          markedHelpful: true,
+        },
+        () => this.updateHelpfulness()
+      );
+    }
+  }
+
+  updateHelpfulness() {
+    fetch(
+      `http://localhost:3246/api/reviews/${this.props.review.review_id}/helpful`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+  }
+
   render() {
+    console.log(this.props.review.review_id);
     var date = new Date(this.props.review.date);
     var month = date.toLocaleString("default", { month: "long" });
     var formatted = date.toDateString().split(" ");
@@ -35,6 +62,18 @@ class ReviewTile extends React.Component {
       var reviewText = body;
     }
 
+    var recommend = this.props.review.recommend ? (
+      <div style={{ margin: "10px" }}>✔️ I recommend this product</div>
+    ) : null;
+
+    var response = this.props.review.response ? (
+      <div className={styles.response}>
+        <div style={{ fontWeight: "bold" }}>Response from seller:</div>
+        <br />
+        <div>{JSON.parse(this.props.review.response)}</div>
+      </div>
+    ) : null;
+
     var thumbnails = this.props.review.photos.map((photo) => (
       <Thumbnail key={photo.id} source={photo.url} />
     ));
@@ -46,7 +85,7 @@ class ReviewTile extends React.Component {
 
     return (
       <div className={styles.reviewTile}>
-        <Stars rating = {this.props.review.rating}/>
+        <Stars rating={this.props.review.rating} />
         <div className={styles.userDate}>
           {`${this.props.review.reviewer_name}, ${date}`}
         </div>
@@ -63,8 +102,24 @@ class ReviewTile extends React.Component {
           <div style={{ display: this.state.showRest ? "block" : "none" }}>
             {rest}
           </div>
+          <br />
+          {recommend}
+          {response}
         </div>
         <div>{thumbnails}</div>
+        <div style={{ marginTop: "10px", fontSize: "16px" }}>
+          <span>Was this review helpful? </span>
+          <span
+            onClick={() => this.markHelpful()}
+            style={{
+              textDecoration: "underline",
+              cursor: "pointer",
+              color: "#d96c06",
+            }}
+          >
+            {`Yes (${this.state.helpful})`}
+          </span>
+        </div>
       </div>
     );
   }
