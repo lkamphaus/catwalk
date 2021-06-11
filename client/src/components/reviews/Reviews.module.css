@@ -49,6 +49,7 @@
 .reviewSummary {
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .userDate {
@@ -75,10 +76,6 @@
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
-}
-
-.writeReview {
-  background-color: red;
 }
 
 .modal {
@@ -182,4 +179,11 @@ h3 {
 
 .ratingBar:hover {
   transform: scale(1.1);
+}
+
+.response {
+  width: 100%;
+  padding: 20px;
+  margin: 10px 0px;
+  background-color: lightgray
 }
