@@ -16,6 +16,7 @@ const SearchBox = (props) => {
 
   }
 
+  console.log('hello');
   return (
     <div>
       <div className={style.searchBoxSection}>
