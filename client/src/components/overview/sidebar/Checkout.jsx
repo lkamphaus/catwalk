@@ -28,7 +28,7 @@ const Checkout = ({ product, currentStyles }) => {
       <br></br>
       <div>
         {/* <button  className={style.buttons}>Select Size</button> */}
-        <select className={style.buttons} onChange={(e) => {
+        <select value={selectedSize} className={style.buttons} onChange={(e) => {
                   handleSize(e);
                 }}>
                   <option value='' disabled selected >

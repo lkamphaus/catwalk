@@ -71,6 +71,19 @@
   float: left;
   max-height: 600px;
 }
+.modalThumbs {
+  margin-bottom: 700px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  float: left;
+  justify-content: space-evenly;
+  max-height: 600px;
+  height: 5px;
+  width: 5px;
+  padding: 1%;
+  margin-right: 20px;
+}
 
 .image {
   cursor: -moz-zoom-in; 
@@ -88,7 +101,6 @@
   width: 70px; 
   height: 70px; 
   transition: .3s;
-  
 }
 
 #thumbImage:hover {
