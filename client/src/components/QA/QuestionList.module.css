@@ -9,6 +9,18 @@
   flex: 1 100%;
 }
 
+.qaList {
+  overflow: auto;
+  max-height: 55vh;
+  min-height: 55vh;
+}
+
+/* .qaList {
+  overflow: auto;
+  max-height: 55vh;
+  min-height: 55vh;
+} */
+
 .qaTitle {
   color: #808080;
   font-weight: 400;
@@ -86,6 +98,13 @@
 
 .questionListButtons {
   display: flex;
+  margin-top: 20px;
+}
+
+.answerList {
+  overflow: auto;
+  max-height: 20vh;
+  min-height: 20vh;
 }
 
 .answerSection {
@@ -139,28 +158,18 @@
   color: #D96C06;
 }
 
+.answerReportBold {
+  margin-left: 20px;
+  font-style: italic;
+  font-weight: 700;
+  color: #808080;
+}
+
 .loadMoreAnswers {
   margin: 20px;
   font-weight: 500;
 }
 
-
-button {
-  background-color: #26A7BA;
-  font-size: 15px;
-  color: #fff;
-  padding: 20px;
-  margin-right: 20px;
-  line-height: 20px;
-  border-radius: 10px;
-  border: solid 2px  #26A7BA;
-}
-
-button:hover {
-  background-color: #fff;
-  color: #26A7BA;
-  border: solid 2px #26A7BA;
-}
 
 .modalWrapper {
   position: fixed;
@@ -180,7 +189,19 @@ button:hover {
   padding: 20px;
   margin: auto;
   width: 30%;
-  height: 50%;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+.modalContentWide {
+  border-radius: 10px;
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  margin: auto;
+  width: 50%;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
@@ -191,6 +212,7 @@ button:hover {
   from {top:-300px; opacity:0}
   to {top:0; opacity:1}
 }
+
 @keyframes animatetop {
   from {top:-300px; opacity:0}
   to {top:0; opacity:1}
@@ -199,13 +221,14 @@ button:hover {
 .closeIcon {
   float: right;
   cursor: pointer;
+  color: #808080;
 }
 
 .form {
   margin: auto;
-  width: 50%;
-  padding: 10px;
+  padding: 15px;
   text-align: center;
+  color: #808080;
 }
 
 .formButton {
@@ -214,14 +237,78 @@ button:hover {
   text-align: center;
 }
 
+/* .inputContainer {
+  display: flex;
+} */
+
 .formName {
-  padding: 12px 200px 12px 10px;
+  padding: 12px 30px;
+  width: 350px;
 }
+
 .formEmail {
-  padding: 12px 200px 12px 10px;
+  padding: 12px 30px;
+  width: 350px;
 }
 
 .formBody {
-  padding: 12px 200px 12px 10px;
+  padding: 12px 30px;
+  width: 350px;
+  height: 200px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.labelForm {
+  padding: 12px 30px 5px;
+  text-align: left;
+}
+
+.productName {
+  padding: 12px 30px;
+  text-align: left;
+}
+
+.productName {
+  font-weight: 500;
+  padding: 0;
+}
+
+.charCount {
+  text-align: left;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 12px;
+  float: right;
+  margin: 5px 30px;
+}
+
+.finePrint {
+  margin: 5px 30px;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.charCountBold {
+  font-weight: 500;
+}
+
+.danger {
+  color: red;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.dangerOutline {
+  padding: 12px 30px;
+  width: 350px;
+  border: red 1px solid;
+}
+
+.dangerBodyOutline {
+  border: red 1px solid;
+  padding: 12px 30px;
+  width: 350px;
+  height: 200px;
   font-family: 'Roboto', sans-serif;
 }

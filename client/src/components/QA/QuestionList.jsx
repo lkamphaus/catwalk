@@ -55,6 +55,8 @@ const QuestionList = (props) => {
     setSearch(searchTerm);
   }
 
+  const moreQuestions = questions && questions.results.length > 2;
+
   const addMoreQuestions = preview ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE ANSWERED QUESTIONS';
 
   return (
@@ -69,21 +71,28 @@ const QuestionList = (props) => {
             <SearchBox
             searchQuestionList={searchQuestionList}/>
           </div>
-          <div>
+          <div className={style.qaList}>
               {questionsList.map(question =>
                 <QuestionTile
-                question={question}
-                key={question.question_id}/>
+                  productName={props.productName}
+                  question={question}
+                  key={question.question_id}
+                />
               )}
           </div>
         </div>
         }
         <div className={style.questionListButtons}>
-          <button
-            onClick={handleMoreQuestionsClick}>
-              {addMoreQuestions}
-          </button>
-          <AddQuestion />
+          { moreQuestions &&
+            <button
+              onClick={handleMoreQuestionsClick}>
+                {addMoreQuestions}
+            </button>
+          }
+          <AddQuestion
+            productId={props.id}
+            productName={props.productName}
+          />
         </div>
       </div>
     </div>

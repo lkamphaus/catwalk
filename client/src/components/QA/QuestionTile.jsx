@@ -17,20 +17,20 @@ const QuestionTile = (props) => {
 
     if (!updated) {
       setHelpfulCount(helpfulCount + 1);
-    }
 
-    try {
-      const response = await fetch(`/api/qa/questions/${question_id}/helpful`, {
-        method: 'PUT',
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          helpfulness: true
+      try {
+        const response = await fetch(`/api/qa/questions/${question_id}/helpful`, {
+          method: 'PUT',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            helpfulness: true
+          })
         })
-      })
-    } catch(err) {
-      console.log("err", err)
+      } catch(err) {
+        console.log("err", err)
+      }
     }
   }
 
@@ -41,7 +41,7 @@ const QuestionTile = (props) => {
           Q:
         </div>
         <div className={style.questionText}>
-          {props.question.question_body}
+         {props.question.question_body}
         </div>
         <div className={style.questionHelpful}>
           Helpful?
@@ -55,6 +55,8 @@ const QuestionTile = (props) => {
           className={style.questionAddAnswer}>
           <AddAnswer
             questionId={question_id}
+            productName={props.productName}
+            questionBody={props.question.question_body}
           />
         </div>
       </div>

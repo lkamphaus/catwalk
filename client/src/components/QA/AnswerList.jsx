@@ -9,25 +9,35 @@ const AnswerList = (props) => {
     setPreview(!preview);
   }
 
-  const answerList = preview && props.answers ? props.answers.slice(0, 2) :
-  props.answers;
+  const sortedAnswerList = props.answers && props.answers.sort((a, b) => {
+    return b[1].helpfulness - a[1].helpfulness
+  });
 
-  const moreAnswers = preview ?  'See more answers' : 'Collapse answers';
+  const answerList = preview ? sortedAnswerList.slice(0, 2) :
+  sortedAnswerList;
+
+  const showAnswers =  props.answers.length > 2;
+
+  const showMoreAnswers = preview ?  'See more answers' : 'Collapse answers';
 
   return (
     <div>
-    {props.answers &&
-      <div className={style.answerSection}>
-          {answerList.map(answer =>
-            <AnswerTile answer={answer[1]} key={answer[1].id}/>
-          )}
+      <div className={style.answerList}>
+        {props.answers &&
+          <div className={style.answerSection}>
+              {answerList.map(answer =>
+                <AnswerTile answer={answer[1]} key={answer[1].id}/>
+              )}
+          </div>
+        }
+        { showAnswers &&
+          <div
+            className={style.loadMoreAnswers}
+            onClick={handleMoreAnswersClick}>
+              {showMoreAnswers}
+          </div>
+        }
       </div>
-    }
-    <div
-      className={style.loadMoreAnswers}
-      onClick={handleMoreAnswersClick}>
-        {moreAnswers}
-    </div>
     </div>
   );
 

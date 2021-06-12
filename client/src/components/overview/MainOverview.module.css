@@ -1,5 +1,5 @@
 .gridcontainer {
-  display: grid;
+  display: block;
   min-height: 65vh;
   grid-template-rows: 50vh auto;
   grid-template-columns: auto 1000px;
@@ -8,13 +8,13 @@
   grid-template-areas:
     "gallery sidebar"
     "description description2";
-  
+
 }
 
 .description {
   margin-left: 600px;
   grid-area: description;
- 
+
 }
 
 .description2 {
@@ -34,7 +34,7 @@
 
 .sidebar {
   grid-area: sidebar;
- 
+
 }
 
 
@@ -73,8 +73,8 @@
 }
 
 .image {
-  cursor: -moz-zoom-in; 
-    cursor: -webkit-zoom-in; 
+  cursor: -moz-zoom-in;
+    cursor: -webkit-zoom-in;
     cursor: zoom-in;
   object-fit: cover;
   width: 800px;
@@ -85,8 +85,8 @@
   cursor: pointer;
   border-radius: 4px;  /* Rounded border */
   padding: 2px; /* Some padding */
-  width: 70px; 
-  height: 70px; 
+  width: 70px;
+  height: 70px;
   transition: .3s;
 }
 
@@ -110,7 +110,7 @@
 
 .style {
   font-size: 38px;
- 
+
 }
 
 .styleDiv {
@@ -119,7 +119,7 @@
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-  
+
 }
 
 .selected {
@@ -150,9 +150,6 @@
   opacity: .5;
 }
 
-
-
-
 .slogan {
   font-weight: 400;
   font-size: 38px;
@@ -169,18 +166,15 @@
   font-weight: 300;
 }
 
-
 .name {
   font-weight: 700;
   font-size: 40px;
 }
 
-
 .reviews {
   font-weight: 100;
   font-size: 18px;
 }
-
 
 .buttons {
   cursor: pointer;
@@ -192,6 +186,7 @@
   background-color: #26A7BA;
   width: 150px;
 }
+
 .buttoner {
   cursor: pointer;
   margin-left: 10px;
