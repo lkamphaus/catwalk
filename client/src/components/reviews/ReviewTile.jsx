@@ -13,6 +13,8 @@ class ReviewTile extends React.Component {
     };
 
     this.showMore = this.showMore.bind(this);
+    this.updateHelpfulness = this.updateHelpfulness.bind(this);
+    this.markHelpful = this.markHelpful.bind(this)
   }
 
   showMore() {
@@ -28,7 +30,7 @@ class ReviewTile extends React.Component {
           helpful: this.state.helpful + 1,
           markedHelpful: true,
         },
-        () => this.updateHelpfulness()
+        this.updateHelpfulness
       );
     }
   }
@@ -46,7 +48,6 @@ class ReviewTile extends React.Component {
   }
 
   render() {
-    console.log(this.props.review.review_id);
     var date = new Date(this.props.review.date);
     var month = date.toLocaleString("default", { month: "long" });
     var formatted = date.toDateString().split(" ");
@@ -110,7 +111,7 @@ class ReviewTile extends React.Component {
         <div style={{ marginTop: "10px", fontSize: "16px" }}>
           <span>Was this review helpful? </span>
           <span
-            onClick={() => this.markHelpful()}
+            onClick={this.markHelpful}
             style={{
               textDecoration: "underline",
               cursor: "pointer",

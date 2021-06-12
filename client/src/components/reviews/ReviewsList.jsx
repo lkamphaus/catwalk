@@ -79,7 +79,7 @@ class ReviewsList extends React.Component {
       {
         sort: sort,
       },
-      () => this.getReviews()
+      this.getReviews
     );
   }
 
@@ -124,7 +124,10 @@ class ReviewsList extends React.Component {
         {total}
         <div className={styles.reviewsList}>{reviews}</div>
         {moreReviews}
-        <AddReview name={this.props.name} />
+        <AddReview
+          name={this.props.name}
+          meta={this.props.meta}
+        />
       </div>
     );
   }

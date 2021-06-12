@@ -90,6 +90,7 @@ class Reviews extends React.Component {
             name={this.props.name}
             total={total}
             filters={this.state.filters}
+            meta={this.props.meta}
           />
         </div>
         <div className={styles.productBreakdown}>

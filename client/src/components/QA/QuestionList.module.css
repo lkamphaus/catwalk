@@ -165,10 +165,12 @@ button:hover {
 .modalWrapper {
   position: fixed;
   padding-top: 50px;
+  padding-bottom: 50px;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -180,7 +182,6 @@ button:hover {
   padding: 20px;
   margin: auto;
   width: 30%;
-  height: 50%;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
