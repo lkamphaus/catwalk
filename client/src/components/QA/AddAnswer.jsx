@@ -17,13 +17,15 @@ const AddAnswer = (props) => {
     setShowModal(false);
   }
 
+  const modalSizeWide = false;
+
   return (
     <div>
       <div onClick={openOnClick}>
         Add Answer
       </div>
       {showModal &&
-        <Modal closeOnClick={closeOnClick}>
+        <Modal closeOnClick={closeOnClick} size={modalSizeWide}>
           <AnswerForm
             questionId={props.questionId}
             productName={props.productName}

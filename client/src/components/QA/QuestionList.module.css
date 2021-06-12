@@ -9,6 +9,18 @@
   flex: 1 100%;
 }
 
+.qaList {
+  overflow: auto;
+  max-height: 55vh;
+  min-height: 55vh;
+}
+
+/* .qaList {
+  overflow: auto;
+  max-height: 55vh;
+  min-height: 55vh;
+} */
+
 .qaTitle {
   color: #808080;
   font-weight: 400;
@@ -86,6 +98,13 @@
 
 .questionListButtons {
   display: flex;
+  margin-top: 20px;
+}
+
+.answerList {
+  overflow: auto;
+  max-height: 20vh;
+  min-height: 20vh;
 }
 
 .answerSection {
@@ -139,6 +158,13 @@
   color: #D96C06;
 }
 
+.answerReportBold {
+  margin-left: 20px;
+  font-style: italic;
+  font-weight: 700;
+  color: #808080;
+}
+
 .loadMoreAnswers {
   margin: 20px;
   font-weight: 500;
@@ -163,7 +189,19 @@
   padding: 20px;
   margin: auto;
   width: 30%;
-  /* height: 50%; */
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+.modalContentWide {
+  border-radius: 10px;
+  position: relative;
+  background-color: white;
+  padding: 20px;
+  margin: auto;
+  width: 50%;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
@@ -199,9 +237,9 @@
   text-align: center;
 }
 
-.inputContainer {
-  display: f;
-}
+/* .inputContainer {
+  display: flex;
+} */
 
 .formName {
   padding: 12px 30px;
@@ -226,11 +264,6 @@
 }
 
 .productName {
-  padding: 12px 30px;
-  text-align: left;
-}
-
-.questionBody {
   padding: 12px 30px;
   text-align: left;
 }

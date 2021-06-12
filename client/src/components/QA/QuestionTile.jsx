@@ -41,7 +41,7 @@ const QuestionTile = (props) => {
           Q:
         </div>
         <div className={style.questionText}>
-          {props.question.question_body}
+         {props.question.question_body}
         </div>
         <div className={style.questionHelpful}>
           Helpful?

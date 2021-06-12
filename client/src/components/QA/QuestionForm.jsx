@@ -58,20 +58,20 @@ const AnswerForm = (props) => {
     if (Object.keys(errors).length !== 0) {
       setError(errors);
     } else {
-      let answerForm = {
+      let questionForm = {
+        product_id: props.productId,
         name,
         email,
-        body,
-        photos: []
+        body
       }
 
       try {
-        const response = await fetch(`/api/qa/questions/${props.questionId}/answers`, {
+        const response = await fetch(`/api/qa/questions?product_id=${props.productId}`, {
           method: 'POST',
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(answerForm)
+          body: JSON.stringify(questionForm)
         })
       } catch(err) {
         console.log("err", err)
@@ -90,7 +90,7 @@ const AnswerForm = (props) => {
     <div>
       <div className={style.form}>
         <h3>Ask Your Question</h3>
-        <div className={style.productName}>About the<span></span></div>
+        <div>About the <span className={style.productName}>{props.productName}</span></div>
         <div className={style.inputContainer}>
           <div className={style.labelForm}>What is your nickname</div>
           <div>
