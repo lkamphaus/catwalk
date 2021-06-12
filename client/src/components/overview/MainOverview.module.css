@@ -46,22 +46,19 @@
   display: flex;
   align-items: center;
   height: 30px;
-  margin-top: 280px;
+  /* margin-top: 280px; */
   cursor: pointer;
+  /* margin-left: 800px; */
+}
+
+#right{
+  margin-left: 870px;
 }
 
 .arrows:hover {
  transform: scale(1.5);
 }
 
-.mainImage {
-  /* display: inline-block; */
-  /* justify-content: right; */
-  /* align-items: flex-end; */
-  /* align-self: end;. */
-  /* float: right; */
-  text-align: center;
-}
 
 .thumbs {
   margin-bottom: 10px;
@@ -71,18 +68,17 @@
   float: left;
   max-height: 600px;
 }
-.modalThumbs {
+#thumbModals {
   margin-bottom: 700px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  float: left;
   justify-content: space-evenly;
-  max-height: 600px;
-  height: 5px;
-  width: 5px;
-  padding: 1%;
-  margin-right: 20px;
+  /* max-height: 600px; */
+  height: 0px;
+  width: 15px;
+  margin-right: 5px;
+  
 }
 
 .image {
@@ -192,6 +188,9 @@
 .reviews {
   font-weight: 100;
   font-size: 18px;
+  text-decoration: underline;
+  text-decoration-color: #D96C06;
+  cursor: pointer;
 }
 
 

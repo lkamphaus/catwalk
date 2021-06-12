@@ -11,7 +11,7 @@ const SelectedStyle = ({
   handleThumbChange,
 }) => {
   const [selected, setSelected] = useState("");
-  const [displayed, setDisplayed] = useState([]);
+  
   const [ids, setIds] = useState([]);
   const [currentStyles, setCurrentStyles] = useState('')
 
@@ -22,7 +22,7 @@ const SelectedStyle = ({
     setIds((ids) => [item.style_id]);
     if (!ids.includes(item.style_id)) {
       handleDisplays(item.photos);
-      setDisplayed((displayed) => item.photos);
+      
     }
     
     setCurrentStyles(Object.values(item.skus))
