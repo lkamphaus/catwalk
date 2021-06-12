@@ -4,6 +4,7 @@ import MainOverview from "./overview/MainOverview.jsx";
 import QuestionList from "./QA/QuestionList.jsx";
 import Reviews from "./reviews/Reviews.jsx";
 import styles from ".././style.css";
+import ClickTracking from ".././ClickTracking.jsx";
 
 const ProductDetail = () => {
   const [prod, setProd] = useState(null);
@@ -37,7 +38,12 @@ const ProductDetail = () => {
           <MainOverview prod={prod} />
         </div>
         <div>
-          <QuestionList id={product_id} />
+          <ClickTracking module={'Questions & Answers'}>
+            <QuestionList
+              id={product_id}
+              productName={prod === null ? null : prod.name}
+            />
+          </ClickTracking>
         </div>
         <div>
           <Reviews

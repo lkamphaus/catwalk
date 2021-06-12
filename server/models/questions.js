@@ -2,7 +2,7 @@ const axios = require('axios');
 const config = require('../.././config.js');
 
 module.exports = {
-  getQuestions: function(productId) {
+  getQuestionsRequest: function(productId) {
     let options = {
       method: 'GET',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${productId}`,
@@ -14,7 +14,44 @@ module.exports = {
     return axios(options);
   },
 
-  putQuestionHelpful: function({questionId, helpfulness}) {
+  postQuestionRequest: function({ product_id, name, body, email }) {
+    console.log('test', product_id, name, body, email )
+    let options = {
+      method: 'POST',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${product_id}`,
+      headers: {
+        'User-Agent': 'request',
+        'Authorization': `${config.TOKEN}`
+      },
+      data: {
+        product_id,
+        name,
+        email,
+        body,
+      }
+    };
+    return axios(options);
+  },
+
+  postAnswerRequest: function({ questionId, name, body, email }) {
+    let options = {
+      method: 'POST',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`,
+      headers: {
+        'User-Agent': 'request',
+        'Authorization': `${config.TOKEN}`
+      },
+      data: {
+        name,
+        email,
+        body,
+        photos: []
+      }
+    };
+    return axios(options);
+  },
+
+  putQuestionHelpfulRequest: function({ questionId, helpfulness }) {
     let options = {
       method: 'PUT',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/helpful`,
@@ -29,19 +66,31 @@ module.exports = {
     return axios(options);
   },
 
-  postAnswer: function({questionId, name, body, email}) {
+  putAnswerHelpfulRequest: function({ answerId, helpfulness }) {
     let options = {
-      method: 'POST',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`,
+      method: 'PUT',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/answers/${answerId}/helpful`,
       headers: {
         'User-Agent': 'request',
         'Authorization': `${config.TOKEN}`
       },
       data: {
-        name,
-        email,
-        body,
-        photos: []
+        helpfulness
+      }
+    };
+    return axios(options);
+  },
+
+  putAnswerReportRequest: function({ answerId, reported }) {
+    let options = {
+      method: 'PUT',
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${answerId}/helpful`,
+      headers: {
+        'User-Agent': 'request',
+        'Authorization': `${config.TOKEN}`
+      },
+      data: {
+        reported
       }
     };
     return axios(options);
