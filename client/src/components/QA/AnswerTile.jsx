@@ -4,17 +4,61 @@ import { DateTime } from "luxon";
 
 const AnswerTile = (props) => {
   let [helpfulCount, setHelpfulCount] = useState(props.answer.helpfulness);
-  let [updated, setUpdate] = useState(false);
+  let [updateHelpfulness, setUpdateHelpfulness] = useState(false);
+  let [updateReport, setUpdateReport] = useState(' Report');
+  let [checkReport, setCheckReport] = useState(false);
 
-  const handleHelpfulnessClick = () => {
-    setUpdate(true);
+  const answer_id = props.answer.id;
 
-    if (!updated) {
+  const handleHelpfulnessClick = async () => {
+    setUpdateHelpfulness(true);
+
+    if (!updateHelpfulness) {
       setHelpfulCount(helpfulCount + 1);
+
+      try {
+        const response = await fetch(`/api/qa/answers/${answer_id}/helpful`, {
+          method: 'PUT',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            helpfulness: true
+          })
+        })
+      } catch(err) {
+        console.log("err", err)
+      }
     }
   }
 
+  const handleReportClick = async () => {
+    setUpdateReport('Reported');
+    setCheckReport(true)
+
+    if (!checkReport) {
+      console.log('updateReport2', updateReport);
+      try {
+        const response = await fetch(`/api/qa/answers/${answer_id}/report`, {
+          method: 'PUT',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            reported: true
+          })
+        })
+      } catch(err) {
+        console.log("err", err)
+      }
+    }
+
+  }
+
   let answerNameStyle = props.answer.answerer_name === 'Seller' ? style.answerNameBold : style.answerName;
+
+  let reportedStyle = updateReport === 'Reported' ? style.answerReportBold : style.answerReport;
+
 
   return (
     <div>
@@ -41,8 +85,10 @@ const AnswerTile = (props) => {
           onClick={handleHelpfulnessClick}>
             Yes ({helpfulCount})
         </div>
-        <div className={style.answerReport}>
-          Report
+        <div
+          className={reportedStyle}
+          onClick={handleReportClick}>
+            {updateReport}
         </div>
       </div>
     </div>

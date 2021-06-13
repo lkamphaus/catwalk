@@ -29,7 +29,7 @@
 }
 
 .reviewTile {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #808080;
   padding-bottom: 20px;
   padding-top: 10px;
   margin-bottom: 20px;
@@ -49,6 +49,7 @@
 .reviewSummary {
   font-size: 20px;
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .userDate {
@@ -75,10 +76,6 @@
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
-}
-
-.writeReview {
-  background-color: red;
 }
 
 .modal {
@@ -172,4 +169,21 @@ h3 {
   background: #d96c06;
   height: 100%;
   border-radius: inherit;
+}
+
+.ratingBar {
+  margin: 20px 0px;
+  transition: transform 0.3s;
+  cursor: pointer
+}
+
+.ratingBar:hover {
+  transform: scale(1.1);
+}
+
+.response {
+  width: 100%;
+  padding: 20px;
+  margin: 10px 0px;
+  background-color: lightgray
 }

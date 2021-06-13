@@ -22,4 +22,15 @@ module.exports = {
       res.status(400).end();
     })
   },
+
+  markHelpful: function(req, res) {
+    models.reviews.markHelpful(req.params.review_id)
+    .then(
+      res.status(201).end()
+    )
+    .catch(err => {
+      console.log('err', err);
+      res.status(400).end()
+    })
+  }
 }
