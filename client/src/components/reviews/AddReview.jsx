@@ -16,7 +16,7 @@ class AddReview extends React.Component {
         email: "",
       },
       ratings: [0, 0, 0, 0, 0],
-      characteristics: {},
+      characteristics: [],
       ratingText: "",
       errors: [],
       images: [],
@@ -27,14 +27,7 @@ class AddReview extends React.Component {
     this.handleImageUpload = this.handleImageUpload.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.meta !== prevProps.meta) {
-      this.setState({
-        characteristics: this.props.meta.characteristics,
-      });
-    }
+    this.handleRateCharacteristic = this.handleRateCharacteristic.bind(this);
   }
 
   handleRate(n) {
@@ -50,6 +43,15 @@ class AddReview extends React.Component {
     this.setState({
       ratings: rating,
       ratingText: description,
+    });
+  }
+
+  handleRateCharacteristic(e) {
+    var id = e.target.getAttribute("name");
+    var val = e.target.value;
+
+    this.setState({
+      characteristics: [...this.state.characteristics, { [id]: Number(val) }],
     });
   }
 
@@ -70,6 +72,7 @@ class AddReview extends React.Component {
         email: "",
       },
       ratingText: "",
+      images: [],
     });
   }
 
@@ -109,6 +112,8 @@ class AddReview extends React.Component {
   }
 
   render() {
+    var characteristics = this.props.meta && this.props.meta.characteristics;
+
     var images = this.state.images.map((image) => (
       <img className={styles.smallImg} src={image} />
     ));
@@ -139,28 +144,28 @@ class AddReview extends React.Component {
       );
 
     var modal = this.state.clicked ? (
-      <Modal closeOnClick={this.handleClose}>
+      <Modal size="50%" closeOnClick={this.handleClose}>
         <div>
-          <h2 className={styles.formTitle}>Write Your Review</h2>
-          <h3 className={styles.formTitle}>About the {this.props.name}</h3>
+          <div className={styles.reviewForm}>
+            <h2 className={styles.formTitle}>Write Your Review</h2>
+            <h3 className={styles.formTitle}>About the {this.props.name}</h3>
+
+            <h4 className={styles.formTitle}>Overall Rating </h4>
+            <span>{starRating}</span>
+            <span> {this.state.ratingText}</span>
+
+            <h4 className={styles.formTitle}>Characteristics </h4>
+            <CharacteristicButtons
+              characteristics={characteristics}
+              onClick={this.handleRateCharacteristic}
+            />
+          </div>
+
           <form
             className={styles.reviewForm}
             name="reviewform"
             onSubmit={this.handleSubmit}
           >
-            <label>
-              <h4 className={styles.formTitle}>Overall Rating </h4>
-              <span>{starRating}</span>
-              <span> {this.state.ratingText}</span>
-            </label>
-
-            <label>
-              <h4 className={styles.formTitle}>Characteristics </h4>
-              <CharacteristicButtons
-                characteristics={this.state.characteristics}
-              />
-            </label>
-
             <label>
               <h4 className={styles.formTitle}>Review summary </h4>
 
