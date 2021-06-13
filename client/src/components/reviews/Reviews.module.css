@@ -1,5 +1,5 @@
 .gridContainer {
-  margin-top: 100px;
+  margin: 5% auto 5% auto;
   color: #808080;
   font-size: 18px;
   display: grid;
@@ -14,7 +14,6 @@
 }
 
 .reviewsList {
-  margin-right: 100x;
   grid-area: Reviews-List;
   max-height: 55vh;
   min-height: 55vh;
@@ -186,5 +185,10 @@
   padding: 5px;
   font-size: 14px;
   color: #d96c06;
+}
+
+.icon {
+  height: 100%;
+  border-radius: inherit;
 }
 
