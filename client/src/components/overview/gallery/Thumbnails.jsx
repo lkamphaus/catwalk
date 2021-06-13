@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import style from "../MainOverview.module.css";
 
 const Thumbnails = ({ thumbUrl, handleThumb }) => {
+  
   return (
-    <div
+    <div 
       onClick={(e) => {
-        handleThumb(e);
+        handleThumb(e, thumbUrl);
       }}
     >
       <img id={style.thumbImage} src={thumbUrl}></img>
