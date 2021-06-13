@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "../MainOverview.module.css";
 import Thumbnails from "./Thumbnails.jsx";
-import ModalThumbs from './ModalThumbs.jsx'
+import ModalThumbs from "./ModalThumbs.jsx";
 import Modal from "/Users/jacobmelnick/web/starfire-project-catwalk/client/src/components/reviews/Modal.jsx";
 const Gallery = ({
   images,
@@ -10,38 +10,41 @@ const Gallery = ({
   currentThumb,
   thumbValue,
   firstImg,
-  thumbnailUrl
+  thumbnailUrl,
 }) => {
   const [zoom, setZoom] = useState(0);
   const [expandedOpen, setExpandedOpen] = useState(false);
-  const [arrowSelected, setArrowSelected] = useState('')
-  const [thumbModalValue, setThumbModalValue] = useState(false)
-
+  const [arrowSelected, setArrowSelected] = useState("");
+  const [thumbModalValue, setThumbModalValue] = useState(false);
 
   const handlesArrrows = () => {
-    thumbnailUrl.map((item, i) => item.map((url) => {
-      if(i === 0) {
-        setArrowSelected(url)
-      }
-    }
-    ))
-    
-  }
-
-
+    thumbnailUrl.map((item, i) =>
+      item.map((url) => {
+        if (i === 0) {
+          setArrowSelected(url);
+        }
+      })
+    );
+  };
 
   return (
     <div>
-        <div className={style.arrows} id={style.right} onClick={() => {handlesArrrows()}}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
-          </svg>
-        </div>
+      <div
+        className={style.arrows}
+        id={style.right}
+        onClick={() => {
+          handlesArrrows();
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+        >
+          <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+        </svg>
+      </div>
       <div>
         {currentThumb && thumbValue === true ? (
           <img
@@ -55,7 +58,7 @@ const Gallery = ({
             className={style.image}
             src={images.map((item) => item.map((img) => img.url))}
           ></img>
-        )  : (
+        ) : (
           <img
             onClick={() => setExpandedOpen(true)}
             className={style.image}
@@ -68,9 +71,9 @@ const Gallery = ({
             images.map((item) =>
               item.map((img) => (
                 <Thumbnails
-                handleThumb={handleThumb}
-                thumbUrl={img.thumbnail_url}
-                key={item}
+                  handleThumb={handleThumb}
+                  thumbUrl={img.thumbnail_url}
+                  key={item}
                 />
               ))
             )}
@@ -89,7 +92,10 @@ const Gallery = ({
               top: "10px",
             }}
           >
-            <div className={style.modalThumbs} id={style.thumbModals} >
+            <div
+              className={style.modalThumbs}
+              id={style.thumbModals}
+            >
               {images &&
                 images.map((item) =>
                   item.map((img) => (
@@ -101,10 +107,11 @@ const Gallery = ({
                   ))
                 )}
             </div>
-            
+
             <div
               onClick={() => setZoom(zoom + 1)}
               className={zoom % 2 === 1 ? style.expanded : null}
+              
               style={{
                 height: "100%",
                 width: "50%",
@@ -112,7 +119,7 @@ const Gallery = ({
                   !displays && !currentThumb && firstImg
                     ? `url('${firstImg[0].join()}') no-repeat `
                     : currentThumb && thumbValue === true
-                    ? `url('${currentThumb}') no-repeat `
+                    ? `url('${currentThumb}') no-repeat center center / cover`
                     : `url('${displays}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center center",
@@ -126,8 +133,8 @@ const Gallery = ({
                 setExpandedOpen(false);
               }}
               style={{
-                marginBottom: "780px",
-                
+                marginBottom: "680px",
+
                 cursor: "pointer",
                 float: "right",
               }}
