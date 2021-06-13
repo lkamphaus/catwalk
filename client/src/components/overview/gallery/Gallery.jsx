@@ -5,35 +5,34 @@ import ModalThumbs from "./ModalThumbs.jsx";
 import Modal from "/Users/jacobmelnick/web/starfire-project-catwalk/client/src/components/reviews/Modal.jsx";
 const Gallery = ({
   images,
-  displays,
   handleThumb,
   currentThumb,
   thumbValue,
   firstImg,
   thumbnailUrl,
+  currentImageSet,
+  images2,
+  styleValue,
+  thumbnailValue
 }) => {
   const [zoom, setZoom] = useState(0);
   const [expandedOpen, setExpandedOpen] = useState(false);
   const [arrowSelected, setArrowSelected] = useState("");
   const [thumbModalValue, setThumbModalValue] = useState(false);
 
-  const handlesArrrows = () => {
-    thumbnailUrl.map((item, i) =>
-      item.map((url) => {
-        if (i === 0) {
-          setArrowSelected(url);
-        }
-      })
-    );
+  const handlesArrows = () => {
+    setThumbModalValue(true)
+    setArrowSelected(currentImageSet.thumbnail_url)
   };
 
+  
   return (
     <div>
       <div
         className={style.arrows}
         id={style.right}
         onClick={() => {
-          handlesArrrows();
+          handlesArrows();
         }}
       >
         <svg
@@ -52,7 +51,7 @@ const Gallery = ({
             className={style.image}
             src={currentThumb}
           ></img>
-        ) : !displays ? (
+        ) : !currentImageSet.url ? (
           <img
             onClick={() => setExpandedOpen(true)}
             className={style.image}
@@ -62,7 +61,7 @@ const Gallery = ({
           <img
             onClick={() => setExpandedOpen(true)}
             className={style.image}
-            src={displays}
+            src={currentImageSet.url}
           ></img>
         )}
 
@@ -92,10 +91,7 @@ const Gallery = ({
               top: "10px",
             }}
           >
-            <div
-              className={style.modalThumbs}
-              id={style.thumbModals}
-            >
+            <div className={style.modalThumbs} id={style.thumbModals}>
               {images &&
                 images.map((item) =>
                   item.map((img) => (
@@ -111,16 +107,15 @@ const Gallery = ({
             <div
               onClick={() => setZoom(zoom + 1)}
               className={zoom % 2 === 1 ? style.expanded : null}
-              
               style={{
                 height: "100%",
                 width: "50%",
                 background:
-                  !displays && !currentThumb && firstImg
+                  !currentImageSet.url && !currentThumb && firstImg
                     ? `url('${firstImg[0].join()}') no-repeat `
                     : currentThumb && thumbValue === true
                     ? `url('${currentThumb}') no-repeat center center / cover`
-                    : `url('${displays}')`,
+                    : `url('${currentImageSet.url}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center center",
                 transition: "transform .8s ease",

@@ -21,6 +21,35 @@ const MainOverview = ({ prod }) => {
   const [firstImg, setFirstImg] = useState('')
   const [thumbnailUrl, setThumbnailUrl] = useState('')
 
+
+//////////////////////////////
+//refactor
+const [currentStyleId, setCurrentStyleId] = useState('')
+const [currentImageSet, setCurrentImageSet] = useState('')
+const [images2, setImages2] = useState('')
+const [thumbnailValue, setThumbnailValue] = useState(true)
+const [styleValue, setStyleValue] = useState(true)
+const handleSelectedStyle = (item) => {
+  
+setCurrentStyleId(item.style_id)
+product.map((current) => {
+  if (current.style_id === item.style_id) {
+    setCurrentImageSet(...current.photos)
+  }
+})
+setStyleValue(false)
+}
+
+
+
+
+
+//////////////////////////////
+
+
+
+
+
   const handleSales = (item) => {
     setPrice(item.original_price);
     setSalePrice(item.sale_price);
@@ -35,10 +64,10 @@ const MainOverview = ({ prod }) => {
   const handleThumb = (e, url) => {
     setThumb(url);
     setValue(true);
-    console.log(url);
+    setThumbnailValue(false)
   };
 
-  console.log(currentThumb);
+  
   const handleSelect = (e) => {
     setSelected(e.target.innerHTML);
   };
@@ -69,6 +98,7 @@ const MainOverview = ({ prod }) => {
         );
        setFirstImg(data.results.map((item) => item.photos.map((img) => img.url)))
        setThumbnailUrl(data.results.map((item) => item.photos.map((img) => img.thumbnail_url)))
+       setImages2(data.results.map((item) => item.photos))
       })
       .catch((err) => console.log("err", err));
     
@@ -89,6 +119,10 @@ const MainOverview = ({ prod }) => {
               thumbValue={thumbValue}
               firstImg={firstImg}
               thumbnailUrl={thumbnailUrl}
+              currentImageSet={currentImageSet}
+              images2={images2}
+              thumbnailValue={thumbnailValue}
+              styleValue={styleValue}
             />
           )}
         </div>
@@ -115,6 +149,7 @@ const MainOverview = ({ prod }) => {
               handleDisplays={handleDisplays}
               handleId={handleId}
               handleSales={handleSales}
+              handleSelectedStyle={handleSelectedStyle}
             />
           )}
         </div>

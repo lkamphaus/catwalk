@@ -62,7 +62,7 @@ const Checkout = ({ product, currentStyles }) => {
             Select Size
           </option>
           {currentStyles &&
-            currentStyles.map((item) => <option>{item.size ? item.size : 'OUT OF STOCK'}</option>)}
+            currentStyles.map((item, i) => <option key={i}>{item.size ? item.size : 'OUT OF STOCK'}</option>)}
         </select>
 
         <select 
@@ -74,7 +74,7 @@ const Checkout = ({ product, currentStyles }) => {
         {defaultAmount}
       </option>
           {currentStyles &&
-            selectedAmount.map((current) => <option> {amount ? current : amount} </option>)}
+            selectedAmount.map((current, i) => <option key={i}> {amount ? current : amount} </option>)}
         </select>
       </div>
       <br></br>

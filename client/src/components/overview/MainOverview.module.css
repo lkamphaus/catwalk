@@ -1,6 +1,6 @@
 .gridcontainer {
-  display: block;
-  min-height: 65vh;
+  display: grid;
+  min-height: 75vh;
   grid-template-rows: 50vh auto;
   grid-template-columns: auto 1000px;
   gap: 20px;
@@ -148,7 +148,7 @@
   -webkit-border-radius: 50%;
   width: 100px;
   background-color: #b8b6b6;
-  margin: 5px;
+  margin: 3px;
   box-shadow: 0 0 0 3px #000000;
 }
 

@@ -46,7 +46,7 @@ class ReviewTile extends React.Component {
   }
 
   render() {
-    console.log(this.props.review.review_id);
+    // console.log(this.props.review.review_id);
     var date = new Date(this.props.review.date);
     var month = date.toLocaleString("default", { month: "long" });
     var formatted = date.toDateString().split(" ");
