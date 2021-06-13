@@ -2,9 +2,9 @@ var models = require('../models');
 
 module.exports = {
   getQuestions: function(req, res) {
-    models.questions.getQuestionsRequest(req.query.product_id)
+    models.questions.getQuestionsRequest(req.query.product_id, req.params.page, req.params.count)
     .then((response) => {
-     res.status(200).end(JSON.stringify(response.data));
+     res.status(200).end(JSON.stringify(response.data.results));
     })
     .catch(err => {
       console.log('err', err);
@@ -13,6 +13,7 @@ module.exports = {
   },
 
   postQuestion: function(req, res) {
+
     models.questions.postQuestionRequest({
       product_id: parseInt(req.body.product_id),
       name: req.body.name,
