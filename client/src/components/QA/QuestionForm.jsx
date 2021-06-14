@@ -16,6 +16,7 @@ const AnswerForm = (props) => {
 
     setCharCountName(50 - input.length)
     setName(event.target.value);
+    setError('');
   }
 
   const handleEmailChange = (event) => {
@@ -23,6 +24,7 @@ const AnswerForm = (props) => {
 
     setCharCountEmail(50 - input.length);
     setEmail(event.target.value);
+    setError('');
   }
 
   const handleBodyChange = (event) => {
@@ -30,6 +32,7 @@ const AnswerForm = (props) => {
 
     setCharCountBody(1000 - input.length);
     setBody(input);
+    setError('');
   }
 
   const validateForm = () => {
@@ -65,6 +68,8 @@ const AnswerForm = (props) => {
         body
       }
 
+      props.addQuestion()
+
       try {
         const response = await fetch(`/api/qa/questions?product_id=${props.productId}`, {
           method: 'POST',
@@ -73,17 +78,18 @@ const AnswerForm = (props) => {
           },
           body: JSON.stringify(questionForm)
         })
+
       } catch(err) {
         console.log("err", err)
       }
     }
   }
 
-  const styleNameInput = error ? style.dangerOutline : style.formName;
+  const styleNameInput = error.name ? style.dangerOutline : style.formName;
 
-  const styleEmailInput = error ? style.dangerOutline : style.formEmail;
+  const styleEmailInput = error.email ? style.dangerOutline : style.formEmail;
 
-  const styleBodyInput = error ? style.dangerBodyOutline : style.formBody;
+  const styleBodyInput = error.body ? style.dangerBodyOutline : style.formBody;
 
 
   return (
@@ -100,16 +106,18 @@ const AnswerForm = (props) => {
               type="text"
               placeholder="Example: jack11!"
               value={name || ''}
-              maxlength = "60"
+              maxLength = "60"
               required
               onChange={handleNameChange}
             />
-            <p className={style.finePrint}>For privacy reasons, do not use your full name or email address
-            </p>
+            <div>
+              <p className={style.finePrint}>For privacy reasons, do not use your full name or email address
+              </p>
+              <div className={style.charCount}>Characters left <span className={style.charCountBold}>{charCountName}</span></div>
+            </div>
              {error.name && (
                 <p className={style.danger}>{error.name}</p>
              )}
-            <div className={style.charCount}>Characters left <span className={style.charCountBold}>{charCountName}</span></div>
           </div>
           <div className={style.labelForm}>Your email</div>
           <div>
@@ -119,15 +127,17 @@ const AnswerForm = (props) => {
               type="test"
               placeholder="Example: jack@email.com"
               value={email || ''}
-              maxlength = "60"
+              maxLength = "60"
               required aria-required="true"
               onChange={handleEmailChange}
             />
-            <p className={style.finePrint}>For authentication reasons, you will not be emailed</p>
+            <div>
+              <p className={style.finePrint}>For authentication reasons, you will not be emailed</p>
+              <div className={style.charCount}>Characters left <span className={style.charCountBold}>{charCountEmail}</span></div>
+            </div>
              {error.email && (
                 <p className={style.danger}>{error.email}</p>
              )}
-            <div className={style.charCount}>Characters left <span className={style.charCountBold}>{charCountEmail}</span></div>
           </div>
           <div className={style.labelForm}>Your Question</div>
           <div>
@@ -135,16 +145,18 @@ const AnswerForm = (props) => {
               className={styleBodyInput}
               name="body"
               type="test"
-              placeholder="Why did you like the product or not"
+              placeholder="Why did you like the product or not?"
               value={body || ''}
-              maxlength = "1000"
+              maxLength = "1000"
               required aria-required="true"
               onChange={handleBodyChange}
             />
+            <div>
+              <div className={style.charCount}>Characters left <span className={style.charCountBold}>{charCountBody}</span></div>
+            </div>
              {error.body && (
                 <p className={style.danger}>{error.body}</p>
              )}
-            <div className={style.charCount}>Characters left <span className={style.charCountBold}>{charCountBody}</span></div>
           </div>
         </div>
       </div>

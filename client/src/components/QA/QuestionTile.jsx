@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { useState, useEffect } from "react";
 import regeneratorRuntime from "regenerator-runtime";
 
 import AnswerList from "./AnswerList.jsx";
@@ -57,6 +57,7 @@ const QuestionTile = (props) => {
             questionId={question_id}
             productName={props.productName}
             questionBody={props.question.question_body}
+            addQuestion={props.addQuestion}
           />
         </div>
       </div>
