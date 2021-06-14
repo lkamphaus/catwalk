@@ -1,9 +1,9 @@
 import React, { useState, useRef } from "react";
 import style from "../MainOverview.module.css";
-import Star from '/Users/jacobmelnick/web/starfire-project-catwalk/client/src/components/reviews/Stars.jsx'
+
 const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
   const scrollDiv = useRef(null)
-  
+
   if (price) {
     price = "$" + price;
   }

@@ -13,19 +13,29 @@ function BreakdownBar(props) {
   } else {
     return (
       <div>
-        <div className={styles.bar} style={{width: "80%"}}>
+        <div className={styles.bar} style={{ width: "80%" }}>
           <BarIcon percentage={props.percentage} />
         </div>
 
-        <div style={{width: "80%"}}>
+        <div style={{ width: "80%" }}>
           <div
-            style={{ display: "inline-block", float: "left", fontSize: "12px", color: "#d96c06" }}
+            style={{
+              display: "inline-block",
+              float: "left",
+              fontSize: "12px",
+              color: "#d96c06",
+            }}
           >
             {props.low}
           </div>
 
           <div
-            style={{ display: "inline-block", float: "right", fontSize: "12px", color: "#d96c06" }}
+            style={{
+              display: "inline-block",
+              float: "right",
+              fontSize: "12px",
+              color: "#d96c06",
+            }}
           >
             {props.high}
           </div>

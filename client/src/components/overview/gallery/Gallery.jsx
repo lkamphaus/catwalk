@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "../MainOverview.module.css";
 import Thumbnails from "./Thumbnails.jsx";
 import ModalThumbs from "./ModalThumbs.jsx";
-import Modal from "/Users/jacobmelnick/web/starfire-project-catwalk/client/src/components/reviews/Modal.jsx";
+
 const Gallery = ({
   images,
   displays,
@@ -111,7 +111,7 @@ const Gallery = ({
             <div
               onClick={() => setZoom(zoom + 1)}
               className={zoom % 2 === 1 ? style.expanded : null}
-              
+
               style={{
                 height: "100%",
                 width: "50%",
