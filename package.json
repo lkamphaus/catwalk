@@ -24,6 +24,7 @@
     "cssloader": "^1.1.1",
     "express": "^4.17.1",
     "express-form-data": "^2.0.17",
+    "identity-obj-proxy": "^3.0.0",
     "loader": "^2.1.1",
     "luxon": "^1.27.0",
     "nodemon": "^2.0.7",
@@ -47,5 +48,14 @@
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "wepback": "^1.0.0"
+  },
+  "jest": {
+    "modulePaths": ["/shared/vendor/modules"],
+    "moduleFileExtensions": ["js", "jsx"],
+    "moduleDirectories": ["node_modules", "shared"],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
   }
 }
