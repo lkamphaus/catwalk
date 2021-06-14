@@ -26,23 +26,24 @@ const MainOverview = ({ prod }) => {
 //refactor
 const [currentStyleId, setCurrentStyleId] = useState('')
 const [currentImageSet, setCurrentImageSet] = useState('')
-const [images2, setImages2] = useState('')
-const [thumbnailValue, setThumbnailValue] = useState(true)
-const [styleValue, setStyleValue] = useState(true)
+const [thumbModalValue, setThumbModalValue] = useState(false);
+
+
 const handleSelectedStyle = (item) => {
-  
+  setThumbModalValue(false)
 setCurrentStyleId(item.style_id)
 product.map((current) => {
   if (current.style_id === item.style_id) {
     setCurrentImageSet(...current.photos)
   }
 })
-setStyleValue(false)
 }
 
 
 
-
+const handleArrowValue = () => {
+  setThumbModalValue(true)
+}
 
 //////////////////////////////
 
@@ -59,12 +60,14 @@ setStyleValue(false)
     if (e) {
       setValue(false);
     }
+   
+
   };
 
   const handleThumb = (e, url) => {
     setThumb(url);
     setValue(true);
-    setThumbnailValue(false)
+    setThumbModalValue(false)
   };
 
   
@@ -98,7 +101,6 @@ setStyleValue(false)
         );
        setFirstImg(data.results.map((item) => item.photos.map((img) => img.url)))
        setThumbnailUrl(data.results.map((item) => item.photos.map((img) => img.thumbnail_url)))
-       setImages2(data.results.map((item) => item.photos))
       })
       .catch((err) => console.log("err", err));
     
@@ -120,9 +122,8 @@ setStyleValue(false)
               firstImg={firstImg}
               thumbnailUrl={thumbnailUrl}
               currentImageSet={currentImageSet}
-              images2={images2}
-              thumbnailValue={thumbnailValue}
-              styleValue={styleValue}
+              thumbModalValue={thumbModalValue}
+              handleArrowValue={handleArrowValue}
             />
           )}
         </div>

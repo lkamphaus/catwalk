@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import style from "../MainOverview.module.css";
 import Thumbnails from "./Thumbnails.jsx";
 import ModalThumbs from "./ModalThumbs.jsx";
-import Modal from "/Users/jacobmelnick/web/starfire-project-catwalk/client/src/components/reviews/Modal.jsx";
+import Modal from "../../reviews/Modal.jsx";
 const Gallery = ({
   images,
   handleThumb,
@@ -11,73 +11,122 @@ const Gallery = ({
   firstImg,
   thumbnailUrl,
   currentImageSet,
-  images2,
-  styleValue,
-  thumbnailValue
+  handleArrowValue,
+  thumbModalValue,
 }) => {
   const [zoom, setZoom] = useState(0);
   const [expandedOpen, setExpandedOpen] = useState(false);
   const [arrowSelected, setArrowSelected] = useState("");
-  const [thumbModalValue, setThumbModalValue] = useState(false);
+  const [arrowIndex, setArrowIndex] = useState(0);
 
   const handlesArrows = () => {
-    setThumbModalValue(true)
-    setArrowSelected(currentImageSet.thumbnail_url)
+    handleArrowValue();
+    
+    if (arrowIndex >= images.length) {
+      setArrowIndex(0);
+      setArrowSelected(images[0][0].thumbnail_url);
+    } else {
+      setArrowSelected(images[arrowIndex][0].thumbnail_url);
+      setArrowIndex(arrowIndex + 1);
+    }
+  };
+  
+  const handlesArrowsLeft = () => {
+    handleArrowValue();
+
+    if (arrowIndex < 0) {
+      setArrowIndex(images.length);
+      setArrowSelected(images[images.length - 1][0].thumbnail_url);
+    } else {
+      setArrowIndex(arrowIndex - 1);
+      setTimeout(() => {
+        setArrowSelected(images[arrowIndex][0].thumbnail_url);
+      }, 0);
+    }
   };
 
-  
+
+  const handleThumbnailIndex = (e) => {
+    console.log(e.target.src);
+    
+  }
+
   return (
-    <div>
-      <div
-        className={style.arrows}
-        id={style.right}
-        onClick={() => {
-          handlesArrows();
-        }}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
+    <div className={style.mainGallery}>
+      {arrowIndex > 0 && (
+        <div
+          className={style.arrows}
+          id={style.right}
+          onClick={() => {
+            handlesArrowsLeft();
+          }}
         >
-          <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+          </svg>
+        </div>
+      )}
+      <div className={style.thumbs} onClick={(e) => {handleThumbnailIndex(e)}}>
+        {images &&
+          images.map((item) =>
+            item.map((img) => (
+              <Thumbnails
+                handleThumb={handleThumb}
+                thumbUrl={img.thumbnail_url}
+                key={item}
+              />
+            ))
+          )}
+        {/* <div className={style.bigImage}>
+          </div> */}
       </div>
+
       <div>
         {currentThumb && thumbValue === true ? (
           <img
             onClick={() => setExpandedOpen(true)}
             className={style.image}
-            src={currentThumb}
+            src={thumbModalValue ? arrowSelected : currentThumb}
           ></img>
         ) : !currentImageSet.url ? (
           <img
             onClick={() => setExpandedOpen(true)}
             className={style.image}
-            src={images.map((item) => item.map((img) => img.url))}
+            src={
+              firstImg && !thumbModalValue ? firstImg[0].join() : arrowSelected
+            }
           ></img>
         ) : (
           <img
             onClick={() => setExpandedOpen(true)}
             className={style.image}
-            src={currentImageSet.url}
+            src={thumbModalValue ? arrowSelected : currentImageSet.url}
           ></img>
         )}
-
-        <div className={style.thumbs}>
-          {images &&
-            images.map((item) =>
-              item.map((img) => (
-                <Thumbnails
-                  handleThumb={handleThumb}
-                  thumbUrl={img.thumbnail_url}
-                  key={item}
-                />
-              ))
-            )}
-        </div>
       </div>
+      {images && arrowIndex !== images.length && (
+        <div
+          className={style.arrows}
+          id={style.right}
+          onClick={() => {
+            handlesArrows();
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+          </svg>
+        </div>
+      )}
       <Modal>
         {expandedOpen && (
           <div
@@ -91,6 +140,24 @@ const Gallery = ({
               top: "10px",
             }}
           >
+            <div
+              style={{marginBottom: '300px', marginRight: '20px'}}
+              className={style.arrows}
+              id={style.right}
+              onClick={() => {
+                handlesArrows();
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+              </svg>
+            </div>
+
             <div className={style.modalThumbs} id={style.thumbModals}>
               {images &&
                 images.map((item) =>
@@ -115,6 +182,7 @@ const Gallery = ({
                     ? `url('${firstImg[0].join()}') no-repeat `
                     : currentThumb && thumbValue === true
                     ? `url('${currentThumb}') no-repeat center center / cover`
+                    : thumbModalValue ? `url(${arrowSelected})` 
                     : `url('${currentImageSet.url}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center center",
@@ -141,6 +209,23 @@ const Gallery = ({
                 viewBox="0 0 24 24"
               >
                 <path d="M9 12c0-.552.448-1 1.001-1s.999.448.999 1-.446 1-.999 1-1.001-.448-1.001-1zm6.2 0l-1.7 2.6-1.3-1.6-3.2 4h10l-3.8-5zm8.8-5v14h-20v-3h-4v-15h21v4h3zm-20 9v-9h15v-2h-17v11h2zm18-7h-16v10h16v-10z" />
+              </svg>
+            </div>
+            <div
+            style={{marginBottom: '300px'}}
+              className={style.arrows}
+              id={style.right}
+              onClick={() => {
+                handlesArrowsLeft();
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
               </svg>
             </div>
           </div>

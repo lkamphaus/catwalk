@@ -44,13 +44,13 @@ const SelectedStyle = ({
           product.map((item) => (
             <div
               className={style.selected}
-              style={{ backgroundColor: selected !== item.name ? "#b8b6b6" : "#D96C06" }}
+              style={{ backgroundColor: ids[0] !== item.style_id ? "#b8b6b6" : "#D96C06" }}
               key={item.style_id}
               onClick={(e) => {
                 handleSelected(e, item);
                 handleSelectedStyle(item)
               }}
-            >{selected === item.name && 
+            >{ids[0] === item.style_id && 
             <div className={style.checkMark}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg></div>
             }
               {item.name}

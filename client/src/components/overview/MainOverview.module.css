@@ -52,7 +52,10 @@
 }
 
 #right{
-  margin-left: 870px;
+  padding: 5px;
+  display: flex;
+  margin-top: 280px;
+ 
 }
 
 .arrows:hover {
@@ -61,12 +64,14 @@
 
 
 .thumbs {
-  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  float: left;
-  max-height: 600px;
+  padding: 5px;
+  margin-right: 10px;
+  flex-grow: 1;
+  max-width: 115px;
+  border: 1px solid black
 }
 #thumbModals {
   margin-bottom: 700px;
@@ -285,3 +290,9 @@ border-radius: 50%;
 }
 
 
+.mainGallery {
+  display: flex;
+  
+  height: 100%;
+  width: 60%;
+}

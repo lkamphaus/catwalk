@@ -1,9 +1,10 @@
 import React, { useState, useRef } from "react";
 import style from "../MainOverview.module.css";
-import Star from '/Users/jacobmelnick/web/starfire-project-catwalk/client/src/components/reviews/Stars.jsx'
+import Star from '../../reviews/Stars.jsx'
 const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
   const scrollDiv = useRef(null)
   
+
   if (price) {
     price = "$" + price;
   }
@@ -13,13 +14,13 @@ const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
   }
   const handleBottom = () => {
     if (scrollDiv.current) {
-      scrollDiv.current.scrollIntoView({behaivor: 'smooth'})
+      scrollDiv.current.scrollIntoView({behavior: 'smooth'})
     }
   }
 
   return (
     <div>
-      <div className={style.reviews} onClick={() => handleBottom()}>Real all reviews</div>
+      <div className={style.reviews} onClick={() => handleBottom()}>Read all reviews</div>
       <div> <Star/></div>
       <div>{category}</div>
       <div className={style.name}>{name}</div>
