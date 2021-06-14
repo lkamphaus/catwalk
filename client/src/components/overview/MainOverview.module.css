@@ -1,6 +1,8 @@
 .gridcontainer {
   display: grid;
-  min-height: 65vh;
+<
+  min-height: 75vh;
+
   grid-template-rows: 50vh auto;
   grid-template-columns: auto 1000px;
   gap: 20px;
@@ -8,7 +10,7 @@
   grid-template-areas:
     "gallery sidebar"
     "description description2";
-
+  margin-right: 38%;
 }
 
 .description {
@@ -52,7 +54,10 @@
 }
 
 #right{
-  margin-left: 870px;
+  padding: 5px;
+  display: flex;
+  margin-top: 280px;
+ 
 }
 
 .arrows:hover {
@@ -61,12 +66,14 @@
 
 
 .thumbs {
-  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  float: left;
-  max-height: 600px;
+  padding: 5px;
+  margin-right: 10px;
+  flex-grow: 1;
+  max-width: 115px;
+  border: 1px solid black
 }
 #thumbModals {
   margin-bottom: 700px;
@@ -148,7 +155,7 @@
   -webkit-border-radius: 50%;
   width: 100px;
   background-color: #b8b6b6;
-  margin: 5px;
+  margin: 3px;
   box-shadow: 0 0 0 3px #000000;
 }
 
@@ -285,3 +292,9 @@ border-radius: 50%;
 }
 
 
+.mainGallery {
+  display: flex;
+  
+  height: 100%;
+  width: 60%;
+}
