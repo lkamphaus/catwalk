@@ -1,6 +1,8 @@
 import React from "react";
-import Modal from "./Modal.jsx";
+import Modal from "../QA/Modal.jsx";
 import styles from "./Reviews.module.css";
+import Star from "./Star.jsx";
+import CharacteristicButtons from "./CharacteristicButtons.jsx";
 
 class AddReview extends React.Component {
   constructor(props) {
@@ -8,25 +10,73 @@ class AddReview extends React.Component {
     this.state = {
       clicked: false,
       fields: {
+        summary: "",
         body: "",
+        nickname: "",
+        email: "",
       },
+      ratings: [0, 0, 0, 0, 0],
+      characteristics: [],
+      ratingText: "",
       errors: [],
-      valid: true,
       images: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
-    this.handleUpload = this.handleUpload.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRateCharacteristic = this.handleRateCharacteristic.bind(this);
+  }
+
+  handleRate(n) {
+    var rating = [0, 0, 0, 0, 0];
+    var descriptions = ["Poor", "Fair", "Average", "Good", "Great"];
+    var description = descriptions[n];
+
+    while (n >= 0) {
+      rating[n] = 1;
+      n--;
+    }
+
+    this.setState({
+      ratings: rating,
+      ratingText: description,
+    });
+  }
+
+  handleRateCharacteristic(e) {
+    var id = e.target.getAttribute("name");
+    var val = e.target.value;
+
+    this.setState({
+      characteristics: [...this.state.characteristics, { [id]: Number(val) }],
+    });
   }
 
   handleAdd() {
     this.setState({
-      clicked: !this.state.clicked,
+      clicked: true,
     });
   }
 
-  handleUpload(e) {
+  handleClose() {
+    this.setState({
+      clicked: false,
+      ratings: [0, 0, 0, 0, 0],
+      fields: {
+        summary: "",
+        body: "",
+        nickname: "",
+        email: "",
+      },
+      ratingText: "",
+      images: [],
+    });
+  }
+
+  handleImageUpload(e) {
     const file = e.target.files[0];
 
     const formData = new FormData();
@@ -55,12 +105,15 @@ class AddReview extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (this.handleValidation()) {
+    console.log(this.state.fields);
+    if (formValidation) {
       //post function
     }
   }
 
   render() {
+    var characteristics = this.props.meta && this.props.meta.characteristics;
+
     var images = this.state.images.map((image) => (
       <img className={styles.smallImg} src={image} />
     ));
@@ -72,6 +125,10 @@ class AddReview extends React.Component {
         ? `Minimum required characters left: ${charsLeft}`
         : "Minimum reached.";
 
+    var starRating = this.state.ratings.map((star, index) => {
+      return <Star rating={star} onClick={() => this.handleRate(index)} />;
+    });
+
     var uploadPhotos =
       this.state.images.length < 5 ? (
         <div>
@@ -79,7 +136,7 @@ class AddReview extends React.Component {
           <input
             type="file"
             id="single"
-            onChange={(e) => this.handleUpload(e)}
+            onChange={(e) => this.handleImageUpload(e)}
           />
         </div>
       ) : (
@@ -87,13 +144,23 @@ class AddReview extends React.Component {
       );
 
     var modal = this.state.clicked ? (
-      <Modal>
-        <div className={styles.formModal}>
-          <div className={styles.exit} onClick={this.handleAdd}>
-            X
+      <Modal size="50%" closeOnClick={this.handleClose}>
+        <div>
+          <div className={styles.reviewForm}>
+            <h2 className={styles.formTitle}>Write Your Review</h2>
+            <h3 className={styles.formTitle}>About the {this.props.name}</h3>
+
+            <h4 className={styles.formTitle}>Overall Rating </h4>
+            <span>{starRating}</span>
+            <span> {this.state.ratingText}</span>
+
+            <h4 className={styles.formTitle}>Characteristics </h4>
+            <CharacteristicButtons
+              characteristics={characteristics}
+              onClick={this.handleRateCharacteristic}
+            />
           </div>
-          <h2 className={styles.formTitle}>Write Your Review</h2>
-          <h3 className={styles.formTitle}>About the {this.props.name}</h3>
+
           <form
             className={styles.reviewForm}
             name="reviewform"
@@ -104,7 +171,7 @@ class AddReview extends React.Component {
 
               <input
                 className={styles.fields}
-                style={{ width: "500px", height: "20px" }}
+                style={{ width: "90%", height: "20px" }}
                 type="text"
                 placeholder="Example: Best purchase ever!"
                 maxLength="60"
@@ -118,7 +185,7 @@ class AddReview extends React.Component {
 
               <textarea
                 className={styles.fields}
-                style={{ width: "500px", height: "200px" }}
+                style={{ width: "90%", height: "200px" }}
                 type="textarea"
                 placeholder="Why did you like the product or not?"
                 maxLength="1000"
@@ -135,7 +202,7 @@ class AddReview extends React.Component {
 
               <input
                 className={styles.fields}
-                style={{ width: "500px", height: "20px" }}
+                style={{ width: "90%", height: "20px" }}
                 type="text"
                 placeholder="Example: jackson11!"
                 maxLength="60"
@@ -154,7 +221,7 @@ class AddReview extends React.Component {
 
               <input
                 className={styles.fields}
-                style={{ width: "500px", height: "20px" }}
+                style={{ width: "90%", height: "20px" }}
                 type="text"
                 placeholder="Example: jackson11@gmail.com"
                 maxLength="60"
@@ -181,7 +248,7 @@ class AddReview extends React.Component {
     ) : null;
 
     return (
-      <div style={{display: "inline"}}>
+      <div style={{ display: "inline" }}>
         <button className={styles.reviewButtons} onClick={this.handleAdd}>
           ADD A REVIEW +
         </button>
