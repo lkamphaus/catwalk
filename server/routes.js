@@ -23,4 +23,6 @@ router.put('/reviews/:review_id/helpful', controller.reviews.markHelpful);
 
 router.get('/products/:product_id/styles', controller.products.getImgs);
 
+router.post('/reviews', controller.reviews.submitForm)
+
 module.exports = router;

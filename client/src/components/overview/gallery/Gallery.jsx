@@ -31,14 +31,14 @@ const Gallery = ({
     }
   };
 
-  
+
 
   const handlesArrowsLeft = () => {
     handleArrowValue();
 
     if (arrowIndex < 0) {
       setArrowIndex(images.length);
-     
+
       setArrowSelected(images[images.length - 1][0].thumbnail_url);
     } else {
       setArrowIndex(arrowIndex - 1);
@@ -54,7 +54,7 @@ const Gallery = ({
 
   return (
     <div className={style.mainGallery}>
-      
+
         <div
           className={style.arrows}
           id={style.right}
@@ -71,7 +71,7 @@ const Gallery = ({
             <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
           </svg>
         </div>
-      
+
       <div
         className={style.thumbs}
         onClick={(e) => {

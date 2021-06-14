@@ -3,6 +3,8 @@ import Modal from "../QA/Modal.jsx";
 import styles from "./Reviews.module.css";
 import Star from "./Star.jsx";
 import CharacteristicButtons from "./CharacteristicButtons.jsx";
+import submitForm from "./helpers/submitForm.js";
+import characteristicsObj from "./helpers/characteristicsObj.js";
 
 class AddReview extends React.Component {
   constructor(props) {
@@ -15,6 +17,7 @@ class AddReview extends React.Component {
         nickname: "",
         email: "",
       },
+      recommend: null,
       ratings: [0, 0, 0, 0, 0],
       characteristics: [],
       ratingText: "",
@@ -103,12 +106,36 @@ class AddReview extends React.Component {
     });
   }
 
+  handleRecommend(e) {
+    console.log(e.target.value);
+    if (e.target.value === "Yes") {
+      this.setState({
+        recommend: true,
+      });
+    } else {
+      this.setState({
+        recommend: false,
+      });
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.fields);
-    if (formValidation) {
-      //post function
-    }
+    console.log(this.state.images);
+    var rating = this.state.ratings.reduce((acc, curr) => acc + curr, 0);
+    var id = this.props.meta && this.props.meta.product_id;
+    var characteristics = characteristicsObj(this.state.characteristics);
+    submitForm(
+      id,
+      rating,
+      this.state.fields.summary,
+      this.state.fields.body,
+      this.state.recommend,
+      this.state.fields.nickname,
+      this.state.fields.email,
+      this.state.images,
+      characteristics
+    );
   }
 
   render() {
@@ -164,8 +191,21 @@ class AddReview extends React.Component {
           <form
             className={styles.reviewForm}
             name="reviewform"
-            onSubmit={this.handleSubmit}
+            onSubmit={(e) => this.handleSubmit(e)}
           >
+            <label>
+              <h4 className={styles.formTitle}>
+                Do you recommend this product?{" "}
+              </h4>
+
+              <div onChange={(e) => this.handleRecommend(e)}>
+                <input type="radio" value="Yes" name="recommend" />
+                Yes
+                <input type="radio" value="No" name="recommend" />
+                No
+              </div>
+            </label>
+
             <label>
               <h4 className={styles.formTitle}>Review summary </h4>
 
