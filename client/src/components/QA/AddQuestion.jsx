@@ -27,6 +27,7 @@ const AddQuestion = (props) => {
           <QuestionForm
             productId={props.productId}
             productName={props.productName}
+            addQuestion={props.addQuestion}
           />
         </Modal>
       }

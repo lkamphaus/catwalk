@@ -30,6 +30,7 @@ const AddAnswer = (props) => {
             questionId={props.questionId}
             productName={props.productName}
             questionBody={props.questionBody}
+            addQuestion={props.addQuestion}
           />
         </Modal>
       }
