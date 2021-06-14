@@ -181,10 +181,6 @@ const Gallery = ({
             <div
               onClick={() => setZoom(zoom + 1)}
               className={zoom % 2 === 1 ? style.expanded : null}
-<<<<<<< HEAD
-
-=======
->>>>>>> 6b9fb77b81538150a9f39aceb78a0a28d9c6dc04
               style={{
                 height: "100%",
                 width: "50%",
