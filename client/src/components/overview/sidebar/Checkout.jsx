@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import style from "../MainOverview.module.css";
 
 const Checkout = ({ product, currentStyles }) => {
@@ -7,8 +7,10 @@ const Checkout = ({ product, currentStyles }) => {
   const [buttonText, setButtonText] = useState("Add to Cart");
   const [amount, setAmount] = useState("");
   const [defaultAmount, setDefaultAmount] = useState('-')
-  const [value, setValue] = useState('false')
-  
+  const [value, setValue] = useState(false)
+  const selectDiv = useRef(null)
+
+
   const handleSize = (e) => {
     setSelectedSize(e.target.value);
     let count = 1;
@@ -36,6 +38,17 @@ const Checkout = ({ product, currentStyles }) => {
     
   };
 
+  const handleNoSize = () => {
+    if(selectDiv.current) {
+      currentStyles.map((item) => {
+      if(selectDiv.current.contains(item.size)) {
+        return
+      }
+      })
+
+    }
+  }
+
   const handleButtonText = () => {
     setButtonText("**Added items to cart**");
     setTimeout(() => {
@@ -62,7 +75,7 @@ const Checkout = ({ product, currentStyles }) => {
             Select Size
           </option>
           {currentStyles &&
-            currentStyles.map((item) => <option>{item.size ? item.size : 'OUT OF STOCK'}</option>)}
+            currentStyles.map((item, i) => <option key={i}>{item.size ? item.size : 'OUT OF STOCK'}</option>)}
         </select>
 
         <select 
@@ -74,13 +87,13 @@ const Checkout = ({ product, currentStyles }) => {
         {defaultAmount}
       </option>
           {currentStyles &&
-            selectedAmount.map((current) => <option> {amount ? current : amount} </option>)}
+            selectedAmount.map((current, i) => <option key={i}> {amount ? current : amount} </option>)}
         </select>
       </div>
       <br></br>
       <div>
         {!selectedSize || value ? (
-          <button className={style.cart} onClick={() => alert('please select a size')}>Select Size</button>
+          <button className={style.cart} ref={selectDiv} onClick={() => handleNoSize()}>Select Size</button>
         ) : (
           <button
             className={style.cart}

@@ -21,6 +21,37 @@ const MainOverview = ({ prod }) => {
   const [firstImg, setFirstImg] = useState('')
   const [thumbnailUrl, setThumbnailUrl] = useState('')
 
+
+//////////////////////////////
+//refactor
+const [currentStyleId, setCurrentStyleId] = useState('')
+const [currentImageSet, setCurrentImageSet] = useState('')
+const [thumbModalValue, setThumbModalValue] = useState(false);
+
+
+const handleSelectedStyle = (item) => {
+  setThumbModalValue(false)
+setCurrentStyleId(item.style_id)
+product.map((current) => {
+  if (current.style_id === item.style_id) {
+    setCurrentImageSet(...current.photos)
+  }
+})
+}
+
+
+
+const handleArrowValue = () => {
+  setThumbModalValue(true)
+  setValue(false)
+}
+
+//////////////////////////////
+
+
+
+
+
   const handleSales = (item) => {
     setPrice(item.original_price);
     setSalePrice(item.sale_price);
@@ -30,15 +61,17 @@ const MainOverview = ({ prod }) => {
     if (e) {
       setValue(false);
     }
+   
+
   };
 
   const handleThumb = (e, url) => {
     setThumb(url);
     setValue(true);
-    console.log(url);
+    setThumbModalValue(false)
   };
 
-  console.log(currentThumb);
+  
   const handleSelect = (e) => {
     setSelected(e.target.innerHTML);
   };
@@ -89,6 +122,9 @@ const MainOverview = ({ prod }) => {
               thumbValue={thumbValue}
               firstImg={firstImg}
               thumbnailUrl={thumbnailUrl}
+              currentImageSet={currentImageSet}
+              thumbModalValue={thumbModalValue}
+              handleArrowValue={handleArrowValue}
             />
           )}
         </div>
@@ -115,6 +151,7 @@ const MainOverview = ({ prod }) => {
               handleDisplays={handleDisplays}
               handleId={handleId}
               handleSales={handleSales}
+              handleSelectedStyle={handleSelectedStyle}
             />
           )}
         </div>
