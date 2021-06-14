@@ -1,6 +1,8 @@
 .gridcontainer {
   display: grid;
+<
   min-height: 75vh;
+
   grid-template-rows: 50vh auto;
   grid-template-columns: auto 1000px;
   gap: 20px;

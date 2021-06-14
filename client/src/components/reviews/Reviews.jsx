@@ -1,8 +1,9 @@
 import React from "react";
 import ReviewsList from "./ReviewsList.jsx";
 import ProductBreakdown from "./ProductBreakdown.jsx";
-import RatingBar from "./RatingBar.jsx";
+import BreakdownBar from "./BreakdownBar.jsx";
 import styles from "./Reviews.module.css";
+const selectionMeanings = require('./selectionMeanings.js')
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -64,8 +65,8 @@ class Reviews extends React.Component {
               >
                 {rating} stars:
               </span>
-              <RatingBar
-                stars={rating}
+              <BreakdownBar
+                fill="fill"
                 percentage={
                   this.props.meta.ratings[rating]
                     ? Math.floor(
@@ -76,6 +77,32 @@ class Reviews extends React.Component {
               />
             </div>
           ));
+
+    var characteristicBars = [];
+
+    if (this.props.meta) {
+      for (var key in this.props.meta.characteristics) {
+        characteristicBars.push(key);
+      }
+    }
+
+    characteristicBars = characteristicBars.map((characteristic) => (
+      <div style={{ margin: "30px 0px" }}>
+        <span
+          style={{ marginRight: "10px", display: "inline-block", width: "15%" }}
+        >
+          {characteristic}
+        </span>
+        <BreakdownBar
+          low={selectionMeanings[characteristic][0]}
+          high={selectionMeanings[characteristic][4]}
+          percentage={
+            this.props.meta.characteristics &&
+            (this.props.meta.characteristics[characteristic].value / 5) * 100
+          }
+        />
+      </div>
+    ));
 
     var roundedAverage =
       this.state.average === null
@@ -90,6 +117,7 @@ class Reviews extends React.Component {
             name={this.props.name}
             total={total}
             filters={this.state.filters}
+            meta={this.props.meta}
           />
         </div>
         <div className={styles.productBreakdown}>
@@ -107,6 +135,8 @@ class Reviews extends React.Component {
               {filters}
             </span>
             {ratingBars}
+            <br />
+            {characteristicBars}
           </div>
         </div>
       </div>

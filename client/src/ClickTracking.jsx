@@ -14,7 +14,7 @@ const ClickTracking = (props) => {
   }
 
   const globalClickTracker = (event) => {
-    let element = event.target.className;
+    let element = event.target;
     let time = new Date();
     let module = moduleClicked();
     console.log({

@@ -11,10 +11,11 @@ const QuestionList = (props) => {
   const [questions, setQuestion] = useState(null);
   const [preview, setPreview] = useState(true);
   const [search, setSearch] = useState('');
+  let [updateQuestions, setUpdateQuestions] = useState(0);
 
   useEffect(async () => {
     try {
-      const response = await fetch(`/api/qa/questions?product_id=${props.id}`, {
+      const response = await fetch(`/api/qa/questions?product_id=${props.id}&page=${1}&count=${100}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -24,7 +25,8 @@ const QuestionList = (props) => {
     } catch(err) {
       console.log("err", err)
     }
-  }, []);
+  }, [updateQuestions]);
+
 
   const getQuestionList = () => {
     if (!questions) {
@@ -32,17 +34,17 @@ const QuestionList = (props) => {
     }
 
     if (search.length >= 3) {
-      let filteredList = questions.results.filter(question => {
+      let filteredList = questions.filter(question => {
         return question.question_body.toLowerCase().includes(search.toLowerCase())
       })
       return filteredList;
     }
 
     if (preview) {
-      return questions.results.slice(0, 4);
+      return questions.slice(0, 4);
     }
 
-    return questions.results;
+    return questions;
   }
 
   const questionsList = getQuestionList();
@@ -55,7 +57,11 @@ const QuestionList = (props) => {
     setSearch(searchTerm);
   }
 
-  const moreQuestions = questions && questions.results.length > 2;
+  const addQuestion = () => {
+    setUpdateQuestions(++updateQuestions)
+  }
+
+  const moreQuestions = questions && questions.length > 2;
 
   const addMoreQuestions = preview ? 'MORE ANSWERED QUESTIONS' : 'COLLAPSE ANSWERED QUESTIONS';
 
@@ -77,6 +83,7 @@ const QuestionList = (props) => {
                   productName={props.productName}
                   question={question}
                   key={question.question_id}
+                  addQuestion={addQuestion}
                 />
               )}
           </div>
@@ -92,6 +99,7 @@ const QuestionList = (props) => {
           <AddQuestion
             productId={props.id}
             productName={props.productName}
+            addQuestion={addQuestion}
           />
         </div>
       </div>
