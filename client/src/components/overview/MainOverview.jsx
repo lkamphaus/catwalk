@@ -43,6 +43,7 @@ product.map((current) => {
 
 const handleArrowValue = () => {
   setThumbModalValue(true)
+  setValue(false)
 }
 
 //////////////////////////////

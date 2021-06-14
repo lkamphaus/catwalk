@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import style from "../MainOverview.module.css";
 import Thumbnails from "./Thumbnails.jsx";
 import ModalThumbs from "./ModalThumbs.jsx";
@@ -18,10 +18,10 @@ const Gallery = ({
   const [expandedOpen, setExpandedOpen] = useState(false);
   const [arrowSelected, setArrowSelected] = useState("");
   const [arrowIndex, setArrowIndex] = useState(0);
+  const [arrowModal, setArrowModal] = useState(false)
 
   const handlesArrows = () => {
     handleArrowValue();
-    
     if (arrowIndex >= images.length) {
       setArrowIndex(0);
       setArrowSelected(images[0][0].thumbnail_url);
@@ -30,12 +30,15 @@ const Gallery = ({
       setArrowIndex(arrowIndex + 1);
     }
   };
+
   
+
   const handlesArrowsLeft = () => {
     handleArrowValue();
 
     if (arrowIndex < 0) {
       setArrowIndex(images.length);
+     
       setArrowSelected(images[images.length - 1][0].thumbnail_url);
     } else {
       setArrowIndex(arrowIndex - 1);
@@ -45,15 +48,13 @@ const Gallery = ({
     }
   };
 
-
   const handleThumbnailIndex = (e) => {
     console.log(e.target.src);
-    
-  }
+  };
 
   return (
     <div className={style.mainGallery}>
-      {arrowIndex > 0 && (
+      
         <div
           className={style.arrows}
           id={style.right}
@@ -70,8 +71,13 @@ const Gallery = ({
             <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
           </svg>
         </div>
-      )}
-      <div className={style.thumbs} onClick={(e) => {handleThumbnailIndex(e)}}>
+      
+      <div
+        className={style.thumbs}
+        onClick={(e) => {
+          handleThumbnailIndex(e);
+        }}
+      >
         {images &&
           images.map((item) =>
             item.map((img) => (
@@ -141,11 +147,12 @@ const Gallery = ({
             }}
           >
             <div
-              style={{marginBottom: '300px', marginRight: '20px'}}
+              style={{ marginBottom: "300px", marginRight: "20px" }}
               className={style.arrows}
               id={style.right}
               onClick={() => {
                 handlesArrows();
+                setArrowModal(true)
               }}
             >
               <svg
@@ -178,11 +185,12 @@ const Gallery = ({
                 height: "100%",
                 width: "50%",
                 background:
-                  !currentImageSet.url && !currentThumb && firstImg
+                  !currentImageSet.url && !currentThumb && firstImg && !arrowModal
                     ? `url('${firstImg[0].join()}') no-repeat `
                     : currentThumb && thumbValue === true
                     ? `url('${currentThumb}') no-repeat center center / cover`
-                    : thumbModalValue ? `url(${arrowSelected})` 
+                    : thumbModalValue
+                    ? `url(${arrowSelected}) no-repeat center center / cover`
                     : `url('${currentImageSet.url}')`,
                 backgroundSize: "cover",
                 backgroundPosition: "center center",
@@ -212,11 +220,12 @@ const Gallery = ({
               </svg>
             </div>
             <div
-            style={{marginBottom: '300px'}}
+              style={{ marginBottom: "300px" }}
               className={style.arrows}
               id={style.right}
               onClick={() => {
                 handlesArrowsLeft();
+                setArrowModal(true)
               }}
             >
               <svg
