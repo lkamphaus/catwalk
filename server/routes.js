@@ -5,7 +5,7 @@ router.get('/products/:product_id', controller.products.get);
 
 router.get('/qa/questions', controller.questions.getQuestions);
 
-router.post('/qa/questions', controller.questions.postQuestion)
+router.post('/qa/questions', controller.questions.postQuestion);
 
 router.post('/qa/questions/:question_id/answers', controller.questions.postAnswer);
 
@@ -23,6 +23,8 @@ router.put('/reviews/:review_id/helpful', controller.reviews.markHelpful);
 
 router.get('/products/:product_id/styles', controller.products.getImgs);
 
-router.post('/reviews', controller.reviews.submitForm)
+router.post('/reviews', controller.reviews.submitForm);
+
+router.post('/interactions', controller.interactions.create);
 
 module.exports = router;

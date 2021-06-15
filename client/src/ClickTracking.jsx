@@ -14,14 +14,24 @@ const ClickTracking = (props) => {
   }
 
   const globalClickTracker = (event) => {
-    let element = event.target;
-    let time = new Date();
-    let module = moduleClicked();
-    console.log({
+    let element = event.target.outerHTML;
+    let time = '6/14/21';
+    let widget = moduleClicked();
+    let form = {
       element,
       time,
-      module
-    })
+      widget
+    }
+    console.log('form', form)
+
+     fetch ('/api/interactions', {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(form)
+     })
+     .catch((err) => console.log("err", err));
   };
 
   return (
