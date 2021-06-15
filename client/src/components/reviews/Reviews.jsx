@@ -3,7 +3,7 @@ import ReviewsList from "./ReviewsList.jsx";
 import ProductBreakdown from "./ProductBreakdown.jsx";
 import BreakdownBar from "./BreakdownBar.jsx";
 import styles from "./Reviews.module.css";
-const selectionMeanings = require('./selectionMeanings.js')
+const selectionMeanings = require("./selectionMeanings.js");
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -41,6 +41,12 @@ class Reviews extends React.Component {
     }
   }
 
+  handleRemove() {
+    this.setState({
+      filters: [],
+    });
+  }
+
   render() {
     var total =
       this.props.meta === null
@@ -48,9 +54,30 @@ class Reviews extends React.Component {
         : (Number(this.props.meta.recommended.false) || 0) +
           (Number(this.props.meta.recommended.true) || 0);
 
-    var filters = this.state.filters.map((filter) => (
-      <div style={{ fontSize: "14px" }}>{`${filter}-star reviews`}</div>
-    ));
+    var filters =
+      this.state.filters.length === 0 ? (
+        <div>None</div>
+      ) : (
+        this.state.filters.map((filter) => (
+          <div
+            style={{ fontSize: "14px", color: "#d96c06", padding: "5px 0" }}
+          >{`${filter}-star reviews`}</div>
+        ))
+      );
+
+    var removeFilters =
+      this.state.filters.length > 0 ? (
+        <div
+          style={{
+            cursor: "pointer",
+            paddingTop: "10px",
+            textDecoration: "underline",
+          }}
+          onClick={() => this.handleRemove()}
+        >
+          Remove all filters
+        </div>
+      ) : null;
 
     var ratingBars =
       this.props.meta === null
@@ -133,6 +160,7 @@ class Reviews extends React.Component {
             <span>
               Filters currently applied:
               {filters}
+              {removeFilters}
             </span>
             {ratingBars}
             <br />
