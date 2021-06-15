@@ -13,6 +13,21 @@
   padding-right: 15%;
   max-width: 100%;
   min-width: 0;
+
+  min-height: 65vh;
+
+
+  grid-template-rows: auto, auto;
+  grid-template-columns: auto, auto;
+  gap: 70px;
+  justify-content: space-around;
+  grid-template-areas:
+    "gallery sidebar"
+    "description description2";
+  /* margin-right: 38%; */
+  padding-left: 15%;
+  padding-right: 15%;
+  max-width: 1000px;
 }
 
 .description {
@@ -44,6 +59,7 @@
   /* margin-top: 280px; */
   cursor: pointer;
   /* margin-left: 800px; */
+  margin: 20px
 }
 #right{
   padding: 5px;
@@ -64,6 +80,21 @@
    border: 1px solid black
  }
  #thumbModals {
+ transform: scale(1.5);
+}
+
+
+.thumbs {
+  /* display: flex; */
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 5px;
+  margin-right: 10px;
+  flex-grow: 1;
+  max-width: 115px;
+  /* border: 1px solid black */
+}
+#thumbModals {
   margin-bottom: 700px;
   display: flex;
   flex-direction: row;
@@ -208,7 +239,7 @@ width: 10px;
 border-radius: 50%;
 }
 .line {
-  padding: 1px;
+  padding: 2px;
   height: 150px;
   width: 0%;
   float: right;

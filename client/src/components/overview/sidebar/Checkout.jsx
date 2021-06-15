@@ -63,7 +63,7 @@ const Checkout = ({ product, currentStyles }) => {
   return (
     <div>
       <br></br>
-      <div>
+      <div >
         <select
           value={selectedSize}
           className={style.buttons}
