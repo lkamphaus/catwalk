@@ -185,14 +185,14 @@
 }
 
 .modalContentWide {
-  border-radius: 10px;
+  /* border-radius: 10px; */
   position: relative;
   background-color: white;
   padding: 20px;
   margin: auto;
   width: 50%;
   height: 80%;
-  overflow: auto;
+  overflow-y: scroll;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;

@@ -34,7 +34,6 @@ const ProductDetail = () => {
 
   return (
     <div>
-      <div>
         <div>
           <SearchBar />
         </div>

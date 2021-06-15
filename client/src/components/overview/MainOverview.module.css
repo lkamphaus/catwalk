@@ -1,6 +1,5 @@
 .gridcontainer {
   display: grid;
-  min-height: 75vh;
   grid-template-rows: auto auto;
   grid-template-columns: auto auto;
   gap: 70px;
@@ -13,23 +12,8 @@
   padding-right: 15%;
   max-width: 100%;
   min-width: 0;
-
   min-height: 65vh;
-
-
-  grid-template-rows: auto, auto;
-  grid-template-columns: auto, auto;
-  gap: 70px;
-  justify-content: space-around;
-  grid-template-areas:
-    "gallery sidebar"
-    "description description2";
-  /* margin-right: 38%; */
-  padding-left: 15%;
-  padding-right: 15%;
-  max-width: 1000px;
 }
-
 .description {
   grid-area: description;
 }
@@ -82,8 +66,6 @@
  #thumbModals {
  transform: scale(1.5);
 }
-
-
 .thumbs {
   /* display: flex; */
   flex-direction: row;
@@ -253,16 +235,16 @@ border-radius: 50%;
   margin-left: 150px;
 }
 #insta:hover {
-  fill: #D96C06;
+  color: #D96C06;
 }
 #fb:hover {
-  fill: #D96C06;
+  color: #D96C06;
 }
 #link:hover {
-  fill: #D96C06;
+  color: #D96C06;
 }
 #twitter:hover {
-  fill: #D96C06;
+  color: #D96C06;
 }
 .expanded:hover{
   border: 0;
@@ -288,14 +270,3 @@ border-radius: 50%;
   height: 100%;
   width: 100%;
 }
-
-
-
-
-
-
-
-
-
-
-

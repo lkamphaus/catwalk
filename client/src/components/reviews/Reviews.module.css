@@ -1,12 +1,12 @@
 .gridContainer {
-  margin: 5% auto 5% auto;
   color: #808080;
   font-size: 18px;
   display: grid;
-  gap: 100px;
-  grid-template-columns: 1fr 1.6fr 0.4fr;
-  grid-template-rows: repeat(1fr 1fr 1fr);
-  gap: 0px 0px;
+  width: 75%;
+  margin: auto;
+  column-gap: 20px;
+  grid-template-columns: 1fr 1.6fr;
+  grid-template-rows: auto;
   grid-template-areas:
     "Product-Breakdown Reviews-List ."
     ". . ."
@@ -22,7 +22,6 @@
 }
 
 .productBreakdown {
-  margin-left: 250px;
   grid-area: Product-Breakdown;
   padding-top: 35px;
   text-align: left;
