@@ -190,6 +190,8 @@
   padding: 20px;
   margin: auto;
   width: 50%;
+  height: 80%;
+  overflow: auto;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
