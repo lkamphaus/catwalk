@@ -235,16 +235,16 @@ border-radius: 50%;
   margin-left: 150px;
 }
 #insta:hover {
-  fill: #D96C06;
+  color: #D96C06;
 }
 #fb:hover {
-  fill: #D96C06;
+  color: #D96C06;
 }
 #link:hover {
-  fill: #D96C06;
+  color: #D96C06;
 }
 #twitter:hover {
-  fill: #D96C06;
+  color: #D96C06;
 }
 .expanded:hover{
   border: 0;

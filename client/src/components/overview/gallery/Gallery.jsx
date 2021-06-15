@@ -3,8 +3,6 @@ import style from "../MainOverview.module.css";
 import Thumbnails from "./Thumbnails.jsx";
 import ModalThumbs from "./ModalThumbs.jsx";
 import Modal from "../../reviews/Modal.jsx";
-import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
-
 const Gallery = ({
   images,
   handleThumb,
@@ -17,18 +15,14 @@ const Gallery = ({
   arrowSelected,
   handleArrowRight,
   handleArrowLeft,
-
 }) => {
   const [zoom, setZoom] = useState(0);
   const [expandedOpen, setExpandedOpen] = useState(false);
   const [arrowModal, setArrowModal] = useState(false);
-  const [selectedThumb, setSelectedThumb] = useState('')
-
-
+  const [selectedThumb, setSelectedThumb] = useState("");
   const handleThumbnailIndex = (e, item) => {
-    setSelectedThumb(item[0].thumbnail_url)
+    setSelectedThumb(item[0].thumbnail_url);
   };
-
   return (
     <div className={style.mainGallery}>
       {arrowIndex !== 0 && (
@@ -40,63 +34,41 @@ const Gallery = ({
             handleArrowLeft();
           }}
         >
-          <MdKeyboardArrowLeft/>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="M16.67 0l2.83 2.829-9.339 9.175 9.339 9.167-2.83 2.829-12.17-11.996z" />
+          </svg>
         </div>
       )}
-
-      <div
-        className={style.thumbs}
-
-      >
+      <div className={style.thumbs}>
         {images &&
           images.map((item) =>
             item.map((img) => (
-              <div onClick={(e) => {handleThumbnailIndex(e, item)}} style={{border: img.thumbnail_url === selectedThumb && thumbValue ? '3px #D96C06 solid' : null, maxHeight: '75px'}}>
-              <Thumbnails
-                images={images}
-                handleThumb={handleThumb}
-                thumbUrl={img.thumbnail_url}
-                key={item}
-              />
-            </div>
+              <div
+                onClick={(e) => {
+                  handleThumbnailIndex(e, item);
+                }}
+                style={{
+                  border:
+                    img.thumbnail_url === selectedThumb && thumbValue
+                      ? "3px #D96C06 solid"
+                      : null,
+                  maxHeight: "75px",
+                }}
+              >
+                <Thumbnails
+                  images={images}
+                  handleThumb={handleThumb}
+                  thumbUrl={img.thumbnail_url}
+                  key={item}
+                />
+              </div>
             ))
           )}
-        {/* <div className={style.bigImage}>
-          </div> */}
-      </div>
-
-      <div>
-        {currentThumb && thumbValue === true ? (
-          <img
-            onClick={() => setExpandedOpen(true)}
-            className={style.image}
-            src={thumbModalValue ? arrowSelected : currentThumb}
-          ></img>
-        ) : !currentImageSet.url ? (
-          <img
-            style={{maxWidth: "100%", minWidth: "100%"}}
-            onClick={() => setExpandedOpen(true)}
-            className={style.image}
-            src={
-              firstImg && !thumbModalValue ? firstImg[0].join() : arrowSelected
-            }
-          ></img>
-        ) : (
-          <img
-            onClick={() => setExpandedOpen(true)}
-            className={style.image}
-            src={thumbModalValue ? arrowSelected : currentImageSet.url}
-          ></img>
-        )}
-      </div>
-      {images && arrowIndex !== images.length && (
-        <div
-          className={style.arrows}
-          id={style.right}
-          onClick={() => {
-            handlesArrows();
-          }}
-        >
         <div style={{ marginLeft: "30%", padding: "5%", cursor: "pointer" }}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -107,7 +79,7 @@ const Gallery = ({
             <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
           </svg>
         </div>
-      </div>)}
+      </div>
       {images.length > 0 && (
         <div>
           {currentThumb && thumbValue === true ? (
@@ -124,6 +96,7 @@ const Gallery = ({
             <img
               onClick={() => setExpandedOpen(true)}
               className={style.image}
+              style={{ maxWidth: "100%", minWidth: "100%" }}
               src={
                 firstImg && !thumbModalValue
                   ? firstImg[0].join()
@@ -152,7 +125,14 @@ const Gallery = ({
             setArrowModal(true);
           }}
         >
-        <MdKeyboardArrowRight/>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+          >
+            <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+          </svg>
         </div>
       )}
       <Modal>
@@ -188,7 +168,6 @@ const Gallery = ({
                 </svg>
               </div>
             )}
-
             <div className={style.modalThumbs} id={style.thumbModals}>
               {images &&
                 images.map((item) =>
@@ -201,7 +180,6 @@ const Gallery = ({
                   ))
                 )}
             </div>
-
             <div
               onClick={() => setZoom(zoom + 1)}
               className={zoom % 2 === 1 ? style.expanded : null}
@@ -226,14 +204,12 @@ const Gallery = ({
                 cursor: zoom % 2 === 1 ? "zoom-out" : "crosshair",
               }}
             ></div>
-
             <div
               onClick={() => {
                 setExpandedOpen(false);
               }}
               style={{
                 marginBottom: "680px",
-
                 cursor: "pointer",
                 float: "right",
               }}
@@ -273,5 +249,4 @@ const Gallery = ({
     </div>
   );
 };
-
 export default Gallery;
