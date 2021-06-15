@@ -3,7 +3,7 @@ import style from "../MainOverview.module.css";
 import Star from '../../reviews/Stars.jsx'
 const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
   const scrollDiv = useRef(null)
-  
+
 
   if (price) {
     price = "$" + price;

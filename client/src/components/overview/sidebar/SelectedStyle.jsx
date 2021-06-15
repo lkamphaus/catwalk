@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import style from "../MainOverview.module.css";
 import Checkout from "./Checkout.jsx";
+import { GiCheckMark } from "react-icons/gi";
 
 const SelectedStyle = ({
   product,
@@ -12,7 +13,7 @@ const SelectedStyle = ({
   handleSelectedStyle
 }) => {
   const [selected, setSelected] = useState("");
-  
+
   const [ids, setIds] = useState([]);
   const [currentStyles, setCurrentStyles] = useState('')
 
@@ -23,9 +24,9 @@ const SelectedStyle = ({
     setIds((ids) => [item.style_id]);
     if (!ids.includes(item.style_id)) {
       handleDisplays(item.photos);
-      
+
     }
-    
+
     setCurrentStyles(Object.values(item.skus))
     handleSales(item);
     handleThumbChange(e);
@@ -33,7 +34,7 @@ const SelectedStyle = ({
     handleSelect(e);
   };
 
-  
+
 
   return (
     <div>
@@ -44,14 +45,16 @@ const SelectedStyle = ({
           product.map((item) => (
             <div
               className={style.selected}
-              style={{ backgroundColor: ids[0] !== item.style_id ? "#b8b6b6" : "#D96C06" }}
+              style={{ backgroundColor: ids[0] !== item.style_id ? "#808080" : "#D96C06" }}
               key={item.style_id}
               onClick={(e) => {
                 handleSelected(e, item);
                 handleSelectedStyle(item)
               }}
-            >{ids[0] === item.style_id && 
-            <div className={style.checkMark}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg></div>
+            >{ids[0] === item.style_id &&
+            <div className={style.checkMark}>
+              <GiCheckMark></GiCheckMark>
+            </div>
             }
               {item.name}
             </div>

@@ -3,7 +3,6 @@ import style from "../MainOverview.module.css";
 import Thumbnails from "./Thumbnails.jsx";
 import ModalThumbs from "./ModalThumbs.jsx";
 import Modal from "../../reviews/Modal.jsx";
-
 const Gallery = ({
   images,
   handleThumb,
@@ -21,11 +20,9 @@ const Gallery = ({
   const [expandedOpen, setExpandedOpen] = useState(false);
   const [arrowModal, setArrowModal] = useState(false);
   const [selectedThumb, setSelectedThumb] = useState("");
-
   const handleThumbnailIndex = (e, item) => {
     setSelectedThumb(item[0].thumbnail_url);
   };
-
   return (
     <div className={style.mainGallery}>
       {arrowIndex !== 0 && (
@@ -47,7 +44,6 @@ const Gallery = ({
           </svg>
         </div>
       )}
-
       <div className={style.thumbs}>
         {images &&
           images.map((item) =>
@@ -58,7 +54,7 @@ const Gallery = ({
                 }}
                 style={{
                   border:
-                    img.thumbnail_url === selectedThumb && thumbValue 
+                    img.thumbnail_url === selectedThumb && thumbValue
                       ? "3px #D96C06 solid"
                       : null,
                   maxHeight: "75px",
@@ -172,7 +168,6 @@ const Gallery = ({
                 </svg>
               </div>
             )}
-
             <div className={style.modalThumbs} id={style.thumbModals}>
               {images &&
                 images.map((item) =>
@@ -185,7 +180,6 @@ const Gallery = ({
                   ))
                 )}
             </div>
-
             <div
               onClick={() => setZoom(zoom + 1)}
               className={zoom % 2 === 1 ? style.expanded : null}
@@ -210,14 +204,12 @@ const Gallery = ({
                 cursor: zoom % 2 === 1 ? "zoom-out" : "crosshair",
               }}
             ></div>
-
             <div
               onClick={() => {
                 setExpandedOpen(false);
               }}
               style={{
                 marginBottom: "680px",
-
                 cursor: "pointer",
                 float: "right",
               }}
@@ -257,5 +249,4 @@ const Gallery = ({
     </div>
   );
 };
-
 export default Gallery;
