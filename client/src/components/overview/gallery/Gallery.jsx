@@ -16,19 +16,15 @@ const Gallery = ({
   arrowSelected,
   handleArrowRight,
   handleArrowLeft,
-
 }) => {
   const [zoom, setZoom] = useState(0);
   const [expandedOpen, setExpandedOpen] = useState(false);
   const [arrowModal, setArrowModal] = useState(false);
-  const [selectedThumb, setSelectedThumb] = useState('')
-  
+  const [selectedThumb, setSelectedThumb] = useState("");
 
   const handleThumbnailIndex = (e, item) => {
-    setSelectedThumb(item[0].thumbnail_url)
+    setSelectedThumb(item[0].thumbnail_url);
   };
-
-  
 
   return (
     <div className={style.mainGallery}>
@@ -52,21 +48,29 @@ const Gallery = ({
         </div>
       )}
 
-      <div
-        className={style.thumbs}
-       
-      >
+      <div className={style.thumbs}>
         {images &&
           images.map((item) =>
             item.map((img) => (
-              <div onClick={(e) => {handleThumbnailIndex(e, item)}} style={{border: img.thumbnail_url === selectedThumb && thumbValue ? '3px #D96C06 solid' : null, maxHeight: '75px'}}>
-              <Thumbnails
-                images={images}
-                handleThumb={handleThumb}
-                thumbUrl={img.thumbnail_url}
-                key={item}
-              />
-            </div>
+              <div
+                onClick={(e) => {
+                  handleThumbnailIndex(e, item);
+                }}
+                style={{
+                  border:
+                    img.thumbnail_url === selectedThumb && thumbValue 
+                      ? "3px #D96C06 solid"
+                      : null,
+                  maxHeight: "75px",
+                }}
+              >
+                <Thumbnails
+                  images={images}
+                  handleThumb={handleThumb}
+                  thumbUrl={img.thumbnail_url}
+                  key={item}
+                />
+              </div>
             ))
           )}
         <div style={{ marginLeft: "30%", padding: "5%", cursor: "pointer" }}>
@@ -96,6 +100,7 @@ const Gallery = ({
             <img
               onClick={() => setExpandedOpen(true)}
               className={style.image}
+              style={{ maxWidth: "100%", minWidth: "100%" }}
               src={
                 firstImg && !thumbModalValue
                   ? firstImg[0].join()
