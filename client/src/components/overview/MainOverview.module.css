@@ -1,15 +1,20 @@
 .gridcontainer {
   display: grid;
-  min-height: 75vh;
 
-  grid-template-rows: 50vh auto;
-  grid-template-columns: auto 1000px;
-  gap: 20px;
+  min-height: 65vh;
+
+
+  grid-template-rows: auto, auto;
+  grid-template-columns: auto, auto;
+  gap: 70px;
   justify-content: space-around;
   grid-template-areas:
     "gallery sidebar"
     "description description2";
-  margin-right: 38%;
+  /* margin-right: 38%; */
+  padding-left: 15%;
+  padding-right: 15%;
+  max-width: 1000px;
 }
 
 .description {
@@ -50,6 +55,7 @@
   /* margin-top: 280px; */
   cursor: pointer;
   /* margin-left: 800px; */
+  margin: 20px
 }
 
 #right{
@@ -65,14 +71,14 @@
 
 
 .thumbs {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  flex-direction: row;
   flex-wrap: wrap;
   padding: 5px;
   margin-right: 10px;
   flex-grow: 1;
   max-width: 115px;
-  border: 1px solid black
+  /* border: 1px solid black */
 }
 #thumbModals {
   margin-bottom: 700px;
@@ -241,7 +247,7 @@ border-radius: 50%;
 
 
 .line {
-  padding: 1px;
+  padding: 2px;
   height: 150px;
   width: 0%;
   float: right;

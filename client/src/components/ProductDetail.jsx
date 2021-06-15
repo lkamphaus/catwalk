@@ -34,7 +34,7 @@ const ProductDetail = () => {
   return (
     <div>
       <div>
-        <div>
+        <div style={{width: '100%'}}>
           <MainOverview prod={prod} />
         </div>
         <div>
