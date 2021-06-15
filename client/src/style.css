@@ -24,3 +24,34 @@ button:hover {
   color: #26A7BA;
   border: solid 2px #26A7BA;
 }
+
+.topSearchBar {
+  background-color: #FBA860;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2%;
+}
+
+.fireLogo {
+  color: #fff;
+  padding: 10px 10px 10px 50px;
+  width: 90%
+}
+
+.searchBarInput {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.searchInput {
+  background-color: #FBA860;
+  box-sizing: border-box;
+  border: hidden;
+  border-bottom: 3px solid #fff;
+  margin-bottom: 10px;
+}
+
+.searchBarIcon {
+  color: #fff;
+  padding: 10px 50px 10px 10px;;
+}
