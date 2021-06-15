@@ -4,9 +4,8 @@ import style from "../MainOverview.module.css";
 const Thumbnails = ({ thumbUrl, handleThumb, images }) => {
   const [thumbLimit, setThumbLimit] = useState(7)
   const [array, setArray] = []
-  console.log(images.length);
   
-  console.log(array);
+ 
   return (
     <div 
       onClick={(e) => {

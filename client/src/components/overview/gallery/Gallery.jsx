@@ -3,6 +3,7 @@ import style from "../MainOverview.module.css";
 import Thumbnails from "./Thumbnails.jsx";
 import ModalThumbs from "./ModalThumbs.jsx";
 import Modal from "../../reviews/Modal.jsx";
+
 const Gallery = ({
   images,
   handleThumb,
@@ -15,12 +16,16 @@ const Gallery = ({
   arrowSelected,
   handleArrowRight,
   handleArrowLeft,
+
 }) => {
   const [zoom, setZoom] = useState(0);
   const [expandedOpen, setExpandedOpen] = useState(false);
   const [arrowModal, setArrowModal] = useState(false);
-  const handleThumbnailIndex = (e) => {
-    console.log(e.target.src);
+  const [selectedThumb, setSelectedThumb] = useState('')
+  
+
+  const handleThumbnailIndex = (e, item) => {
+    setSelectedThumb(item[0].thumbnail_url)
   };
 
   
@@ -49,19 +54,19 @@ const Gallery = ({
 
       <div
         className={style.thumbs}
-        onClick={(e) => {
-          handleThumbnailIndex(e);
-        }}
+       
       >
         {images &&
           images.map((item) =>
             item.map((img) => (
+              <div onClick={(e) => {handleThumbnailIndex(e, item)}} style={{border: img.thumbnail_url === selectedThumb && thumbValue ? '3px #D96C06 solid' : null, maxHeight: '75px'}}>
               <Thumbnails
                 images={images}
                 handleThumb={handleThumb}
                 thumbUrl={img.thumbnail_url}
                 key={item}
               />
+            </div>
             ))
           )}
         <div style={{ marginLeft: "30%", padding: "5%", cursor: "pointer" }}>
@@ -75,7 +80,7 @@ const Gallery = ({
           </svg>
         </div>
       </div>
-      {images && (
+      {images.length > 0 && (
         <div>
           {currentThumb && thumbValue === true ? (
             <img
