@@ -15,7 +15,7 @@
 
 .reviewsList {
   grid-area: Reviews-List;
-  max-height: 55vh;
+  max-height: 800px;
   min-height: 55vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -40,6 +40,7 @@
   display: in-line;
   margin-top: 20px;
   margin-right: 20px;
+  margin-bottom: 0px;
   padding: 20px;
   color: white;
   font-size: 15px;

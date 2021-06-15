@@ -5,6 +5,7 @@ import Star from "./Star.jsx";
 import CharacteristicButtons from "./CharacteristicButtons.jsx";
 import submitForm from "./helpers/submitForm.js";
 import characteristicsObj from "./helpers/characteristicsObj.js";
+import validateForm from "./helpers/validateForm.js";
 
 class AddReview extends React.Component {
   constructor(props) {
@@ -23,14 +24,8 @@ class AddReview extends React.Component {
       ratingText: "",
       errors: [],
       images: [],
+      submitted: false,
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleAdd = this.handleAdd.bind(this);
-    this.handleImageUpload = this.handleImageUpload.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleRateCharacteristic = this.handleRateCharacteristic.bind(this);
   }
 
   handleRate(n) {
@@ -76,6 +71,8 @@ class AddReview extends React.Component {
       },
       ratingText: "",
       images: [],
+      submitted: false,
+      errors: [],
     });
   }
 
@@ -107,7 +104,6 @@ class AddReview extends React.Component {
   }
 
   handleRecommend(e) {
-    console.log(e.target.value);
     if (e.target.value === "Yes") {
       this.setState({
         recommend: true,
@@ -121,25 +117,47 @@ class AddReview extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.images);
     var rating = this.state.ratings.reduce((acc, curr) => acc + curr, 0);
     var id = this.props.meta && this.props.meta.product_id;
     var characteristics = characteristicsObj(this.state.characteristics);
-    submitForm(
-      id,
-      rating,
-      this.state.fields.summary,
-      this.state.fields.body,
-      this.state.recommend,
-      this.state.fields.nickname,
-      this.state.fields.email,
-      this.state.images,
-      characteristics
-    );
+
+    var form = {
+      product_id: id,
+      rating: rating,
+      summary: this.state.fields.summary,
+      body: this.state.fields.body,
+      recommend: this.state.recommend,
+      name: this.state.fields.nickname,
+      email: this.state.fields.email,
+      photos: this.state.images,
+      characteristics: characteristics,
+    };
+    if (validateForm(form).length === 0) {
+      this.setState(
+        {
+          errors: [],
+          submitted: true,
+        },
+        () => submitForm(form)
+      );
+    } else {
+      this.setState({
+        errors: validateForm(form, this.props.meta),
+      });
+    }
   }
 
   render() {
     var characteristics = this.props.meta && this.props.meta.characteristics;
+
+    var error =
+      this.state.errors.length === 0 && this.state.submitted ? (
+        <div style={{ color: "#D96C06", margin: "10px" }}>Submitted!</div>
+      ) : this.state.errors.length === 0 ? null : (
+        <div style={{ color: "red", margin: "10px" }}>
+          Error: {this.state.errors[0]}
+        </div>
+      );
 
     var images = this.state.images.map((image) => (
       <img className={styles.smallImg} src={image} />
@@ -171,7 +189,7 @@ class AddReview extends React.Component {
       );
 
     var modal = this.state.clicked ? (
-      <Modal size="50%" closeOnClick={this.handleClose}>
+      <Modal size="50%" closeOnClick={() => this.handleClose()}>
         <div>
           <div className={styles.reviewForm}>
             <h2 className={styles.formTitle}>Write Your Review</h2>
@@ -184,7 +202,7 @@ class AddReview extends React.Component {
             <h4 className={styles.formTitle}>Characteristics </h4>
             <CharacteristicButtons
               characteristics={characteristics}
-              onClick={this.handleRateCharacteristic}
+              onClick={(e) => this.handleRateCharacteristic(e)}
             />
           </div>
 
@@ -282,6 +300,7 @@ class AddReview extends React.Component {
             </label>
 
             <button type="submit">Submit Review</button>
+            {error}
           </form>
         </div>
       </Modal>
@@ -289,7 +308,10 @@ class AddReview extends React.Component {
 
     return (
       <div style={{ display: "inline" }}>
-        <button className={styles.reviewButtons} onClick={this.handleAdd}>
+        <button
+          className={styles.reviewButtons}
+          onClick={() => this.handleAdd()}
+        >
           ADD A REVIEW +
         </button>
         {modal}
