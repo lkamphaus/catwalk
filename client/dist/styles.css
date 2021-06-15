@@ -1,8 +1,8 @@
 body {
-    background-color: white;
+  background-color: white;
 }
 
 #modal-root {
-    position: relative;
-    z-index: 999;
+  position: relative;
+  z-index: 999;
 }

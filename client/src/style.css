@@ -2,7 +2,9 @@ body {
   background-color: #F5EFED;
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
-  margin: 20px 20px;
+  width: 90%;
+  margin: auto;
+  padding: 50px 0;
 }
 
 button {

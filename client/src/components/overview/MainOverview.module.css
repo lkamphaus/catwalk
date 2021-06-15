@@ -1,21 +1,22 @@
 .gridcontainer {
   display: grid;
   min-height: 75vh;
-
-  grid-template-rows: 50vh auto;
-  grid-template-columns: auto 1000px;
-  gap: 20px;
+  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
+  gap: 70px;
   justify-content: space-around;
   grid-template-areas:
     "gallery sidebar"
     "description description2";
-  margin-right: 38%;
+  /* margin-right: 38%; */
+  padding-left: 15%;
+  padding-right: 15%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .description {
-  margin-left: 600px;
   grid-area: description;
-
 }
 
 .description2 {
@@ -28,7 +29,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  margin-left: 800px;
   max-height: 600px;
   position: relative;
 }
@@ -37,7 +37,6 @@
   grid-area: sidebar;
 
 }
-
 
 .arrows {
   /* border: 2px solid red; */
@@ -60,21 +59,21 @@
 }
 
 .arrows:hover {
- transform: scale(1.5);
-}
+  transform: scale(1.5);
+ }
 
+ .thumbs {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   padding: 5px;
+   margin-right: 10px;
+   flex-grow: 1;
+   max-width: 115px;
+   border: 1px solid black
+ }
 
-.thumbs {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  padding: 5px;
-  margin-right: 10px;
-  flex-grow: 1;
-  max-width: 115px;
-  border: 1px solid black
-}
-#thumbModals {
+ #thumbModals {
   margin-bottom: 700px;
   display: flex;
   flex-direction: row;
@@ -84,7 +83,6 @@
   height: 0px;
   width: 15px;
   margin-right: 5px;
-
 }
 
 .image {
@@ -134,7 +132,6 @@
   justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
-
 }
 
 .selected {
@@ -216,8 +213,6 @@
   width: 150px;
 }
 
-
-
 .cart {
   cursor: pointer;
   margin-left: 80px;
@@ -238,7 +233,6 @@ width: 10px;
 border-radius: 50%;
 
 }
-
 
 .line {
   padding: 1px;
@@ -293,7 +287,6 @@ border-radius: 50%;
 
 .mainGallery {
   display: flex;
-
   height: 100%;
-  width: 60%;
+  width: 100%;
 }

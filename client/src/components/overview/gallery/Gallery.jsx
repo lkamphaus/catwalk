@@ -101,6 +101,7 @@ const Gallery = ({
           ></img>
         ) : !currentImageSet.url ? (
           <img
+            style={{maxWidth: "100%", minWidth: "100%"}}
             onClick={() => setExpandedOpen(true)}
             className={style.image}
             src={
