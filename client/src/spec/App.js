@@ -1,14 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Button from './button.js'
+import Button from './button.jsx';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <button label="click me please"></button>
-      </header>
+      <h1>
+        "Does this work?"
+      </h1>
     </div>
   )
 }
-module.exports = sum;
+
+
+exports.module = App;

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import SearchBar from "./SearchBar.jsx";
 import MainOverview from "./overview/MainOverview.jsx";
 import QuestionList from "./QA/QuestionList.jsx";
 import Reviews from "./reviews/Reviews.jsx";
@@ -34,11 +35,15 @@ const ProductDetail = () => {
   return (
     <div>
       <div>
+        <div>
+          <SearchBar />
+        </div>
+        <div>
         <div style={{width: '100%'}}>
           <MainOverview prod={prod} />
         </div>
         <div>
-          <ClickTracking module={'Questions & Answers'}>
+          <ClickTracking module={'Questions &'}>
             <QuestionList
               id={product_id}
               productName={prod === null ? null : prod.name}

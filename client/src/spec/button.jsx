@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Button({label}) {
+function Button() {
   return <div data-testId="button" className="button-style">{label}</div>
 }
 
