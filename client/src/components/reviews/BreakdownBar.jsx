@@ -7,7 +7,7 @@ function BreakdownBar(props) {
   if (props.fill) {
     return (
       <div className={styles.bar}>
-        <BarFiller percentage={props.percentage} />
+        <BarFiller percentage={props.percentage} number={props.number}/>
       </div>
     );
   } else {

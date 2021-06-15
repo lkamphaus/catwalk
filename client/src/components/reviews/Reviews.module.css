@@ -150,6 +150,8 @@
 }
 
 .filler {
+  color: white;
+  text-align: center;
   background: #d96c06;
   height: 100%;
   border-radius: inherit;

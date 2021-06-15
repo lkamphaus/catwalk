@@ -94,6 +94,10 @@ class Reviews extends React.Component {
               </span>
               <BreakdownBar
                 fill="fill"
+                number={
+                  this.props.meta.ratings[rating] &&
+                  this.props.meta.ratings[rating]
+                }
                 percentage={
                   this.props.meta.ratings[rating]
                     ? Math.floor(
