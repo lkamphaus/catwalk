@@ -1,9 +1,10 @@
-import React from "react";
+import React,  { useState } from "react";
 import styles from ".././style.css";
 import { HiSearch } from "react-icons/hi";
 import { HiFire } from "react-icons/hi";
 
-const SearchBar = () => {
+const Navbar = (props) => {
+
   return (
     <div>
       <div className={styles.topSearchBar}>
@@ -12,9 +13,12 @@ const SearchBar = () => {
           type="text">
         </input>
         <div className={styles.searchBarIcon}><HiSearch /></div>
+        <div
+          className={props.darkModeStyle}
+          onClick={props.toggleDarkMode}>{props.darkModeText}</div>
       </div>
     </div>
   )
 }
 
-export default SearchBar;
+export default Navbar;

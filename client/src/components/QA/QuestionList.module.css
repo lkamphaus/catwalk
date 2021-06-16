@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   padding: 40px 250px !important;
+  color: var(--text-color)
 }
 
 .qaSection > * {
@@ -11,24 +12,24 @@
 
 .qaList {
   overflow: auto;
-  max-height: 55vh;
+  max-height: 50vh;
   min-height: 55vh;
 }
 
 .qaTitle {
-  color: #808080;
   font-weight: 400;
   font-size: 20px;
   margin-bottom: 35px;
 }
 
 .searchBoxSection {
-  border: solid 1px #808080;
+  border: solid 1px var(--text-color);
   padding: 10px;
   text-align: start;
   font-weight: 400;
   margin-bottom: 35px;
   display: flex;
+
 }
 
 .searchBar {
@@ -37,12 +38,17 @@
   margin: 8px 10px;
   box-sizing: border-box;
   border: hidden;
-  background-color: #F5EFED;
+  background-color: var(--bg-color);
   font-size: 20px;
   font-weight: 500;
-  color: #808080;
   outline: none;
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--text-color);
+  opacity: 1; /* Firefox */
+}
+
 
 .searchIcon {
   margin-top: 10px;
@@ -149,7 +155,7 @@
   margin-left: 20px;
   font-style: italic;
   font-weight: 700;
-  color: #808080;
+  color: var(--text-color);
 }
 
 .loadMoreAnswers {
@@ -174,7 +180,7 @@
 .modalContent {
   border-radius: 10px;
   position: relative;
-  background-color: white;
+  background-color: #fff;
   padding: 20px;
   margin: auto;
   width: 30%;
@@ -187,7 +193,7 @@
 .modalContentWide {
   /* border-radius: 10px; */
   position: relative;
-  background-color: white;
+  background-color: #fff;
   padding: 20px;
   margin: auto;
   width: 50%;

@@ -1,5 +1,5 @@
 .gridContainer {
-  color: #808080;
+  color: var(--text-color);
   font-size: 18px;
   display: grid;
   width: 75%;
@@ -101,6 +101,7 @@
 }
 
 .reviewForm {
+  color: #808080;
   margin: 20px;
 }
 
@@ -190,5 +191,6 @@
 .icon {
   height: 100%;
   border-radius: inherit;
+  color:  var(--icon-color);
 }
 
