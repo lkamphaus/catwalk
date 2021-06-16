@@ -6,10 +6,9 @@ const Checkout = ({ product, currentStyles }) => {
   const [selectedAmount, setSelectedAmount] = useState([]);
   const [buttonText, setButtonText] = useState("Add to Cart");
   const [amount, setAmount] = useState("");
-  const [defaultAmount, setDefaultAmount] = useState('-')
-  const [value, setValue] = useState(false)
+  const [defaultAmount, setDefaultAmount] = useState("-");
+  const [value, setValue] = useState(false);
   const selectDiv = useRef(null)
-
 
   const handleSize = (e) => {
     setSelectedSize(e.target.value);
@@ -26,74 +25,83 @@ const Checkout = ({ product, currentStyles }) => {
           }
         }
       });
-      setAmount('-')
+      setAmount("-");
     }
-    setValue(true)
+    setValue(true);
     setSelectedAmount(array);
   };
 
   const handleAmount = (e) => {
     setAmount(e.target.value);
-    setValue(false)
-    
+    setValue(false);
   };
 
-  const handleNoSize = () => {
+  const handleNoSize = (e) => {
     if(selectDiv.current) {
-      currentStyles.map((item) => {
-      if(selectDiv.current.contains(item.size)) {
-        return
-      }
-      })
 
+      selectDiv.current.focus()
     }
-  }
+    
+  };
 
   const handleButtonText = () => {
     setButtonText("**Added items to cart**");
     setTimeout(() => {
-      setValue('false')
+      setValue("false");
       setAmount("");
       setSelectedSize("");
       setButtonText("Add to Cart");
-      setDefaultAmount('-')
+      setDefaultAmount("-");
     }, 3000);
   };
 
   return (
     <div>
       <br></br>
-      <div >
+      <div>
         <select
+          ref={selectDiv}
           value={selectedSize}
           className={style.buttons}
           onChange={(e) => {
             handleSize(e);
           }}
         >
-          <option value="" disabled selected>
+          <option value="" disabled selected >
             Select Size
           </option>
           {currentStyles &&
-            currentStyles.map((item, i) => <option key={i}>{item.size ? item.size : 'OUT OF STOCK'}</option>)}
+            currentStyles.map((item, i) => (
+              <option key={i}>{item.size ? item.size : "OUT OF STOCK"}</option>
+            ))}
         </select>
 
-        <select 
+        <select
           className={style.buttoner}
           onChange={(e) => {
             handleAmount(e);
           }}
-        > <option value="" disabled selected>
-        {defaultAmount}
-      </option>
+        >
+          {" "}
+          <option value="" disabled selected>
+            {defaultAmount}
+          </option>
           {currentStyles &&
-            selectedAmount.map((current, i) => <option key={i}> {amount ? current : amount} </option>)}
+            selectedAmount.map((current, i) => (
+              <option key={i}> {amount ? current : amount} </option>
+            ))}
         </select>
       </div>
       <br></br>
       <div>
         {!selectedSize || value ? (
-          <button className={style.cart} ref={selectDiv} onClick={() => handleNoSize()}>Select Size</button>
+          <button
+            className={style.cart}
+            
+            onClick={(e) => handleNoSize(e)}
+          >
+            Select Size
+          </button>
         ) : (
           <button
             className={style.cart}
