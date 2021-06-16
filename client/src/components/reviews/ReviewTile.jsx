@@ -14,7 +14,7 @@ class ReviewTile extends React.Component {
 
     this.showMore = this.showMore.bind(this);
     this.updateHelpfulness = this.updateHelpfulness.bind(this);
-    this.markHelpful = this.markHelpful.bind(this)
+    this.markHelpful = this.markHelpful.bind(this);
   }
 
   showMore() {
@@ -37,7 +37,7 @@ class ReviewTile extends React.Component {
 
   updateHelpfulness() {
     fetch(
-      `http://localhost:3246/api/reviews/${this.props.review.review_id}/helpful`,
+      `/api/reviews/${this.props.review.review_id}/helpful`,
       {
         method: "PUT",
         headers: {
@@ -48,21 +48,38 @@ class ReviewTile extends React.Component {
   }
 
   render() {
-
     var date = new Date(this.props.review.date);
     var month = date.toLocaleString("default", { month: "long" });
     var formatted = date.toDateString().split(" ");
     var day = formatted[2][0] === "0" ? formatted[2].slice(1) : formatted[2];
     date = `${month} ${day}, ${formatted[3]}`;
 
-    var body = this.props.review.body;
+    var shortened = this.props.review.body.slice(0, 250);
 
-    if (body.length > 250) {
-      var reviewText = body.slice(0, 250);
-      var rest = body.slice(250, body.length - 1);
-    } else {
-      var reviewText = body;
-    }
+    var bodyText =
+      this.props.review.body.length < 250 ? (
+        <div>{this.props.review.body}</div>
+      ) : this.state.showRest ? (
+        <div>
+          <span>{this.props.review.body} </span>
+          <span
+            className={styles.showMore}
+            onClick={this.showMore}
+          >
+              Show less
+          </span>
+        </div>
+      ) : (
+        <div>
+          <span>{shortened}</span>
+          <span
+            className={styles.showMore}
+            onClick={this.showMore}
+          >
+            ...Show more
+          </span>
+        </div>
+      );
 
     var recommend = this.props.review.recommend ? (
       <div style={{ margin: "10px" }}>✔️ I recommend this product</div>
@@ -80,11 +97,6 @@ class ReviewTile extends React.Component {
       <Thumbnail key={photo.id} source={photo.url} />
     ));
 
-    var reviewText =
-      this.props.review.body.length > 250
-        ? this.props.review.body.slice(0, 250) + "..."
-        : this.props.review.body;
-
     return (
       <div className={styles.reviewTile}>
         <Stars rating={this.props.review.rating} />
@@ -93,17 +105,7 @@ class ReviewTile extends React.Component {
         </div>
         <div className={styles.reviewSummary}>{this.props.review.summary}</div>
         <div>
-          {reviewText}
-          <a
-            className={styles.showMore}
-            style={{ display: body.length > 250 ? "block" : "none" }}
-            onClick={this.showMore}
-          >
-            Show more
-          </a>
-          <div style={{ display: this.state.showRest ? "block" : "none" }}>
-            {rest}
-          </div>
+          {bodyText}
           <br />
           {recommend}
           {response}

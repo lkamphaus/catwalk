@@ -1,4 +1,4 @@
-var validateCharacteristics = (meta, ratings) => {
+var validateCharacteristics = (ratings, meta) => {
   if (meta) {
     for (var key in meta.characteristics) {
       var id = meta.characteristics[key].id
@@ -25,7 +25,8 @@ var validateForm = (form, meta) => {
   if (form.recommend === null) {
     errors.push("You must select whether or not you recommend the product");
   }
-  if (!validateCharacteristics(meta, form.characteristics)) {
+  if (!validateCharacteristics(form.characteristics, meta)) {
+    console.log('true');
     errors.push("You must rate the product on each characteristic");
   }
   if (form.name === "") {

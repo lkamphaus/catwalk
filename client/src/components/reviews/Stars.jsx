@@ -34,8 +34,8 @@ function Stars(props) {
 
   return stars.map((item, i) => {
     return (
-      <div className={styles.stars}>
-        <Star key={i} rating={item} />
+      <div key={i} className={styles.stars}>
+        <Star rating={item} />
       </div>
     );
   });

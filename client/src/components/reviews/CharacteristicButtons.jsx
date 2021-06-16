@@ -44,7 +44,7 @@ class CharacteristicButtons extends React.Component {
 
     var rows = characteristics.map((characteristic) => {
       return (
-        <div>
+        <div key={characteristic}>
           <form className={styles.characteristicRow}>
             <span
               style={{ width: "5%", display: "inline-block" }}
