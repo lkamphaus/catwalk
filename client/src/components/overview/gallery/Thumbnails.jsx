@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import style from "../MainOverview.module.css";
 
-const Thumbnails = ({ thumbUrl, handleThumb, images }) => {
-  const [thumbLimit, setThumbLimit] = useState(7)
-  const [array, setArray] = []
+const Thumbnails = ({ thumbUrl, handleThumb }) => {
   
- 
+
   return (
-    <div 
+    <div
       onClick={(e) => {
         handleThumb(e, thumbUrl);
       }}

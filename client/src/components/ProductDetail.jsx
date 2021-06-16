@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import SearchBar from "./SearchBar.jsx";
+import Navbar from "./Navbar.jsx";
 import MainOverview from "./overview/MainOverview.jsx";
 import QuestionList from "./QA/QuestionList.jsx";
 import Reviews from "./reviews/Reviews.jsx";
@@ -11,6 +11,7 @@ const ProductDetail = () => {
   const [prod, setProd] = useState(null);
   const [meta, setMeta] = useState(null);
   const { product_id } = useParams();
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3246/api/products/${product_id}?format=json`, {
@@ -32,10 +33,21 @@ const ProductDetail = () => {
       .catch((err) => console.log("err", err));
   }, []);
 
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  }
+  const darkModeText = darkMode ? 'LIGHT MODE' : 'DARK MODE';
+  const darkModeStyle = darkMode ? styles.darkMode : styles.lightMode;
+
+
   return (
-    <div>
+    <div className={styles.App} data-theme={darkMode ? "dark" : "light"}>
         <div>
-          <SearchBar />
+          <Navbar
+            toggleDarkMode={toggleDarkMode}
+            darkModeText={darkModeText}
+            darkModeStyle={darkModeStyle}/>
         </div>
         <div>
         <div style={{width: '100%'}}>
