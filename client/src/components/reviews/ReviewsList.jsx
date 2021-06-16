@@ -45,7 +45,7 @@ class ReviewsList extends React.Component {
 
   getReviews() {
     fetch(
-      `http://localhost:3246/api/reviews/meta/${this.props.id}?format=json`,
+      `/api/reviews/meta/${this.props.id}?format=json`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -58,7 +58,7 @@ class ReviewsList extends React.Component {
           (Number(data.recommended.true) || 0) +
           (Number(data.recommended.false) || 0);
         fetch(
-          `http://localhost:3246/api/reviews/${this.props.id}/${1}/${total}/${
+          `/api/reviews/${this.props.id}/${1}/${total}/${
             this.state.sort
           }?format=json`,
           {

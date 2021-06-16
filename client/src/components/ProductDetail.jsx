@@ -14,7 +14,7 @@ const ProductDetail = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3246/api/products/${product_id}?format=json`, {
+    fetch(`/api/products/${product_id}?format=json`, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -23,7 +23,7 @@ const ProductDetail = () => {
       .then((data) => setProd(data))
       .catch((err) => console.log("err", err));
 
-    fetch(`http://localhost:3246/api/reviews/meta/${product_id}?format=json`, {
+    fetch(`/api/reviews/meta/${product_id}?format=json`, {
       headers: {
         "Content-Type": "application/json",
       },

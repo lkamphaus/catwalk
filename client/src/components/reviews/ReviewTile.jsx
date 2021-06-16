@@ -37,7 +37,7 @@ class ReviewTile extends React.Component {
 
   updateHelpfulness() {
     fetch(
-      `http://localhost:3246/api/reviews/${this.props.review.review_id}/helpful`,
+      `/api/reviews/${this.props.review.review_id}/helpful`,
       {
         method: "PUT",
         headers: {

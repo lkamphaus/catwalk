@@ -82,7 +82,7 @@ class AddReview extends React.Component {
     const formData = new FormData();
     formData.append(0, file);
 
-    fetch(`http://localhost:3246/api/reviews/image-upload`, {
+    fetch(`/api/reviews/image-upload`, {
       method: "POST",
       body: formData,
     })
