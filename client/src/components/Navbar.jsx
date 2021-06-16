@@ -4,7 +4,6 @@ import { HiSearch } from "react-icons/hi";
 import { HiFire } from "react-icons/hi";
 
 const Navbar = (props) => {
-
   return (
     <div>
       <div className={styles.topSearchBar}>
