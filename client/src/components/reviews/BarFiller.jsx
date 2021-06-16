@@ -6,7 +6,7 @@ function BarFiller(props) {
     <div
       className={styles.filler}
       style={{ width: `${props.percentage}%` }}
-    ></div>
+    >{props.number}</div>
   );
 }
 
