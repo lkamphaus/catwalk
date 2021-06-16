@@ -160,7 +160,7 @@ class AddReview extends React.Component {
       );
 
     var images = this.state.images.map((image) => (
-      <img className={styles.smallImg} src={image} />
+      <img key={image} className={styles.smallImg} src={image} />
     ));
 
     var charsLeft = 50 - this.state.fields["body"].length;
@@ -171,7 +171,13 @@ class AddReview extends React.Component {
         : "Minimum reached.";
 
     var starRating = this.state.ratings.map((star, index) => {
-      return <Star rating={star} onClick={() => this.handleRate(index)} />;
+      return (
+        <Star
+          rating={star}
+          key={index}
+          onClick={() => this.handleRate(index)}
+        />
+      );
     });
 
     var uploadPhotos =

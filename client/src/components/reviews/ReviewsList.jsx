@@ -45,9 +45,7 @@ class ReviewsList extends React.Component {
 
   getReviews() {
     fetch(
-      `http://localhost:3246/api/reviews/${this.props.id}/${1}/${
-        this.props.total
-      }/${this.state.sort}?format=json`,
+      `http://localhost:3246/api/reviews/meta/${this.props.id}?format=json`,
       {
         headers: {
           "Content-Type": "application/json",
@@ -55,12 +53,29 @@ class ReviewsList extends React.Component {
       }
     )
       .then((response) => response.json())
-      .then((data) =>
-        this.setState({
-          reviews: data,
-          display: this.filter(data, this.props.filters).slice(0, 2),
-        })
-      )
+      .then((data) => {
+        var total =
+          (Number(data.recommended.true) || 0) +
+          (Number(data.recommended.false) || 0);
+        fetch(
+          `http://localhost:3246/api/reviews/${this.props.id}/${1}/${total}/${
+            this.state.sort
+          }?format=json`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+          .then((response) => response.json())
+          .then((data) =>
+            this.setState({
+              reviews: data,
+              display: this.filter(data, this.props.filters).slice(0, 2),
+            })
+          )
+          .catch((err) => console.log("err", err));
+      })
       .catch((err) => console.log("err", err));
   }
 
@@ -124,10 +139,7 @@ class ReviewsList extends React.Component {
         {total}
         <div className={styles.reviewsList}>{reviews}</div>
         {moreReviews}
-        <AddReview
-          name={this.props.name}
-          meta={this.props.meta}
-        />
+        <AddReview name={this.props.name} meta={this.props.meta} />
       </div>
     );
   }
