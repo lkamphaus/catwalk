@@ -28,17 +28,19 @@ const Gallery = ({
   useEffect(() => {
     if (arrayOfThumbs.length <= 0) {
       if (images.length - thumbLimit > 0) {
-        setArrayOfThumbs(images.slice(0, thumbLimit));
         setLeftOverThumbs(images.slice(thumbLimit, images.length));
       }
+      setArrayOfThumbs(images.slice(0, thumbLimit));
     }
   });
-
-  console.log(leftOverThumbs);
 
   const handleThumbnailIndex = (e, item) => {
     setSelectedThumb(item[0].thumbnail_url);
   };
+console.log(leftOverThumbs);
+  const handlePagination = () => {
+    setPagination((current) => !current)
+  }
 
   return (
     <div className={style.mainGallery}>
@@ -88,7 +90,7 @@ const Gallery = ({
               </div>
             ))
           )}
-        <div className={style.thumbs} style={{width: '60px'}}>
+        <div className={style.thumbs} style={{ width: "60px" }}>
           {images &&
             leftOverThumbs &&
             pagination &&
@@ -116,10 +118,10 @@ const Gallery = ({
               ))
             )}
         </div>
-        {!pagination ? (
+        {!pagination  ? (
           <div
             style={{ marginLeft: "25%", padding: "5%", cursor: "pointer" }}
-            onClick={() => setPagination((current) => !current)}
+            onClick={leftOverThumbs ? handlePagination : undefined}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -132,7 +134,7 @@ const Gallery = ({
           </div>
         ) : (
           <div
-            style={{ marginLeft: "25%", padding: "5%", cursor: "pointer"}}
+            style={{ marginLeft: "25%", padding: "5%", cursor: "pointer" }}
             onClick={() => setPagination((current) => !current)}
           >
             <svg
