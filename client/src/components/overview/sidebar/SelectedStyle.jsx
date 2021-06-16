@@ -45,7 +45,7 @@ const SelectedStyle = ({
           product.map((item) => (
             <div
               className={style.selected}
-              style={{ backgroundColor: ids[0] !== item.style_id ? "#808080" : "#D96C06" }}
+              style={{ border: ids[0] !== item.style_id ? " 3px #808080 solid" : "3px #D96C06 solid" }}
               key={item.style_id}
               onClick={(e) => {
                 handleSelected(e, item);
