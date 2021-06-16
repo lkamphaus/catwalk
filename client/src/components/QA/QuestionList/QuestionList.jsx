@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import regeneratorRuntime from "regenerator-runtime";
 
-import SearchBox from "./SearchBox.jsx";
-import QuestionTile from "./QuestionTile.jsx";
-import AddQuestion from "./AddQuestion.jsx";
+import SearchBox from ".././SearchBox.jsx";
+import QuestionTile from ".././QuestionTile.jsx";
+import AddQuestion from ".././AddQuestion.jsx";
 
-import style from "./QuestionList.module.css";
+import style from ".././QuestionList.module.css";
 
 const QuestionList = (props) => {
   const [questions, setQuestion] = useState(null);

@@ -94,8 +94,8 @@ const AnswerForm = (props) => {
   return (
     <div>
       <div className={style.form}>
-        <h3>Submit Your Answer</h3>
-        <div><span className={style.productName}>{props.productName}</span>: {props.questionBody}</div>
+        <h2 className={style.formWrapper}>Submit Your Answer</h2>
+        <div className={style.productNameWrapper}>{props.productName}: {props.questionBody}</div>
         <div className={style.inputContainer}>
           <div className={style.labelForm}>What is your nickname *</div>
           <div>
