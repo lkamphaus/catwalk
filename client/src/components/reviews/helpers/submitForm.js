@@ -1,5 +1,4 @@
 var submitForm = (form) => {
-  console.log("??")
   fetch(`/api/reviews`, {
     method: "POST",
     headers: {

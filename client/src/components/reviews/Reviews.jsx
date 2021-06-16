@@ -60,6 +60,7 @@ class Reviews extends React.Component {
       ) : (
         this.state.filters.map((filter) => (
           <div
+            key={filter}
             style={{ fontSize: "14px", color: "#d96c06", padding: "5px 0" }}
           >{`${filter}-star reviews`}</div>
         ))
@@ -84,6 +85,7 @@ class Reviews extends React.Component {
         ? null
         : ["5", "4", "3", "2", "1"].map((rating) => (
             <div
+              key={rating}
               className={styles.ratingBar}
               onClick={() => this.handleFilter(rating)}
             >
@@ -118,7 +120,7 @@ class Reviews extends React.Component {
     }
 
     characteristicBars = characteristicBars.map((characteristic) => (
-      <div style={{ margin: "30px 0px" }}>
+      <div key={characteristic} style={{ margin: "30px 0px" }}>
         <span
           style={{ marginRight: "10px", display: "inline-block", width: "15%" }}
         >
