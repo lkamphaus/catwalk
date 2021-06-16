@@ -20,9 +20,28 @@ const Gallery = ({
   const [expandedOpen, setExpandedOpen] = useState(false);
   const [arrowModal, setArrowModal] = useState(false);
   const [selectedThumb, setSelectedThumb] = useState("");
+  const [thumbLimit, setThumbLimit] = useState(7);
+  const [arrayOfThumbs, setArrayOfThumbs] = useState("");
+  const [leftOverThumbs, setLeftOverThumbs] = useState("");
+  const [pagination, setPagination] = useState(false);
+
+  useEffect(() => {
+    if (arrayOfThumbs.length <= 0) {
+      if (images.length - thumbLimit > 0) {
+        setLeftOverThumbs(images.slice(thumbLimit, images.length));
+      }
+      setArrayOfThumbs(images.slice(0, thumbLimit));
+    }
+  });
+
   const handleThumbnailIndex = (e, item) => {
     setSelectedThumb(item[0].thumbnail_url);
   };
+console.log(leftOverThumbs);
+  const handlePagination = () => {
+    setPagination((current) => !current)
+  }
+
   return (
     <div className={style.mainGallery}>
       {arrowIndex !== 0 && (
@@ -46,7 +65,9 @@ const Gallery = ({
       )}
       <div className={style.thumbs}>
         {images &&
-          images.map((item) =>
+          arrayOfThumbs &&
+          !pagination &&
+          arrayOfThumbs.map((item) =>
             item.map((img) => (
               <div
                 onClick={(e) => {
@@ -69,16 +90,63 @@ const Gallery = ({
               </div>
             ))
           )}
-        <div style={{ marginLeft: "30%", padding: "5%", cursor: "pointer" }}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-          >
-            <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
-          </svg>
+        <div className={style.thumbs} style={{ width: "60px" }}>
+          {images &&
+            leftOverThumbs &&
+            pagination &&
+            leftOverThumbs.map((item) =>
+              item.map((img) => (
+                <div
+                  onClick={(e) => {
+                    handleThumbnailIndex(e, item);
+                  }}
+                  style={{
+                    border:
+                      img.thumbnail_url === selectedThumb && thumbValue
+                        ? "3px #D96C06 solid"
+                        : null,
+                    maxHeight: "75px",
+                  }}
+                >
+                  <Thumbnails
+                    images={images}
+                    handleThumb={handleThumb}
+                    thumbUrl={img.thumbnail_url}
+                    key={item}
+                  />
+                </div>
+              ))
+            )}
         </div>
+        {!pagination  ? (
+          <div
+            style={{ marginLeft: "25%", padding: "5%", cursor: "pointer" }}
+            onClick={leftOverThumbs ? handlePagination : undefined}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path d="M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z" />
+            </svg>
+          </div>
+        ) : (
+          <div
+            style={{ marginLeft: "25%", padding: "5%", cursor: "pointer" }}
+            onClick={() => setPagination((current) => !current)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+            >
+              <path d="M0 16.67l2.829 2.83 9.175-9.339 9.167 9.339 2.829-2.83-11.996-12.17z" />
+            </svg>
+          </div>
+        )}
       </div>
       {images.length > 0 && (
         <div>
@@ -168,7 +236,7 @@ const Gallery = ({
                 </svg>
               </div>
             )}
-            <div className={style.modalThumbs} id={style.thumbModals}>
+            <div id={style.thumbModals}>
               {images &&
                 images.map((item) =>
                   item.map((img) => (
