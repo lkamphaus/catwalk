@@ -37,7 +37,7 @@ const Gallery = ({
   const handleThumbnailIndex = (e, item) => {
     setSelectedThumb(item[0].thumbnail_url);
   };
-console.log(leftOverThumbs);
+
   const handlePagination = () => {
     setPagination((current) => !current)
   }
@@ -164,7 +164,7 @@ console.log(leftOverThumbs);
             <img
               onClick={() => setExpandedOpen(true)}
               className={style.image}
-              style={{ maxWidth: "100%", minWidth: "100%" }}
+              
               src={
                 firstImg && !thumbModalValue
                   ? firstImg[0].join()
@@ -209,8 +209,8 @@ console.log(leftOverThumbs);
             className={style.modal}
             style={{
               position: "fixed",
-              height: "calc(100vh - 700px)",
-              width: "calc(100vw - 600px)",
+              height: "80%",
+              width: "100%",
               backgroundColor: "#F5EFED",
               padding: 50,
               top: "10px",
@@ -277,7 +277,7 @@ console.log(leftOverThumbs);
                 setExpandedOpen(false);
               }}
               style={{
-                marginBottom: "680px",
+                marginBottom: "37%",
                 cursor: "pointer",
                 float: "right",
               }}

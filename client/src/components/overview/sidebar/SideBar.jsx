@@ -35,6 +35,7 @@ const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
       <div style={{
         position: 'absolute',
         bottom: 0,
+       
         content: '""',
       }} ref={scrollDiv}></div>
     </div>
