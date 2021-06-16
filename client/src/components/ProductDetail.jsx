@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 import MainOverview from "./overview/MainOverview.jsx";
-import QuestionList from "./QA/QuestionList.jsx";
+import QuestionList from "./QA/QuestionList/QuestionList.jsx";
 import Reviews from "./reviews/Reviews.jsx";
 import styles from ".././style.css";
 import ClickTracking from ".././ClickTracking.jsx";

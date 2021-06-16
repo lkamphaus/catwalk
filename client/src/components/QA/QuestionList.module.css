@@ -12,8 +12,8 @@
 
 .qaList {
   overflow: auto;
-  max-height: 50vh;
-  min-height: 55vh;
+  max-height: 60vh;
+  min-height: 10vh;
 }
 
 .qaTitle {

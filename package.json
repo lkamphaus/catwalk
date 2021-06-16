@@ -56,6 +56,7 @@
     "wepback": "^1.0.0"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "modulePaths": [
       "/shared/vendor/modules"
     ],
