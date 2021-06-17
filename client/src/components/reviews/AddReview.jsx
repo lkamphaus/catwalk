@@ -82,7 +82,7 @@ class AddReview extends React.Component {
     const formData = new FormData();
     formData.append(0, file);
 
-    fetch(`http://localhost:3246/api/reviews/image-upload`, {
+    fetch(`/api/reviews/image-upload`, {
       method: "POST",
       body: formData,
     })
@@ -132,7 +132,7 @@ class AddReview extends React.Component {
       photos: this.state.images,
       characteristics: characteristics,
     };
-    if (validateForm(form).length === 0) {
+    if (validateForm(form, this.props.meta).length === 0) {
       this.setState(
         {
           errors: [],
@@ -160,7 +160,7 @@ class AddReview extends React.Component {
       );
 
     var images = this.state.images.map((image) => (
-      <img className={styles.smallImg} src={image} />
+      <img key={image} className={styles.smallImg} src={image} />
     ));
 
     var charsLeft = 50 - this.state.fields["body"].length;
@@ -171,7 +171,13 @@ class AddReview extends React.Component {
         : "Minimum reached.";
 
     var starRating = this.state.ratings.map((star, index) => {
-      return <Star rating={star} onClick={() => this.handleRate(index)} />;
+      return (
+        <Star
+          rating={star}
+          key={index}
+          onClick={() => this.handleRate(index)}
+        />
+      );
     });
 
     var uploadPhotos =
@@ -195,11 +201,11 @@ class AddReview extends React.Component {
             <h2 className={styles.formTitle}>Write Your Review</h2>
             <h3 className={styles.formTitle}>About the {this.props.name}</h3>
 
-            <h4 className={styles.formTitle}>Overall Rating </h4>
+            <h4 className={styles.formTitle}>Overall Rating* </h4>
             <span>{starRating}</span>
             <span> {this.state.ratingText}</span>
 
-            <h4 className={styles.formTitle}>Characteristics </h4>
+            <h4 className={styles.formTitle}>Characteristics* </h4>
             <CharacteristicButtons
               characteristics={characteristics}
               onClick={(e) => this.handleRateCharacteristic(e)}
@@ -213,7 +219,7 @@ class AddReview extends React.Component {
           >
             <label>
               <h4 className={styles.formTitle}>
-                Do you recommend this product?{" "}
+                Do you recommend this product?*
               </h4>
 
               <div onChange={(e) => this.handleRecommend(e)}>
@@ -239,7 +245,7 @@ class AddReview extends React.Component {
             </label>
 
             <label>
-              <h4 className={styles.formTitle}>Review body </h4>
+              <h4 className={styles.formTitle}>Review body* </h4>
 
               <textarea
                 className={styles.fields}
@@ -256,7 +262,7 @@ class AddReview extends React.Component {
             </label>
 
             <label>
-              <h4 className={styles.formTitle}>What is your nickname? </h4>
+              <h4 className={styles.formTitle}>Your nickname* </h4>
 
               <input
                 className={styles.fields}
@@ -275,7 +281,7 @@ class AddReview extends React.Component {
             </label>
 
             <label>
-              <h4 className={styles.formTitle}>Your email </h4>
+              <h4 className={styles.formTitle}>Your email* </h4>
 
               <input
                 className={styles.fields}

@@ -15,14 +15,14 @@ const ClickTracking = (props) => {
 
   const globalClickTracker = (event) => {
     let element = event.target.outerHTML;
-    let time = '6/14/21';
+    var date = new Date(Date.now())
+    let time = date.toString();
     let widget = moduleClicked();
     let form = {
       element,
       time,
       widget
     }
-    console.log('form', form)
 
      fetch ('/api/interactions', {
         method: "POST",

@@ -88,7 +88,7 @@ const MainOverview = ({ prod }) => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:3246/api/products/${product_id}/styles?format=json`,
+      `/api/products/${product_id}/styles?format=json`,
       {
         headers: {
           "Content-Type": "application/json",

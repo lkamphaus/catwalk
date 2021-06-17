@@ -30,7 +30,7 @@
   position: relative;
   /* margin-left: 30%; */
   margin-top: 5%;
- 
+
 }
 .sidebar {
   grid-area: sidebar;
@@ -70,7 +70,7 @@
  transform: scale(1.5);
 }
 .thumbs {
-  display: flex; 
+  display: flex;
   /* flex-direction: row; */
   flex-wrap: wrap;
   padding: 5px;
@@ -186,8 +186,9 @@
   font-weight: 100;
   font-size: 18px;
   text-decoration: underline;
-  text-decoration-color: #D96C06;
+  color: #D96C06;
   cursor: pointer;
+  font-weight: 400;
 }
 .buttons {
   cursor: pointer;
@@ -281,6 +282,6 @@ border-radius: 50%;
 .mainGallery {
   display: flex;
   height: 100%;
-  
+
   width: 100%;
 }

@@ -3,6 +3,7 @@
   font-size: 18px;
   display: grid;
   width: 75%;
+  padding-bottom: 50px;
   margin: auto;
   column-gap: 20px;
   grid-template-columns: 1fr 1.6fr;
@@ -74,8 +75,6 @@
 }
 
 .showMore {
-  margin: 10px;
-  font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -152,7 +151,6 @@
 
 .filler {
   color: white;
-  opacity: 80%;
   text-align: center;
   background: #d96c06;
   height: 100%;
@@ -195,5 +193,9 @@
   height: 100%;
   border-radius: inherit;
   color:  var(--icon-color);
+}
+
+#reviews {
+  scroll-behavior: smooth;
 }
 

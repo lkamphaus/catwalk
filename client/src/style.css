@@ -3,6 +3,10 @@ body {
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --bg-color: #F5EFED;
   --text-color: #808080;

@@ -12,15 +12,10 @@ const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
   if (salePrice) {
     salePrice = "$" + salePrice;
   }
-  const handleBottom = () => {
-    if (scrollDiv.current) {
-      scrollDiv.current.scrollIntoView({behavior: 'smooth'})
-    }
-  }
 
   return (
     <div>
-      <div className={style.reviews} onClick={() => handleBottom()}>Read all reviews</div>
+      <a href="#reviews" className={style.reviews}>Read all reviews</a>
       <div> <Star/></div>
       <div>{category}</div>
       <div className={style.name}>{name}</div>
@@ -35,7 +30,7 @@ const SideBar = ({ prices, name, category, price, salePrice, prod }) => {
       <div style={{
         position: 'absolute',
         bottom: 0,
-       
+
         content: '""',
       }} ref={scrollDiv}></div>
     </div>
