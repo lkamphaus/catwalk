@@ -52,7 +52,7 @@ const Checkout = ({ product, currentStyles }) => {
       setSelectedSize("");
       setButtonText("Add to Cart");
       setDefaultAmount("-");
-    }, 3000);
+    }, 1500);
   };
 
   return (
@@ -67,7 +67,7 @@ const Checkout = ({ product, currentStyles }) => {
             handleSize(e);
           }}
         >
-          <option value="" disabled selected >
+          <option value=''  >
             Select Size
           </option>
           {currentStyles &&
@@ -77,13 +77,14 @@ const Checkout = ({ product, currentStyles }) => {
         </select>
 
         <select
+        value={amount}
           className={style.buttoner}
           onChange={(e) => {
             handleAmount(e);
           }}
         >
-          {" "}
-          <option value="" disabled selected>
+        
+          <option value="" >
             {defaultAmount}
           </option>
           {currentStyles &&

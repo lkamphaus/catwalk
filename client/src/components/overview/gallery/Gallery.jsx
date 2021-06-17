@@ -67,8 +67,8 @@ const Gallery = ({
           arrayOfThumbs &&
           !pagination &&
           arrayOfThumbs.map((item) =>
-            item.map((img) => (
-              <div
+            item.map((img, i) => (
+              <div key={i}
                 onClick={(e) => {
                   handleThumbnailIndex(e, item);
                 }}
@@ -86,7 +86,7 @@ const Gallery = ({
                   images={images}
                   handleThumb={handleThumb}
                   thumbUrl={img.thumbnail_url}
-                  key={item}
+                  key={i}
                 />
               </div>
             ))
@@ -96,8 +96,8 @@ const Gallery = ({
             leftOverThumbs &&
             pagination &&
             leftOverThumbs.map((item) =>
-              item.map((img) => (
-                <div
+              item.map((img, i) => (
+                <div 
                   onClick={(e) => {
                     handleThumbnailIndex(e, item);
                   }}
@@ -115,7 +115,7 @@ const Gallery = ({
                     images={images}
                     handleThumb={handleThumb}
                     thumbUrl={img.thumbnail_url}
-                    key={item}
+                    key={i}
                   />
                 </div>
               ))
@@ -243,12 +243,12 @@ const Gallery = ({
             )}
             <div id={style.thumbModals}>
               {images &&
-                images.map((item) =>
+                images.map((item, i) =>
                   item.map((img) => (
                     <ModalThumbs
                       handleThumb={handleThumb}
                       thumbUrl={img.thumbnail_url}
-                      key={item}
+                      key={i}
                     />
                   ))
                 )}
