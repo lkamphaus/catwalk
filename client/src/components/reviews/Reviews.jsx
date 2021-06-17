@@ -144,7 +144,7 @@ class Reviews extends React.Component {
 
     return (
       <div className={styles.gridContainer}>
-        <div>
+        <div id="reviews">
           <ReviewsList
             id={this.props.id}
             name={this.props.name}
