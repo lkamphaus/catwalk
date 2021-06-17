@@ -11,7 +11,7 @@ const AnswerForm = (props) => {
   const [charCountBody, setCharCountBody] = useState(1000);
   const [error, setError] = useState('');
   const [submitted, setsubmitted] = useState(false);
-  const [images, setImages] = useState([]);
+  const [uploads, setUploads] = useState([]);
 
   const handleNameChange = (event) => {
     let input = event.target.value;
@@ -49,7 +49,7 @@ const AnswerForm = (props) => {
         body: formData
        })
        const url = await response.json();
-       setImages([...images, url.secure_url]);
+       setUploads([...uploads, url.secure_url]);
     } catch {
       (err) => console.log(err)
     }
@@ -85,7 +85,7 @@ const AnswerForm = (props) => {
         name,
         email,
         body,
-        photos: images
+        photos: uploads
       }
 
       props.addQuestion();
@@ -104,6 +104,10 @@ const AnswerForm = (props) => {
       }
     }
   }
+
+  const images = uploads.map((image => {
+    <img key={image} className={style.smallImg} src={image}/>
+  }));
 
   const styleNameInput = error.name ? style.dangerOutline : style.formName;
 

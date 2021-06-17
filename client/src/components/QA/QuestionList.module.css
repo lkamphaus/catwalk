@@ -112,7 +112,7 @@
 
 .answerMeta {
   display:flex;
-  margin: 25px 10px 25px 20px;
+  margin: 10px 10px 10px 0;
   font-size: 16px;
 }
 
@@ -166,8 +166,20 @@
   color: var(--text-color);
 }
 
+.thumbails {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.smallImg {
+  margin-top: 10px;
+  margin-right: 10px;
+  height: 70px;
+  width: 70px;
+}
+
 .loadMoreAnswers {
-  margin: 20px;
+  margin: 20px 0;
   font-weight: 400;
   font-size: 18px;
 }
@@ -324,5 +336,7 @@
   font-family: 'Roboto', sans-serif;
   transition: outline 0.6s linear;
 }
+
+
 
 
