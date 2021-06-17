@@ -20,7 +20,7 @@ const MainOverview = ({ prod }) => {
   const [salePrice, setSalePrice] = useState("");
   const [firstImg, setFirstImg] = useState("");
   const [thumbnailUrl, setThumbnailUrl] = useState("");
-
+  
   //////////////////////////////
   //refactor
   const [currentStyleId, setCurrentStyleId] = useState("");

@@ -164,7 +164,7 @@ const Gallery = ({
             <img
               onClick={() => setExpandedOpen(true)}
               className={style.image}
-              
+              // style={{maxWidth: '130%', minWidth: '100%'}}
               src={
                 firstImg && !thumbModalValue
                   ? firstImg[0].join()
