@@ -8,9 +8,7 @@ const ModalThumbs = ({ thumbUrl, handleThumb }) => {
       onClick={(e) => {
         handleThumb(e, thumbUrl);
       }}
-      >
-      {/* <img src={thumbUrl}></img> */}
-      
+      >      
     </div>
   );
 };

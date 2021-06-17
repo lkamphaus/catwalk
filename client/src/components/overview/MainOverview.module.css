@@ -7,7 +7,6 @@
   grid-template-areas:
     'gallery sidebar'
     'description description2';
-  /* margin-right: 38%; */
   padding-left: 15%;
   padding-right: 15%;
   max-width: 100%;
@@ -28,24 +27,20 @@
   flex-wrap: nowrap;
   max-height: 600px;
   position: relative;
-  /* margin-left: 30%; */
   margin-top: 5%;
-
+ 
 }
 .sidebar {
   grid-area: sidebar;
 }
 .arrows {
-  /* border: 2px solid red; */
   background-color: rgb(215, 215, 215);
   border-radius: 50%;
   padding: 5px;
   display: flex;
   align-items: center;
   height: 30px;
-  /* margin-top: 280px; */
   cursor: pointer;
-  /* margin-left: 800px; */
   margin: 20px
 }
 #right{
@@ -61,33 +56,30 @@
    flex-direction: column;
    flex-wrap: wrap;
    padding: 5px;
-   margin-right: 10px;
+   margin-right: 5px;
    flex-grow: 1;
    max-width: 115px;
-   /* border: 1px solid black */
  }
+ .extraThumbs {
+   display: flex;
+   flex-direction: column;
+   flex-wrap: wrap;
+   padding: 5px;
+   margin-right: 5px;
+   flex-grow: 1;
+   max-width: 115px;
+ }
+
  #thumbModals {
  transform: scale(1.5);
 }
-.thumbs {
-  display: flex;
-  /* flex-direction: row; */
-  flex-wrap: wrap;
-  padding: 5px;
-  /* margin-left: 10%; */
-  flex-grow: 1;
-  /* width: 115px; */
-  /* float: right; */
-  /* border: 1px solid black; */
 
-}
 #thumbModals {
   margin-bottom: 35%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  /* max-height: 600px; */
   height: 10px;
   width: 5px;
   margin-right: 15px;
@@ -98,15 +90,17 @@
     cursor: zoom-in;
   object-fit: cover;
   width: 800px;
-  height: 600px;
+  height: 650px;
 }
 #thumbImage {
   cursor: pointer;
-  border-radius: 4px;  /* Rounded border */
-  padding: 2px; /* Some padding */
+  border-radius: 8px;  /* Rounded border */
+  /* padding: 2px; Some padding */
   width: 70px;
   height: 70px;
   transition: .3s;
+  display: flex;
+  margin-top: 5px;
 }
 #thumbModalImage {
   cursor: pointer;
@@ -156,7 +150,6 @@
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   width: 100px;
-  /* background-color: #D96C06; */
   margin: 3px;
 }
 .selected:hover {
@@ -186,9 +179,9 @@
   font-weight: 100;
   font-size: 18px;
   text-decoration: underline;
-  color: #D96C06;
+  text-decoration-color: #D96C06;
   cursor: pointer;
-  font-weight: 400;
+  color: #D96C06;
 }
 .buttons {
   cursor: pointer;
@@ -282,6 +275,6 @@ border-radius: 50%;
 .mainGallery {
   display: flex;
   height: 100%;
-
+  
   width: 100%;
 }
