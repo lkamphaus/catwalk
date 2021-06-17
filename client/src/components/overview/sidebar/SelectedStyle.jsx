@@ -5,36 +5,29 @@ import { GiCheckMark } from "react-icons/gi";
 
 const SelectedStyle = ({
   product,
-  handleSelect,
   handleDisplays,
-  handleId,
   handleSales,
   handleThumbChange,
-  handleSelectedStyle
+  handleSelectedStyle,
 }) => {
   const [selected, setSelected] = useState("");
 
   const [ids, setIds] = useState([]);
-  const [currentStyles, setCurrentStyles] = useState('')
+  const [currentStyles, setCurrentStyles] = useState("");
 
   let array = product.map((item) => item.name);
 
   const handleSelected = (e, item) => {
-    handleId(item.style_id);
     setIds((ids) => [item.style_id]);
     if (!ids.includes(item.style_id)) {
       handleDisplays(item.photos);
-
     }
 
-    setCurrentStyles(Object.values(item.skus))
+    setCurrentStyles(Object.values(item.skus));
     handleSales(item);
     handleThumbChange(e);
     setSelected(item.name);
-    handleSelect(e);
   };
-
-
 
   return (
     <div>
@@ -45,23 +38,29 @@ const SelectedStyle = ({
           product.map((item) => (
             <div
               className={style.selected}
-              style={{ border: ids[0] !== item.style_id ? " 3px #808080 solid" : "3px #D96C06 solid" }}
+              style={{
+                border:
+                  ids[0] !== item.style_id
+                    ? " 3px #808080 solid"
+                    : "3px #D96C06 solid",
+              }}
               key={item.style_id}
               onClick={(e) => {
                 handleSelected(e, item);
-                handleSelectedStyle(item)
+                handleSelectedStyle(item);
               }}
-            >{ids[0] === item.style_id &&
-            <div className={style.checkMark}>
-              <GiCheckMark></GiCheckMark>
-            </div>
-            }
+            >
+              {ids[0] === item.style_id && (
+                <div className={style.checkMark}>
+                  <GiCheckMark></GiCheckMark>
+                </div>
+              )}
               {item.name}
             </div>
           ))}
       </div>
       <div>
-        <Checkout product={product} currentStyles={currentStyles}/>
+        <Checkout product={product} currentStyles={currentStyles} />
       </div>
     </div>
   );
