@@ -10,6 +10,8 @@ const AnswerForm = (props) => {
   const [charCountEmail, setCharCountEmail] = useState(60);
   const [charCountBody, setCharCountBody] = useState(1000);
   const [error, setError] = useState('');
+  const [submitted, setsubmitted] = useState(false);
+  const [images, setImages] = useState([]);
 
   const handleNameChange = (event) => {
     let input = event.target.value;
@@ -33,6 +35,24 @@ const AnswerForm = (props) => {
     setCharCountBody(1000 - input.length);
     setBody(input);
     setError('');
+  }
+
+  const handleImageUpload = async (event) => {
+    const image = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append(0, image);
+
+    try {
+      const response = await fetch(`/api/reviews/image-upload`, {
+        method: 'POST',
+        body: formData
+       })
+       const url = await response.json();
+       setImages([...images, url.secure_url]);
+    } catch {
+      (err) => console.log(err)
+    }
   }
 
   const validateForm = () => {
@@ -65,7 +85,7 @@ const AnswerForm = (props) => {
         name,
         email,
         body,
-        photos: []
+        photos: images
       }
 
       props.addQuestion();
@@ -78,6 +98,7 @@ const AnswerForm = (props) => {
           },
           body: JSON.stringify(answerForm)
         })
+        setsubmitted(true);
       } catch(err) {
         console.log("err", err)
       }
@@ -154,6 +175,14 @@ const AnswerForm = (props) => {
                 <p className={style.danger}>{error.body}</p>
              )}
           </div>
+          <div className={style.labelForm}>Upload your photos </div>
+          <div>
+            <input
+              type="file"
+              id="single"
+              onChange={handleImageUpload}/>
+              <div>{images}</div>
+          </div>
         </div>
       </div>
       <div
@@ -162,6 +191,9 @@ const AnswerForm = (props) => {
           onClick={handleFormSubmit}>
             Submit
         </button>
+        {submitted && (
+                <p className={style.submittedForm}>Submitted!</p>
+             )}
       </div>
     </div>
   );

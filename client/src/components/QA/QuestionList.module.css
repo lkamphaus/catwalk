@@ -20,6 +20,7 @@
   font-weight: 400;
   font-size: 20px;
   margin-bottom: 35px;
+  font-size: 18px;
 }
 
 .searchBoxSection {
@@ -58,18 +59,18 @@
 .questionBody {
   display: flex;
   margin-bottom: 15px;
-  font-size: 20px;
+  font-size: 16px;
   justify-content: space-between;
 }
 
 .questionLetter {
-  font-weight: 500;
+  font-weight: 700;
   margin-right: 5px;
   font-size: 23px;
 }
 
 .questionText {
-  font-weight: 500;
+  font-weight: 700;
   font-size: 20px;
   flex-grow: 2;
 }
@@ -112,6 +113,7 @@
 .answerMeta {
   display:flex;
   margin: 25px 10px 25px 20px;
+  font-size: 16px;
 }
 
 .answerName {
@@ -125,7 +127,13 @@
 .answerLetter {
   font-weight: 500;
   margin-right: 5px;
-  font-size: 20px;
+  font-size: 18px;
+}
+
+.answerText {
+  font-weight: 500;
+  margin-right: 5px;
+  font-size: 18px;
 }
 
 .answerDate {
@@ -160,7 +168,8 @@
 
 .loadMoreAnswers {
   margin: 20px;
-  font-weight: 500;
+  font-weight: 400;
+  font-size: 18px;
 }
 
 
@@ -283,6 +292,10 @@
   font-weight: 400;
   font-size: 12px;
   margin: 5px 0 0 0;
+}
+
+.submittedForm {
+  margin-right: 10px;
 }
 
 .charCountBold {
