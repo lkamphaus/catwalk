@@ -84,6 +84,7 @@ const QuestionList = (props) => {
                   question={question}
                   key={question.question_id}
                   addQuestion={addQuestion}
+                  search={search}
                 />
               )}
           </div>

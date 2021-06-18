@@ -55,7 +55,7 @@ const AnswerTile = (props) => {
 
   }
 
-  let answerNameStyle = props.answer.answerer_name === 'Seller' ? style.answerNameBold : style.answerName;
+  let answerNameStyle = props.answer.answerer_name.toLowerCase() === 'seller' ? style.answerNameBold : style.answerName;
 
   let reportedStyle = updateReport === 'Reported' ? style.answerReportBold : style.answerReport;
 
@@ -72,6 +72,13 @@ const AnswerTile = (props) => {
         <div className={style.answerText}>
           {props.answer.body}
         </div>
+      </div>
+      <div>
+          <div className={style.thumbails}>
+            {props.answer.photos.map(photo =>
+              <Thumbnail source={photo}/>
+            )}
+          </div>
       </div>
       <div className={style.answerMeta}>
         <div className={answerNameStyle}>
@@ -94,13 +101,6 @@ const AnswerTile = (props) => {
             {updateReport}
         </div>
       </div>
-      <div>
-          <div className={style.thumbails}>
-            {props.answer.photos.map(photo =>
-              <Thumbnail source={photo}/>
-            )}
-          </div>
-        </div>
     </div>
   );
 };
