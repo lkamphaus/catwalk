@@ -1,5 +1,5 @@
 import React from "react";
-import ReviewsList from "./ReviewsList.jsx";
+import ReviewsList from "./Reviews List/ReviewsList.jsx";
 import ProductBreakdown from "./ProductBreakdown.jsx";
 import BreakdownBar from "./BreakdownBar.jsx";
 import styles from "./Reviews.module.css";
@@ -12,7 +12,10 @@ class Reviews extends React.Component {
       overview: null,
       average: null,
       filters: [],
+      search: ""
     };
+
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   componentDidUpdate(prevProps) {
@@ -37,6 +40,20 @@ class Reviews extends React.Component {
     } else {
       this.setState({
         filters: this.state.filters.filter((filter) => filter !== rating),
+      });
+    }
+  }
+
+  handleSearch(e) {
+    var searchTerm = e.target.value;
+
+    if (searchTerm.length > 2) {
+      this.setState({
+        search: searchTerm,
+      });
+    } else {
+      this.setState({
+        search: "",
       });
     }
   }
@@ -90,7 +107,12 @@ class Reviews extends React.Component {
               onClick={() => this.handleFilter(rating)}
             >
               <span
-                style={{ marginRight: "10px", textDecoration: "underline" }}
+                style={{
+                  display: "inline-block",
+                  width: "12%",
+                  marginRight: "10px",
+                  textDecoration: "underline",
+                }}
               >
                 {rating} stars:
               </span>
@@ -151,6 +173,8 @@ class Reviews extends React.Component {
             total={total}
             filters={this.state.filters}
             meta={this.props.meta}
+            handleSearch={this.handleSearch}
+            search={this.state.search}
           />
         </div>
         <div className={styles.productBreakdown}>
