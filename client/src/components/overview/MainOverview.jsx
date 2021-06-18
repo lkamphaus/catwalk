@@ -7,31 +7,26 @@ import Gallery from "./gallery/Gallery.jsx";
 import SelectedStyle from "./sidebar/SelectedStyle.jsx";
 import Features from "./description/Features.jsx";
 
-const MainOverview = ({ prod }) => {
+const MainOverview = ({ prod, meta }) => {
   const [product, setProd] = useState([]);
   const { product_id } = useParams();
   const [images, setImages] = useState([]);
   const [currentThumb, setThumb] = useState("");
-  const [selected, setSelected] = useState("");
   const [displays, setdisplays] = useState("");
-  const [ids, setIds] = useState("");
   const [thumbValue, setValue] = useState(false);
   const [price, setPrice] = useState("");
   const [salePrice, setSalePrice] = useState("");
   const [firstImg, setFirstImg] = useState("");
   const [thumbnailUrl, setThumbnailUrl] = useState("");
-
+  
   //////////////////////////////
   //refactor
-  const [currentStyleId, setCurrentStyleId] = useState("");
   const [currentImageSet, setCurrentImageSet] = useState("");
   const [thumbModalValue, setThumbModalValue] = useState(false);
   const [arrowIndex, setArrowIndex] = useState(0);
-  const [arrowSelected, setArrowSelected] = useState("");
 
   const handleSelectedStyle = (item) => {
     setThumbModalValue(false);
-    setCurrentStyleId(item.style_id);
     product.map((current) => {
       if (current.style_id === item.style_id) {
         setCurrentImageSet(...current.photos);
@@ -74,17 +69,13 @@ const MainOverview = ({ prod }) => {
     setThumbModalValue(false);
   };
 
-  const handleSelect = (e) => {
-    setSelected(e.target.innerHTML);
-  };
+ 
 
   const handleDisplays = (item) => {
     item.map((item) => setdisplays(item.url));
   };
 
-  const handleId = (item) => {
-    setIds(item);
-  };
+ 
 
   useEffect(() => {
     fetch(
@@ -130,7 +121,6 @@ const MainOverview = ({ prod }) => {
               thumbModalValue={thumbModalValue}
               handleArrowValue={handleArrowValue}
               arrowIndex={arrowIndex}
-              arrowSelected={arrowSelected}
               handleArrowRight={handleArrowRight}
               handleArrowLeft={handleArrowLeft}
             />
@@ -141,6 +131,7 @@ const MainOverview = ({ prod }) => {
         <div>
           {prod && (
             <SideBar
+              meta={meta}
               category={prod.category}
               name={prod.name}
               prices={product}
@@ -155,9 +146,7 @@ const MainOverview = ({ prod }) => {
             <SelectedStyle
               handleThumbChange={handleThumbChange}
               product={product}
-              handleSelect={handleSelect}
               handleDisplays={handleDisplays}
-              handleId={handleId}
               handleSales={handleSales}
               handleSelectedStyle={handleSelectedStyle}
             />

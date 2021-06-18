@@ -195,3 +195,7 @@
   color:  var(--icon-color);
 }
 
+#reviews {
+  scroll-behavior: smooth;
+}
+

@@ -51,7 +51,7 @@ const ProductDetail = () => {
       <div>
         <div style={{ width: "100%" }}>
           <ClickTracking module={"Overview"}>
-            <MainOverview prod={prod} />
+            <MainOverview prod={prod} meta={meta}/>
           </ClickTracking>
         </div>
         <div>

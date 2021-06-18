@@ -1,4 +1,5 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
+import Thumbnail from "./Thumbnail.jsx";
 import style from "./QuestionList.module.css";
 import { DateTime } from "luxon";
 
@@ -58,6 +59,10 @@ const AnswerTile = (props) => {
 
   let reportedStyle = updateReport === 'Reported' ? style.answerReportBold : style.answerReport;
 
+
+
+  console.log('photos', props.answer.photos)
+
   return (
     <div>
       <div className={style.answerBody}>
@@ -89,6 +94,13 @@ const AnswerTile = (props) => {
             {updateReport}
         </div>
       </div>
+      <div>
+          <div className={style.thumbails}>
+            {props.answer.photos.map(photo =>
+              <Thumbnail source={photo}/>
+            )}
+          </div>
+        </div>
     </div>
   );
 };

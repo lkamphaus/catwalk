@@ -5,12 +5,11 @@ const Thumbnails = ({ thumbUrl, handleThumb }) => {
   
 
   return (
-    <div
+    <div id={style.thumbImage} style={{background: thumbUrl ? `url('${thumbUrl}') center / cover` : null}}
       onClick={(e) => {
         handleThumb(e, thumbUrl);
       }}
     >
-      <img id={style.thumbImage} src={thumbUrl}></img>
     </div>
   );
 };

@@ -33,7 +33,7 @@ module.exports = {
     return axios(options);
   },
 
-  postAnswerRequest: function({ questionId, name, body, email }) {
+  postAnswerRequest: function({ questionId, name, body, email, photos }) {
     let options = {
       method: 'POST',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/answers`,
@@ -45,7 +45,7 @@ module.exports = {
         name,
         email,
         body,
-        photos: []
+        photos
       }
     };
     return axios(options);

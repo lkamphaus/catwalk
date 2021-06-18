@@ -35,6 +35,7 @@ module.exports = {
         name: req.body.name,
         email: req.body.email,
         body: req.body.body,
+        photos: req.body.photos,
       })
     .then((response) => {
       console.log(response);
