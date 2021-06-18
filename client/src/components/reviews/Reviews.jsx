@@ -170,7 +170,7 @@ class Reviews extends React.Component {
     var roundedAverage =
       this.state.average === null
         ? null
-        : Number(this.state.average.toFixed(1));
+        : Number.parseFloat(this.state.average).toFixed(1);
 
     return (
       <div className={styles.gridContainer}>
