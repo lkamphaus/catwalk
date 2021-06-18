@@ -117,7 +117,7 @@ class Reviews extends React.Component {
               <span
                 style={{
                   display: "inline-block",
-                  fontSize: "1vw",
+                  fontSize: "0.8vw",
                   width: "15%",
                   marginRight: "10px",
                   textDecoration: "underline",

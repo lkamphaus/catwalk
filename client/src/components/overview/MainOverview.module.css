@@ -28,7 +28,7 @@
   max-height: 600px;
   position: relative;
   margin-top: 5%;
- 
+
 }
 .sidebar {
   grid-area: sidebar;
@@ -275,6 +275,6 @@ border-radius: 50%;
 .mainGallery {
   display: flex;
   height: 100%;
-  
+
   width: 100%;
 }

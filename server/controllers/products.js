@@ -2,7 +2,6 @@ var models = require('../models');
 
 module.exports = {
   get: function(req, res) {
-    // console.log(req.params)
     models.products.getProduct(req.params.product_id)
     .then((response) => {
      res.status(200).end(JSON.stringify(response.data));

@@ -26,7 +26,6 @@ var validateForm = (form, meta) => {
     errors.push("You must select whether or not you recommend the product");
   }
   if (!validateCharacteristics(form.characteristics, meta)) {
-    console.log('true');
     errors.push("You must rate the product on each characteristic");
   }
   if (form.name === "") {

@@ -59,10 +59,6 @@ const AnswerTile = (props) => {
 
   let reportedStyle = updateReport === 'Reported' ? style.answerReportBold : style.answerReport;
 
-
-
-  console.log('photos', props.answer.photos)
-
   return (
     <div>
       <div className={style.answerBody}>
@@ -76,7 +72,7 @@ const AnswerTile = (props) => {
       <div>
           <div className={style.thumbails}>
             {props.answer.photos.map(photo =>
-              <Thumbnail source={photo}/>
+              <Thumbnail key={photo} source={photo}/>
             )}
           </div>
       </div>

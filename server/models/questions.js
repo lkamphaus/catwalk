@@ -15,7 +15,6 @@ module.exports = {
   },
 
   postQuestionRequest: function({ product_id, name, body, email }) {
-    console.log('test', product_id, name, body, email )
     let options = {
       method: 'POST',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions?product_id=${product_id}`,
