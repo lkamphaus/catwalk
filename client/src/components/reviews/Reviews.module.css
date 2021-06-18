@@ -5,7 +5,7 @@
   width: 75%;
   padding-bottom: 50px;
   margin: auto;
-  column-gap: 20px;
+  column-gap: 5%;
   grid-template-columns: 1fr 1.6fr;
   grid-template-rows: auto;
   grid-template-areas:
@@ -145,12 +145,12 @@
   background-color: lightgray;
   margin: 0px;
   height: 20px;
-  width: 65%;
+  width: 85%;
   border-radius: 50px;
 }
 
 .filler {
-  color: white;
+  color: rgba(255, 255, 255, 0.75);
   text-align: center;
   background: #d96c06;
   height: 100%;

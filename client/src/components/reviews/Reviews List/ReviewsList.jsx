@@ -1,7 +1,8 @@
 import React from "react";
-import styles from "./Reviews.module.css";
-import ReviewTile from "./ReviewTile.jsx";
-import AddReview from "./AddReview.jsx";
+import styles from "../Reviews.module.css";
+import ReviewTile from "../Review Tile/ReviewTile.jsx";
+import AddReview from "../AddReview.jsx";
+import Search from "../Search.jsx";
 
 class ReviewsList extends React.Component {
   constructor(props) {
@@ -23,9 +24,10 @@ class ReviewsList extends React.Component {
     }
 
     if (
-      JSON.stringify(this.props.filters) !== JSON.stringify(prevProps.filters)
+      (JSON.stringify(this.props.filters) !== JSON.stringify(prevProps.filters)) ||
+      (JSON.stringify(this.props.search) !== JSON.stringify(prevProps.search))
     ) {
-      var display = this.filter(this.state.reviews, this.props.filters);
+      var display = this.filter(this.state.reviews);
 
       this.setState({
         display: display.slice(0, Math.max(this.state.display.length, 2)),
@@ -33,30 +35,46 @@ class ReviewsList extends React.Component {
     }
   }
 
-  filter(reviews, filters) {
-    if (filters.length === 0) {
+  filter(reviews) {
+    var filters = this.props.filters;
+    var searchTerm = this.props.search;
+    // No star rating filters, no search term
+    if (filters.length === 0 && searchTerm.length < 3) {
       return reviews;
-    } else {
+      // Filter by star rating, no search term
+    } else if (searchTerm.length < 3 && filters.length > 0) {
       return reviews.filter(
         (review) => filters.indexOf(String(review.rating)) > -1
+      );
+      // Filter by star rating and search term
+    } else if (filters.length > 0) {
+      return reviews
+        .filter((review) => filters.indexOf(String(review.rating)) > -1)
+        .filter((review) =>
+          review.body
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
+        );
+      // Filter by search term, no star rating filters
+    } else {
+      return reviews.filter((review) =>
+        review.body.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
   }
 
   getReviews() {
-    fetch(
-      `/api/reviews/meta/${this.props.id}?format=json`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(`/api/reviews/meta/${this.props.id}?format=json`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
       .then((response) => response.json())
       .then((data) => {
         var total =
           (Number(data.recommended.true) || 0) +
           (Number(data.recommended.false) || 0);
+          this.props.handleUpdate(data)
         fetch(
           `/api/reviews/${this.props.id}/${1}/${total}/${
             this.state.sort
@@ -71,7 +89,7 @@ class ReviewsList extends React.Component {
           .then((data) =>
             this.setState({
               reviews: data,
-              display: this.filter(data, this.props.filters).slice(0, 2),
+              display: this.filter(data).slice(0, 2),
             })
           )
           .catch((err) => console.log("err", err));
@@ -81,7 +99,7 @@ class ReviewsList extends React.Component {
 
   getMore() {
     var current = this.state.display.length;
-    var reviews = this.filter(this.state.reviews, this.props.filters);
+    var reviews = this.filter(this.state.reviews);
     this.setState({
       display: this.state.display.concat(reviews.slice(current, current + 2)),
     });
@@ -126,7 +144,7 @@ class ReviewsList extends React.Component {
       );
 
     var moreReviews =
-      this.state.display.length < this.state.reviews.length ? (
+      this.state.display.length < this.filter(this.state.reviews).length ? (
         <button className={styles.reviewButtons} onClick={this.getMore}>
           MORE REVIEWS
         </button>
@@ -137,6 +155,9 @@ class ReviewsList extends React.Component {
     return (
       <div>
         {total}
+        <br />
+        <br />
+        <Search handleSearch={this.props.handleSearch} />
         <div className={styles.reviewsList}>{reviews}</div>
         {moreReviews}
         <AddReview name={this.props.name} meta={this.props.meta} />

@@ -27,4 +27,6 @@ router.post('/reviews', controller.reviews.submitForm);
 
 router.post('/interactions', controller.interactions.create);
 
+router.put('/reviews/:review_id/report', controller.reviews.report);
+
 module.exports = router;

@@ -97,7 +97,7 @@ const Gallery = ({
             pagination &&
             leftOverThumbs.map((item) =>
               item.map((img, i) => (
-                <div 
+                <div
                   onClick={(e) => {
                     handleThumbnailIndex(e, item);
                   }}

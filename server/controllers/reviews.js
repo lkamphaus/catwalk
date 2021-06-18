@@ -41,23 +41,34 @@ module.exports = {
   },
 
   submitForm: function (req, res) {
-    models.reviews.submitForm({
-      product_id: parseInt(req.body.product_id),
-      rating: req.body.rating,
-      summary: req.body.summary,
-      body: req.body.body,
-      recommend: req.body.recommend,
-      name: req.body.name,
-      email: req.body.email,
-      photos: req.body.photos,
-      characteristics: req.body.characteristics,
-    })
-    .then((response) => {
-      res.status(201).end();
-     })
-     .catch(err => {
-       console.log('err', err);
-       res.status(400).end();
-     })
+    models.reviews
+      .submitForm({
+        product_id: parseInt(req.body.product_id),
+        rating: req.body.rating,
+        summary: req.body.summary,
+        body: req.body.body,
+        recommend: req.body.recommend,
+        name: req.body.name,
+        email: req.body.email,
+        photos: req.body.photos,
+        characteristics: req.body.characteristics,
+      })
+      .then((response) => {
+        res.status(201).end();
+      })
+      .catch((err) => {
+        console.log("err", err);
+        res.status(400).end();
+      });
+  },
+
+  report: function (req, res) {
+    models.reviews
+      .report(req.params.review_id)
+      .then(res.status(201).end())
+      .catch((err) => {
+        console.log("err", err);
+        res.status(400).end();
+      });
   },
 };
