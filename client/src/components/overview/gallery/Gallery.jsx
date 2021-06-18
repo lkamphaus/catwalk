@@ -66,9 +66,10 @@ const Gallery = ({
         {images &&
           arrayOfThumbs &&
           !pagination &&
-          arrayOfThumbs.map((item) =>
+          arrayOfThumbs.map((item, i) =>
             item.map((img) => (
               <div
+              key={i}
                 onClick={(e) => {
                   handleThumbnailIndex(e, item);
                 }}

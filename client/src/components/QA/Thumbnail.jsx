@@ -14,6 +14,7 @@ const Thumbnail = (props) => {
    return (
      <div>
       <img
+        alt='thumbnail-image'
         onClick={openOnClick}
         className={style.smallImg}
         src={`${props.source}`}
@@ -22,11 +23,12 @@ const Thumbnail = (props) => {
         <Modal>
           <div
             className={style.closeIcon}>
-              hiiiii
+             
             <HiOutlineX />
           </div>
           <div className={styleReview.modal}>
             <img
+              alt='modal-image'
               src={props.source}
               onClick={openOnClick}
             />
