@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from ".././reviews/Modal.jsx";
 import style from "./QuestionList.module.css";
 import styleReview from ".././reviews/Reviews.module.css";
+import { HiOutlineX } from 'react-icons/hi';
 
 const Thumbnail = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -20,6 +21,11 @@ const Thumbnail = (props) => {
       />
       {showModal &&
         <Modal>
+          <div
+            className={style.closeIcon}>
+              hiiiii
+            <HiOutlineX />
+          </div>
           <div className={styleReview.modal}>
             <img
               src={props.source}

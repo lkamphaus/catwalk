@@ -10,9 +10,7 @@ const SearchBox = (props) => {
 
     setSearchTerm(term);
 
-    if (term.length) {
-      props.searchQuestionList(term)
-    }
+    props.searchQuestionList(term)
 
   }
 

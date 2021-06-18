@@ -84,7 +84,7 @@ module.exports = {
   putAnswerReportRequest: function({ answerId, reported }) {
     let options = {
       method: 'PUT',
-      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${answerId}/helpful`,
+      url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${answerId}/report`,
       headers: {
         'User-Agent': 'request',
         'Authorization': `${config.TOKEN}`

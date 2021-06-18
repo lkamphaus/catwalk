@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  line-height: 1.6;
 }
 
 html {
@@ -13,6 +14,7 @@ html {
   --nav-color: #FBA860;
   --icon-color: #808080;
   --modal-color: #fff;
+  --highlight-color: #FFFF00;
 }
 
 [data-theme="dark"] {
@@ -21,6 +23,7 @@ html {
   --nav-color: #79879E;
   --icon-color: #d96c06;
   --modal-color: #79879E;
+  --highlight-color: #d96c06;
 }
 
 .App {

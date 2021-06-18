@@ -10,9 +10,20 @@ const AnswerList = (props) => {
     setPreview(!preview);
   }
 
+  const first = 'seller' ;
+
   const sortedAnswerList = props.answers && props.answers.sort((a, b) => {
+    if (first === a[1].answerer_name.toLowerCase() && first !==  b[1].answerer_name.toLowerCase()) {
+      return -1
+    }
+
+    if (first !== a[1].answerer_name.toLowerCase() && first ===  b[1].answerer_name.toLowerCase()) {
+      return 1
+    }
+
     return b[1].helpfulness - a[1].helpfulness
   });
+
 
   const answerList = preview ? sortedAnswerList.slice(0, 2) :
   sortedAnswerList;

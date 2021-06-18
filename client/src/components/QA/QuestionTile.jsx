@@ -34,6 +34,15 @@ const QuestionTile = (props) => {
     }
   }
 
+
+  const questionBody = props.question.question_body;
+
+  const questionWords =
+    props.search.length >= 3 ?
+    questionBody.toLowerCase().split(props.search.toLowerCase()) :
+    null;
+
+
   return (
     <div>
       <div className={style.questionBody}>
@@ -41,7 +50,23 @@ const QuestionTile = (props) => {
           Q:
         </div>
         <div className={style.questionText}>
-         {props.question.question_body}
+          {props.search.length >= 3 ?
+          <span>
+            {questionWords.map((word, i) => {
+              if (i === 0) {
+                  return word
+              }
+              return (
+                <>
+                  <span className={style.highlightText}>
+                    {props.search}
+                  </span>
+                  {word}
+                </>
+              )
+            })}
+          </span>
+          : <span>{questionBody}</span>}
         </div>
         <div className={style.questionHelpful}>
           Helpful?

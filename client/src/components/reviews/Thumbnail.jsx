@@ -2,6 +2,7 @@ import React from "react";
 import Modal from "./Modal.jsx";
 import styles from "./Reviews.module.css";
 
+
 class Thumbnail extends React.Component {
   constructor(props) {
     super(props);
