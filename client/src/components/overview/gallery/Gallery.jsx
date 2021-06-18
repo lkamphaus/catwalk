@@ -24,7 +24,7 @@ const Gallery = ({
   const [arrayOfThumbs, setArrayOfThumbs] = useState("");
   const [leftOverThumbs, setLeftOverThumbs] = useState("");
   const [pagination, setPagination] = useState(false);
-
+  //hello
   useEffect(() => {
     if (arrayOfThumbs.length <= 0) {
       if (images.length - thumbLimit > 0) {
