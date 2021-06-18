@@ -10,6 +10,7 @@ const AnswerForm = (props) => {
   const [charCountEmail, setCharCountEmail] = useState(60);
   const [charCountBody, setCharCountBody] = useState(1000);
   const [error, setError] = useState('');
+  const [submitted, setsubmitted] = useState(false);
 
   const handleNameChange = (event) => {
     let input = event.target.value;
@@ -78,6 +79,7 @@ const AnswerForm = (props) => {
           },
           body: JSON.stringify(questionForm)
         })
+        setsubmitted(true);
 
       } catch(err) {
         console.log("err", err)
@@ -166,6 +168,9 @@ const AnswerForm = (props) => {
           onClick={handleFormSubmit}>
             Submit
         </button>
+        {submitted && (
+                <p className={style.submittedForm}>Submitted!</p>
+             )}
       </div>
     </div>
   );
