@@ -106,7 +106,7 @@ const AnswerForm = (props) => {
   }
 
   const images = uploads.map((image => {
-    <img key={image} className={style.smallImg} src={image}/>
+    <img alt='answer-image' key={image} className={style.smallImg} src={image}/>
   }));
 
   const styleNameInput = error.name ? style.dangerOutline : style.formName;

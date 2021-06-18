@@ -18,7 +18,7 @@ function Star(props) {
       ? halfStar
       : threeFourthStar;
 
-  return <img onClick={props.onClick} className={styles.star} src={star}></img>
+  return <img alt='star-rating' onClick={props.onClick} className={styles.star} src={star}></img>
 }
 
 export default Star;

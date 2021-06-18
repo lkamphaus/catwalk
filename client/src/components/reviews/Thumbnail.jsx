@@ -23,14 +23,15 @@ class Thumbnail extends React.Component {
     var modal = this.state.clicked ? (
       <Modal>
         <div className={styles.modal}>
-          <img src={`${this.props.source}`} onClick={this.handleClick} />
+          <img alt='modal-thumbnail' src={`${this.props.source}`} onClick={this.handleClick} />
         </div>
       </Modal>
     ) : null;
 
     return (
       <div className={styles.thumbnails}>
-        <img
+        <img 
+          alt='review-thumbnail'
           className={styles.smallImg}
           src={`${this.props.source}`}
           onClick={this.handleClick}
