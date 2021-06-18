@@ -319,8 +319,8 @@ class AddReview extends React.Component {
           className={styles.reviewButtons}
           onClick={() => this.handleAdd()}
         >
-          ADD A REVIEW{" "}
-          <span style={{ marginTop: "30px" }}>
+          ADD A REVIEW
+          <span style={{ marginTop: "30px", marginLeft: "10px" }}>
             <VscAdd />
           </span>
         </button>

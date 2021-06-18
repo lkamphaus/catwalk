@@ -23,7 +23,7 @@ const Thumbnail = (props) => {
         <Modal>
           <div
             className={style.closeIcon}>
-             
+
             <HiOutlineX />
           </div>
           <div className={styleReview.modal}>

@@ -3,6 +3,7 @@ import styles from "../Reviews.module.css";
 import Thumbnail from "../Thumbnail.jsx";
 import Stars from "../Stars.jsx";
 import { FaCheckCircle } from "react-icons/fa";
+import { DateTime } from "luxon";
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -83,13 +84,7 @@ class ReviewTile extends React.Component {
   render() {
     var date =
       this.props.review &&
-      new Date(this.props.review.date.replace(/-/g, "/").replace(/T.+/, ""));
-    var month = date && date.toLocaleString("us-PT", { month: "long" });
-    var formatted = date && date.toDateString().split(" ");
-    var day =
-      formatted &&
-      (formatted[2][0] === "0" ? formatted[2].slice(1) : formatted[2]);
-    date = month && day && formatted && `${month} ${day}, ${formatted[3]}`;
+      DateTime.fromISO(this.props.review.date, { zone: "utc" }).toFormat("DDD");
 
     var shortened = this.props.review && this.props.review.body.slice(0, 250);
 
@@ -174,7 +169,7 @@ class ReviewTile extends React.Component {
               cursor: "pointer",
               color: "#d96c06",
               marginLeft: "5px",
-              marginRight: "5px"
+              marginRight: "5px",
             }}
           >
             {`Yes (${this.state.helpful})`}

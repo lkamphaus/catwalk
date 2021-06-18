@@ -9,6 +9,8 @@ import style from "./QuestionList.module.css";
 const QuestionTile = (props) => {
   let [helpfulCount, setHelpfulCount] = useState(props.question.question_helpfulness);
   let [updated, setUpdate] = useState(false);
+  let [updateReport, setUpdateReport] = useState(' Report');
+  let [checkReport, setCheckReport] = useState(false);
 
   const question_id = props.question.question_id;
 
@@ -34,6 +36,28 @@ const QuestionTile = (props) => {
     }
   }
 
+  const handleReportClick = async () => {
+    setUpdateReport('Reported');
+    setCheckReport(true);
+
+    if (!checkReport) {
+      console.log('am i here');
+      try {
+        const response = await fetch(`/api/qa/questions/${question_id}/report`, {
+          method: 'PUT',
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            reported: true
+          })
+        })
+      } catch(err) {
+        console.log("err", err)
+      }
+    }
+  }
+
 
   const questionBody = props.question.question_body;
 
@@ -42,7 +66,9 @@ const QuestionTile = (props) => {
     questionBody.toLowerCase().split(props.search.toLowerCase()) :
     null;
 
+  let reportedStyle = updateReport === 'Reported' ? style.answerReportBold : style.answerReport;
 
+  console.log('id', props.question.question_id)
   return (
     <div>
       <div className={style.questionBody}>
@@ -84,6 +110,11 @@ const QuestionTile = (props) => {
             questionBody={props.question.question_body}
             addQuestion={props.addQuestion}
           />
+        </div>
+        <div
+          className={reportedStyle}
+          onClick={handleReportClick}>
+          {updateReport}
         </div>
       </div>
       <div>

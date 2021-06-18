@@ -72,7 +72,7 @@ const AnswerTile = (props) => {
       <div>
           <div className={style.thumbails}>
             {props.answer.photos.map(photo =>
-              <Thumbnail key={photo} source={photo}/>
+              <Thumbnail source={photo} key={photo}/>
             )}
           </div>
       </div>
@@ -81,7 +81,7 @@ const AnswerTile = (props) => {
           by {props.answer.answerer_name}
         </div>
         <div className={style.answerDate}>
-          {DateTime.fromISO(props.answer.date).toFormat('DDD')}
+          {DateTime.fromISO(props.answer.date, {zone: "UTC"}).toFormat('DDD')}
         </div>
         <div className={style.answerHelpful}>
           Helpful?
