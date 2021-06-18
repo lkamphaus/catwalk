@@ -74,6 +74,7 @@ class ReviewsList extends React.Component {
         var total =
           (Number(data.recommended.true) || 0) +
           (Number(data.recommended.false) || 0);
+          this.props.handleUpdate(data)
         fetch(
           `/api/reviews/${this.props.id}/${1}/${total}/${
             this.state.sort

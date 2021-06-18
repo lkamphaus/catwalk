@@ -9,13 +9,14 @@ class Reviews extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      overview: null,
+      meta: this.props.meta,
       average: null,
       filters: [],
       search: ""
     };
 
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this)
   }
 
   componentDidUpdate(prevProps) {
@@ -27,6 +28,7 @@ class Reviews extends React.Component {
         total += Number(this.props.meta.ratings[key]);
       }
       this.setState({
+        meta: this.props.meta,
         average: sum / total,
       });
     }
@@ -58,6 +60,12 @@ class Reviews extends React.Component {
     }
   }
 
+  handleUpdate(meta) {
+    this.setState({
+      meta: meta
+    })
+  }
+
   handleRemove() {
     this.setState({
       filters: [],
@@ -66,10 +74,10 @@ class Reviews extends React.Component {
 
   render() {
     var total =
-      this.props.meta === null
+      this.state.meta === null
         ? null
-        : (Number(this.props.meta.recommended.false) || 0) +
-          (Number(this.props.meta.recommended.true) || 0);
+        : (Number(this.state.meta.recommended.false) || 0) +
+          (Number(this.state.meta.recommended.true) || 0);
 
     var filters =
       this.state.filters.length === 0 ? (
@@ -98,7 +106,7 @@ class Reviews extends React.Component {
       ) : null;
 
     var ratingBars =
-      this.props.meta === null
+      this.state.meta === null
         ? null
         : ["5", "4", "3", "2", "1"].map((rating) => (
             <div
@@ -119,13 +127,13 @@ class Reviews extends React.Component {
               <BreakdownBar
                 fill="fill"
                 number={
-                  this.props.meta.ratings[rating] &&
-                  this.props.meta.ratings[rating]
+                  this.state.meta.ratings[rating] &&
+                  this.state.meta.ratings[rating]
                 }
                 percentage={
-                  this.props.meta.ratings[rating]
+                  this.state.meta.ratings[rating]
                     ? Math.floor(
-                        (this.props.meta.ratings[rating] / total) * 100
+                        (this.state.meta.ratings[rating] / total) * 100
                       )
                     : 0
                 }
@@ -135,8 +143,8 @@ class Reviews extends React.Component {
 
     var characteristicBars = [];
 
-    if (this.props.meta) {
-      for (var key in this.props.meta.characteristics) {
+    if (this.state.meta) {
+      for (var key in this.state.meta.characteristics) {
         characteristicBars.push(key);
       }
     }
@@ -152,8 +160,8 @@ class Reviews extends React.Component {
           low={selectionMeanings[characteristic][0]}
           high={selectionMeanings[characteristic][4]}
           percentage={
-            this.props.meta.characteristics &&
-            (this.props.meta.characteristics[characteristic].value / 5) * 100
+            this.state.meta.characteristics &&
+            (this.state.meta.characteristics[characteristic].value / 5) * 100
           }
         />
       </div>
@@ -172,16 +180,16 @@ class Reviews extends React.Component {
             name={this.props.name}
             total={total}
             filters={this.state.filters}
-            meta={this.props.meta}
+            meta={this.state.meta}
             handleSearch={this.handleSearch}
             search={this.state.search}
+            handleUpdate={this.handleUpdate}
           />
         </div>
         <div className={styles.productBreakdown}>
           <ProductBreakdown
             total={total}
-            meta={this.props.meta}
-            overview={this.state.overview}
+            meta={this.state.meta}
             rounded={roundedAverage}
             rating={this.state.average}
           />
