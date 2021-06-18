@@ -72,7 +72,7 @@ const AnswerTile = (props) => {
       <div>
           <div className={style.thumbails}>
             {props.answer.photos.map(photo =>
-              <Thumbnail key={photo} source={photo}/>
+              <Thumbnail source={photo} key={photo}/>
             )}
           </div>
       </div>

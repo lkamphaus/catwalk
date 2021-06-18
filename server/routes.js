@@ -11,6 +11,8 @@ router.post('/qa/questions/:question_id/answers', controller.questions.postAnswe
 
 router.put('/qa/questions/:question_id/helpful', controller.questions.putQuestionHelpful);
 
+router.put('/qa/questions/:question_id/report', controller.questions.putQuestionReport);
+
 router.put('/qa/answers/:answer_id/helpful', controller.questions.putAnswerHelpful);
 
 router.put('/qa/answers/:answer_id/report', controller.questions.putAnswerReport);
