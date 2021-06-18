@@ -117,7 +117,8 @@ class Reviews extends React.Component {
               <span
                 style={{
                   display: "inline-block",
-                  width: "12%",
+                  fontSize: "1vw",
+                  width: "15%",
                   marginRight: "10px",
                   textDecoration: "underline",
                 }}
@@ -152,7 +153,7 @@ class Reviews extends React.Component {
     characteristicBars = characteristicBars.map((characteristic) => (
       <div key={characteristic} style={{ margin: "30px 0px" }}>
         <span
-          style={{ marginRight: "10px", display: "inline-block", width: "15%" }}
+          style={{ marginRight: "10px", display: "inline-block", width: "10%" }}
         >
           {characteristic}
         </span>
