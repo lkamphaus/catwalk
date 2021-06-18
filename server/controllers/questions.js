@@ -62,6 +62,22 @@ module.exports = {
     })
   },
 
+  putQuestionReport: function(req, res) {
+    console.log('id', req.params.question_id);
+    models.questions.putQuestionReportRequest({
+      questionId: req.params.question_id,
+      reported: req.body.reported
+    })
+    .then((response) => {
+      console.log(response);
+     res.status(204).end();
+    })
+    .catch(err => {
+      console.log('err', err);
+      res.status(400).end();
+    })
+  },
+
   putAnswerHelpful: function(req, res) {
     models.questions.putAnswerHelpfulRequest({
       answerId: req.params.answer_id,
