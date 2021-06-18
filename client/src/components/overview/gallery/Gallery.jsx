@@ -12,6 +12,7 @@ const Gallery = ({
   currentImageSet,
   thumbModalValue,
   arrowIndex,
+  arrowSelected,
   handleArrowRight,
   handleArrowLeft,
 }) => {
@@ -38,8 +39,8 @@ const Gallery = ({
   };
 
   const handlePagination = () => {
-    setPagination((current) => !current);
-  };
+    setPagination((current) => !current)
+  }
 
   return (
     <div className={style.mainGallery}>
@@ -66,9 +67,10 @@ const Gallery = ({
         {images &&
           arrayOfThumbs &&
           !pagination &&
-          arrayOfThumbs.map((item) =>
-            item.map((img, i) => (
-              <div key={i}
+          arrayOfThumbs.map((item, i) =>
+            item.map((img) => (
+              <div
+                key={i}
                 onClick={(e) => {
                   handleThumbnailIndex(e, item);
                 }}
@@ -78,25 +80,23 @@ const Gallery = ({
                       ? "3px #D96C06 solid"
                       : null,
                   maxHeight: "75px",
-                  borderRadius: "8px",
-                  marginRight: "10px",
                 }}
               >
                 <Thumbnails
                   images={images}
                   handleThumb={handleThumb}
                   thumbUrl={img.thumbnail_url}
-                  key={i}
+                  key={item}
                 />
               </div>
             ))
           )}
-        <div className={style.extraThumbs} style={{ width: "60px" }}>
+        <div className={style.thumbs} style={{ width: "60px" }}>
           {images &&
             leftOverThumbs &&
             pagination &&
             leftOverThumbs.map((item) =>
-              item.map((img, i) => (
+              item.map((img) => (
                 <div
                   onClick={(e) => {
                     handleThumbnailIndex(e, item);
@@ -106,22 +106,20 @@ const Gallery = ({
                       img.thumbnail_url === selectedThumb && thumbValue
                         ? "3px #D96C06 solid"
                         : null,
-                    maxHeight: "80px",
-                    borderRadius: "8px",
-                    marginRight: "10px",
+                    maxHeight: "75px",
                   }}
                 >
                   <Thumbnails
                     images={images}
                     handleThumb={handleThumb}
                     thumbUrl={img.thumbnail_url}
-                    key={i}
+                    key={item}
                   />
                 </div>
               ))
             )}
         </div>
-        {!pagination ? (
+        {!pagination  ? (
           <div
             style={{ marginLeft: "25%", padding: "5%", cursor: "pointer" }}
             onClick={leftOverThumbs ? handlePagination : undefined}
@@ -154,38 +152,36 @@ const Gallery = ({
       {images.length > 0 && (
         <div>
           {currentThumb && thumbValue === true ? (
-            <div
-              style={{
-                background: thumbModalValue
-                  ? `url('${images[arrowIndex][0].thumbnail_url}') no-repeat center center / cover`
-                  : `url('${currentThumb}') no-repeat center center / cover`,
-              }}
+            <img
               onClick={() => setExpandedOpen(true)}
               className={style.image}
-            ></div>
+              src={
+                thumbModalValue
+                  ? images[arrowIndex][0].thumbnail_url
+                  : currentThumb
+              }
+            ></img>
           ) : !currentImageSet.url ? (
-            <div
-              style={{
-                background:
-                  firstImg && !thumbModalValue
-                    ? `url('${firstImg[0].join()}') no-repeat center center / cover `
-                    : `url('${images[arrowIndex][0].thumbnail_url}') no-repeat center center / cover`,
-                maxWidth: "100%",
-                minWidth: "100%",
-              }}
+            <img
               onClick={() => setExpandedOpen(true)}
               className={style.image}
-            ></div>
+
+              src={
+                firstImg && !thumbModalValue
+                  ? firstImg[0].join()
+                  : images[arrowIndex][0].thumbnail_url
+              }
+            ></img>
           ) : (
-            <div
-              style={{
-                background: thumbModalValue
-                  ? `url('${images[arrowIndex][0].thumbnail_url}') no-repeat center center / cover`
-                  : `url('${currentImageSet.url}') no-repeat center center / cover`,
-              }}
+            <img
               onClick={() => setExpandedOpen(true)}
               className={style.image}
-            ></div>
+              src={
+                thumbModalValue
+                  ? images[arrowIndex][0].thumbnail_url
+                  : currentImageSet.url
+              }
+            ></img>
           )}
         </div>
       )}
@@ -243,12 +239,12 @@ const Gallery = ({
             )}
             <div id={style.thumbModals}>
               {images &&
-                images.map((item, i) =>
+                images.map((item) =>
                   item.map((img) => (
                     <ModalThumbs
                       handleThumb={handleThumb}
                       thumbUrl={img.thumbnail_url}
-                      key={i}
+                      key={item}
                     />
                   ))
                 )}

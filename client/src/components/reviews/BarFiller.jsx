@@ -5,8 +5,10 @@ function BarFiller(props) {
   return (
     <div
       className={styles.filler}
-      style={{ width: `${props.percentage}%` }}
-    >{props.number}</div>
+      style={{ width: `${props.percentage}%`, verticalAlign: "bottom" }}
+    >
+      {props.number}
+    </div>
   );
 }
 

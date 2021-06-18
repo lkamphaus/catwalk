@@ -11,7 +11,6 @@ const Thumbnail = (props) => {
     setShowModal(!showModal);
   }
 
-  console.log('source', showModal);
    return (
      <div>
       <img
