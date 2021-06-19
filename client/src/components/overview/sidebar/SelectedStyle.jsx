@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "../MainOverview.module.css";
 import Checkout from "./Checkout.jsx";
-import { GiCheckMark } from "react-icons/gi";
 
 const SelectedStyle = ({
   product,
@@ -52,7 +51,7 @@ const SelectedStyle = ({
             >
               {ids[0] === item.style_id && (
                 <div className={style.checkMark}>
-                  <GiCheckMark></GiCheckMark>
+                  <i class="fas fa-check"></i>
                 </div>
               )}
               {item.name}

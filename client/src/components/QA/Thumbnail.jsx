@@ -2,41 +2,36 @@ import React, { useState } from "react";
 import Modal from ".././reviews/Modal.jsx";
 import style from "./QuestionList.module.css";
 import styleReview from ".././reviews/Reviews.module.css";
-import { HiOutlineX } from 'react-icons/hi';
+import LazyLoad from "react-lazyload";
 
 const Thumbnail = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   const openOnClick = () => {
     setShowModal(!showModal);
-  }
+  };
 
-   return (
-     <div>
-      <img
-        alt='thumbnail-image'
-        onClick={openOnClick}
-        className={style.smallImg}
-        src={`${props.source}`}
-      />
-      {showModal &&
+  return (
+    <div>
+      <LazyLoad height={70} once>
+        <img
+          onClick={openOnClick}
+          className={style.smallImg}
+          src={`${props.source}`}
+        />
+      </LazyLoad>
+      {showModal && (
         <Modal>
-          <div
-            className={style.closeIcon}>
-
-            <HiOutlineX />
+          <div className={style.closeIcon}>
+            <i class="fas fa-times"></i>
           </div>
           <div className={styleReview.modal}>
-            <img
-              alt='modal-image'
-              src={props.source}
-              onClick={openOnClick}
-            />
+            <img src={props.source} onClick={openOnClick} />
           </div>
         </Modal>
-      }
-     </div>
-   )
-}
+      )}
+    </div>
+  );
+};
 
 export default Thumbnail;
