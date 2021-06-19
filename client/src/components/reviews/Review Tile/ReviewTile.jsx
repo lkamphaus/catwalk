@@ -1,8 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import styles from "../Reviews.module.css";
 import Thumbnail from "../Thumbnail.jsx";
 import Stars from "../Stars.jsx";
-import { FaCheckCircle } from "react-icons/fa";
 import { DateTime } from "luxon";
 
 class ReviewTile extends React.Component {
@@ -110,7 +109,7 @@ class ReviewTile extends React.Component {
     var recommend =
       this.props.review && this.props.review.recommend ? (
         <div style={{ marginBottom: "10px" }}>
-          <FaCheckCircle /> I recommend this product
+          <i class="fas fa-check-circle"></i>
         </div>
       ) : null;
 

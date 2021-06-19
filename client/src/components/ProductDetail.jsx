@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
-import MainOverview from "./overview/MainOverview.jsx";
-import QuestionList from "./QA/QuestionList/QuestionList.jsx";
-import Reviews from "./reviews/Reviews.jsx";
+const MainOverview = React.lazy(() => import("./overview/MainOverview.jsx"));
+const QuestionList = React.lazy(() =>
+  import("./QA/QuestionList/QuestionList.jsx")
+);
+const Reviews = React.lazy(() => import("./reviews/Reviews.jsx"));
 import styles from ".././style.css";
 import ClickTracking from ".././ClickTracking.jsx";
 
@@ -50,26 +52,32 @@ const ProductDetail = () => {
       </div>
       <div>
         <div style={{ width: "100%" }}>
-          <ClickTracking module={"Overview"}>
-            <MainOverview prod={prod} meta={meta}/>
-          </ClickTracking>
+          <Suspense fallback={<div>Loading...</div>}>
+            <ClickTracking module={"Overview"}>
+              <MainOverview prod={prod} meta={meta} />
+            </ClickTracking>
+          </Suspense>
         </div>
         <div>
-          <ClickTracking module={"Questions & Answers"}>
-            <QuestionList
-              id={product_id}
-              productName={prod === null ? null : prod.name}
-            />
-          </ClickTracking>
+          <Suspense fallback={<div>Loading...</div>}>
+            <ClickTracking module={"Questions & Answers"}>
+              <QuestionList
+                id={product_id}
+                productName={prod === null ? null : prod.name}
+              />
+            </ClickTracking>
+          </Suspense>
         </div>
         <div>
-          <ClickTracking module={"Reviews"}>
-            <Reviews
-              id={product_id}
-              meta={meta}
-              name={prod === null ? null : prod.name}
-            />
-          </ClickTracking>
+          <Suspense fallback={<div>Loading...</div>}>
+            <ClickTracking module={"Reviews"}>
+              <Reviews
+                id={product_id}
+                meta={meta}
+                name={prod === null ? null : prod.name}
+              />
+            </ClickTracking>
+          </Suspense>
         </div>
       </div>
     </div>

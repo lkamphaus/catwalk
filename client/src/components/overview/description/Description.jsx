@@ -1,7 +1,6 @@
 import React from "react";
 import Features from "./Features.jsx";
 import style from "../MainOverview.module.css";
-import { GrTwitter, GrInstagram, GrFacebookOption, GrLinkedinOption } from "react-icons/gr"
 
 const Description = ({ prod }) => {
   return (
@@ -12,16 +11,16 @@ const Description = ({ prod }) => {
       <br></br>
       <div className={style.social}>
         <div id={style.twitter}>
-          <GrTwitter />
+          <i class="fab fa-twitter"></i>
         </div>
         <div id={style.insta}>
-          <GrInstagram />
+          <i class="fab fa-instagram"></i>
         </div>
         <div id={style.fb}>
-          <GrFacebookOption />
+          <i class="fab fa-facebook"></i>
         </div>
         <div id={style.link}>
-          <GrLinkedinOption />
+          <i class="fab fa-linkedin"></i>
         </div>
       </div>
     </div>

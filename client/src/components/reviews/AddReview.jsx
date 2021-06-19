@@ -6,7 +6,6 @@ import CharacteristicButtons from "./CharacteristicButtons.jsx";
 import submitForm from "./helpers/submitForm.js";
 import characteristicsObj from "./helpers/characteristicsObj.js";
 import validateForm from "./helpers/validateForm.js";
-import { VscAdd } from "react-icons/vsc";
 
 class AddReview extends React.Component {
   constructor(props) {
@@ -321,7 +320,7 @@ class AddReview extends React.Component {
         >
           ADD A REVIEW
           <span style={{ marginTop: "30px", marginLeft: "10px" }}>
-            <VscAdd />
+            <i class="fas fa-plus"></i>
           </span>
         </button>
         {modal}
