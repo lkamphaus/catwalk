@@ -29,7 +29,10 @@ class Thumbnail extends React.Component {
 
     return (
       <div className={styles.thumbnails}>
-        <img 
+        {/* <div className={styles.smallImg} onClick={this.handleClick} style={{background: this.props.source ? `url(${this.props.source}') center / cover` : null}}>
+
+        </div> */}
+        <img
           alt='review-thumbnail'
           className={styles.smallImg}
           src={`${this.props.source}`}

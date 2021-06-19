@@ -66,7 +66,6 @@ module.exports = {
   },
 
   putQuestionReportRequest: function({ questionId, reported }) {
-    console.log('id', questionId);
     let options = {
       method: 'PUT',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/qa/questions/${questionId}/report`,

@@ -51,7 +51,7 @@ const SelectedStyle = ({
             >
               {ids[0] === item.style_id && (
                 <div className={style.checkMark}>
-                  <i class="fas fa-check"></i>
+                  <i className="fas fa-check"></i>
                 </div>
               )}
               {item.name}
