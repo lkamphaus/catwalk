@@ -8,12 +8,14 @@ module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
   mode: "development",
   output: {
-    filename: "bundle.js",
+    filename: 'bundle.js',
     path: DIST_DIR,
+    publicPath: '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Production',
+      title: 'Catwalk',
+      template: './template.html'
     }),
   ],
   module: {
