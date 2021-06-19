@@ -1,14 +1,14 @@
 # starfire-project-catwalk
 ### Table of Contents
-1. [General Info](#🌴-General-Info)
+1. [General Info](#General-Info)
 2. [Demo](#✨-Demo)
 3. [Technologies](#🧪-Technologies)
 4. [Installation](#🚀-Installation)
-5. [FAQs](#faqs)
+5. [FAQs](#FAQS)
 6. [Contributors](#🤝-Contributors)
 
 
-### 🌴 General Info
+### General Info
 Starfire-project-catwalk is a client-facing retail web-portal that allows customers to browse items in a retail catalog.
 
 ### ✨ Demo
