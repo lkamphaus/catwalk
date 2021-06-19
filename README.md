@@ -12,15 +12,15 @@
 Starfire-project-catwalk is a client-facing retail web-portal that allows customers to browse items in a retail catalog.
 
 ### ✨ Demo
-Overview
+#### Overview
 ![](image-gallery.gif)
 ![](add-to-cart.gif)
 
-Question & Answers
+#### Question & Answers
 ![](search-highlight.gif)
 ![](answer-form.gif)
 
-Rating & Reviews
+#### Rating & Reviews
 ![](filters-demo.gif)
 ![](review-form.gif)
 
