@@ -12,7 +12,7 @@ const Modal = (props) => {
         <div className={style.modalWrapper}>
           <div className={modalContentStyle}>
             <div className={style.closeIcon} onClick={props.closeOnClick}>
-              <i class="fas fa-times"></i>
+              <i className="fas fa-times"></i>
             </div>
             <div>{props.children}</div>
           </div>

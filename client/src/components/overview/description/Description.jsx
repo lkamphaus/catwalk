@@ -11,16 +11,16 @@ const Description = ({ prod }) => {
       <br></br>
       <div className={style.social}>
         <div id={style.twitter}>
-          <i class="fab fa-twitter"></i>
+          <i className="fab fa-twitter"></i>
         </div>
         <div id={style.insta}>
-          <i class="fab fa-instagram"></i>
+          <i className="fab fa-instagram"></i>
         </div>
         <div id={style.fb}>
-          <i class="fab fa-facebook"></i>
+          <i className="fab fa-facebook"></i>
         </div>
         <div id={style.link}>
-          <i class="fab fa-linkedin"></i>
+          <i className="fab fa-linkedin"></i>
         </div>
       </div>
     </div>

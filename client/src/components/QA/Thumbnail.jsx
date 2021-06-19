@@ -23,7 +23,7 @@ const Thumbnail = (props) => {
       {showModal && (
         <Modal>
           <div className={style.closeIcon}>
-            <i class="fas fa-times"></i>
+            <i className="fas fa-times"></i>
           </div>
           <div className={styleReview.modal}>
             <img src={props.source} onClick={openOnClick} />
