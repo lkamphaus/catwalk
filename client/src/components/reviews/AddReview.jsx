@@ -320,7 +320,7 @@ class AddReview extends React.Component {
         >
           ADD A REVIEW
           <span style={{ marginTop: "30px", marginLeft: "10px" }}>
-            <i class="fas fa-plus"></i>
+            <i className="fas fa-plus"></i>
           </span>
         </button>
         {modal}

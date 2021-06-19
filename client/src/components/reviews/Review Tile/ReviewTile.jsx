@@ -109,7 +109,8 @@ class ReviewTile extends React.Component {
     var recommend =
       this.props.review && this.props.review.recommend ? (
         <div style={{ marginBottom: "10px" }}>
-          <i class="fas fa-check-circle"></i>
+          <i className="fas fa-check-circle"></i>
+          <span style={{ marginLeft: "10px" }}>I recommend this product</span>
         </div>
       ) : null;
 

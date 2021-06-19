@@ -53,7 +53,6 @@ module.exports = {
       helpfulness: req.body.helpfulness
     })
     .then((response) => {
-      console.log(response);
      res.status(204).end();
     })
     .catch(err => {
@@ -63,7 +62,6 @@ module.exports = {
   },
 
   putQuestionReport: function(req, res) {
-    console.log('id', req.params.question_id);
     models.questions.putQuestionReportRequest({
       questionId: req.params.question_id,
       reported: req.body.reported
@@ -99,7 +97,6 @@ module.exports = {
       reported: req.body.reported
     })
     .then((response) => {
-      console.log(response);
      res.status(204).end();
     })
     .catch(err => {

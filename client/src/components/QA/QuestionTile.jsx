@@ -41,7 +41,6 @@ const QuestionTile = (props) => {
     setCheckReport(true);
 
     if (!checkReport) {
-      console.log('am i here');
       try {
         const response = await fetch(`/api/qa/questions/${question_id}/report`, {
           method: 'PUT',
@@ -68,7 +67,6 @@ const QuestionTile = (props) => {
 
   let reportedStyle = updateReport === 'Reported' ? style.answerReportBold : style.answerReport;
 
-  console.log('id', props.question.question_id)
   return (
     <div>
       <div className={style.questionBody}>

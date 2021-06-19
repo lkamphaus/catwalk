@@ -12,7 +12,7 @@ const Search = (props) => {
           onChange={(e) => props.handleSearch(e)}
         ></input>
         <div style={{ marginTop: "15px" }}>
-          <i class="fas fa-search"></i>
+          <i className="fas fa-search"></i>
         </div>
       </div>
     </div>

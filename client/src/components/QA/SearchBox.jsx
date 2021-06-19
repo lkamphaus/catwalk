@@ -22,7 +22,7 @@ const SearchBox = (props) => {
           onChange={handleSearch}
         ></input>
         <div style={{ marginTop: "15px" }}>
-          <i class="fas fa-search"></i>
+          <i className="fas fa-search"></i>
         </div>
       </div>
     </div>
