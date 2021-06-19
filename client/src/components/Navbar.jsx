@@ -8,7 +8,9 @@ const Navbar = (props) => {
         <div className={styles.fireLogo}>
           <i className="fas fa-fire"></i>
         </div>
-        <input className={styles.searchInput} type="text"></input>
+        
+        <div className={styles.searchInput} type="text"></div>
+       
         <div className={styles.searchBarIcon}>
           <i className="fas fa-search"></i>
         </div>
