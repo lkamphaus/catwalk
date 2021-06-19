@@ -160,7 +160,7 @@ class AddReview extends React.Component {
       );
 
     var images = this.state.images.map((image) => (
-      <img key={image} className={styles.smallImg} src={image} />
+      <img alt='add-review-image' key={image} className={styles.smallImg} src={image} />
     ));
 
     var charsLeft = 50 - this.state.fields["body"].length;

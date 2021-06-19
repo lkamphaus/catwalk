@@ -60,14 +60,17 @@ const Checkout = ({ product, currentStyles }) => {
       <br></br>
       <div>
         <select
-          ref={selectDiv}
+           ref={selectDiv}
           value={selectedSize}
           className={style.buttons}
           onChange={(e) => {
             handleSize(e);
           }}
         >
-          <option value=''  >
+          <option 
+          
+          
+          value=''  >
             Select Size
           </option>
           {currentStyles &&
