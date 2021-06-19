@@ -15,7 +15,7 @@ Starfire-project-catwalk is a client-facing retail web-portal that allows custom
 Overview
 
 Question & Answers 
-![] (search-highlight.gif)
+![](search-highlight.gif)
 
 Rating & Reviews
 
