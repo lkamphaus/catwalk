@@ -13,10 +13,16 @@ Starfire-project-catwalk is a client-facing retail web-portal that allows custom
 
 ### ✨ Demo
 Overview
+![](image-gallery.gif)
+![](add-to-cart.gif)
 
-Question & Answers (search-highlight.gif)
+Question & Answers
+![](search-highlight.gif)
+![](answer-form.gif)
 
 Rating & Reviews
+![](filters-demo.gif)
+![](review-form.gif)
 
 ### 🧪 Technologies
 * Axios : Version 0.21.1,
