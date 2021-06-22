@@ -39,7 +39,7 @@ Starfire-project-catwalk is a client-facing retail web-portal that allows custom
 * React-lazyload : Version 3.2.0,
 * React-router-dom : Version 5.2.0
 
-### 🚀 Installation
+### 🚀 Installation and Setup
 ```
 $ git clone https://github.com/hr-rfp53-Starfire/starfire-project-catwalk.git
 $ cd ../starfire-project-catwalk
@@ -47,6 +47,14 @@ $ npm install
 $ npm run build:dev
 $ npm start
 ```
+Set up a config.js with the following: 
+
+* TOKEN (from GitHub): 
+
+For Cloudinary API: 
+* API_KEY: 
+* API_SECRET:
+* CLOUD_NAME:
 
 ### FAQs
 
