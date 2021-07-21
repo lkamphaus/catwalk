@@ -1,11 +1,10 @@
-# starfire-project-catwalk
+# catwalk
 ### Table of Contents
 1. [General Info](#🌴-General-Info)
 2. [Demo](#✨-Demo)
 3. [Technologies](#🧪-Technologies)
 4. [Installation](#🚀-Installation)
-5. [FAQs](#FAQS)
-6. [Contributors](#🤝-Contributors)
+5. [Contributors](#🤝-Contributors)
 
 
 ### General Info
@@ -47,8 +46,6 @@ $ npm install
 $ npm run build:dev
 $ npm start
 ```
-
-### FAQs
 
 
 ### 🤝 Contributors
