@@ -9,7 +9,7 @@
 
 
 ### General Info
-Starfire-project-catwalk is a client-facing retail web-portal that allows customers to browse items in a retail catalog.
+Catwalk is a client-facing retail web-portal that allows customers to browse items in a retail catalog.
 
 ### ✨ Demo
 #### Overview
