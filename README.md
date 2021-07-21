@@ -47,14 +47,6 @@ $ npm install
 $ npm run build:dev
 $ npm start
 ```
-Set up a config.js with the following: 
-
-* TOKEN (from GitHub): 
-
-For Cloudinary API: 
-* API_KEY: 
-* API_SECRET:
-* CLOUD_NAME:
 
 ### FAQs
 
