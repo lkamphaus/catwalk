@@ -12,16 +12,16 @@ Catwalk is a client-facing retail web-portal that allows customers to browse ite
 
 ### ✨ Demo
 #### Overview
-![](image-gallery.gif)
-![](add-to-cart.gif)
+![Image Galley](image-gallery.gif)
+![Add to Cart](add-to-cart.gif)
 
 #### Question & Answers
-![](search-highlight.gif)
-![](answer-form.gif)
+![Search Highlight](search-highlight.gif)
+![Answer Form](answer-form.gif)
 
 #### Rating & Reviews
-![](filters-demo.gif)
-![](review-form.gif)
+![Filters Demo](filters-demo.gif)
+![Review Form](review-form.gif)
 
 ### 🧪 Technologies
 * Axios : Version 0.21.1,
